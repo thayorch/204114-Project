@@ -13,4 +13,10 @@ public class Player{
   public Player(KeyHandler keyHand) {
     this.keyHand = keyHand;
   }
+
+  public void setDefaultValues(){
+    int health = 20;
+    int accuracy = 80;
+    int evade = 3;
+  }
 }

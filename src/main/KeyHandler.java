@@ -2,11 +2,16 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import gamestate.GameState;
 
 public class KeyHandler implements KeyListener {
 
   GamePanel gp;
-  public boolean qPressed,ePressed,spacePressed,vPressed;
+  GameState gameState = new GameState();
+
+  public boolean qPressed, ePressed, spacePressed, vPressed, enterPressed;
+  private int currentState;
+
   public KeyHandler(GamePanel gp){
     this.gp = gp;
   }
@@ -18,23 +23,24 @@ public class KeyHandler implements KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode(); // return number of key
-
-    switch (code) {
-
-      case (KeyEvent.VK_Q):
-        qPressed = true;
+    switch (gameState.currentState) {
+      case(0): // title
         break;
 
-      case (KeyEvent.VK_E):
-        ePressed = true;
+      case(1): // bg
+        BGKeyPress(code);
         break;
 
-      case (KeyEvent.VK_V):
-        vPressed = true;
+      case(2): // character
         break;
 
-      case (KeyEvent.VK_SPACE):
-        spacePressed = true;
+      case(3): // ammo
+        AmmoKeyPress(code);
+        break;
+
+      case(4): // action
+        break;
+      case(5): //bulletTime
         break;
     }
   }
@@ -60,7 +66,43 @@ public class KeyHandler implements KeyListener {
       case (KeyEvent.VK_SPACE):
         spacePressed = false;
         break;
+
+      case (KeyEvent.VK_ENTER):
+        enterPressed = false;
+        break;
     }
   }
-  
+
+  // For each Game State
+
+  private void BGKeyPress(int code){
+    switch (code) {
+      case (KeyEvent.VK_Q):
+        qPressed = true;
+        break;
+      case (KeyEvent.VK_E):
+        ePressed = true;
+        break;
+      case (KeyEvent.VK_ENTER):
+        enterPressed = true;
+        break;
+    }
+  }
+
+  private void AmmoKeyPress(int code) {
+    switch (code) {
+    case (KeyEvent.VK_Q):
+      qPressed = true;
+      break;
+    case (KeyEvent.VK_E):
+      ePressed = true;
+      break;
+    case (KeyEvent.VK_V):
+      vPressed = true;
+      break;
+    case (KeyEvent.VK_SPACE):
+      spacePressed = true;
+      break;
+    }
+  }
 }
