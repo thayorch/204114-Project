@@ -6,14 +6,15 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
   GamePanel gp;
-  GameState gameState = new GameState();
 
-  public boolean qPressed, ePressed, spacePressed, vPressed, enterPressed;
-  private int currentState;
+  public boolean qPressed, ePressed, spacePressed, vPressed, enterPressed, wPressed, sPressed;
+  int currentState;
 
   public KeyHandler(GamePanel gp){
     this.gp = gp;
+    currentState = gp.currentState;
   }
+
 
   @Override
   public void keyTyped(KeyEvent e) {
@@ -22,8 +23,9 @@ public class KeyHandler implements KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode(); // return number of key
-    switch (gameState.currentState) {
+    switch (gp.currentState) {
       case(0): // title
+        TitleKeyPress(code);
         break;
 
       case(1): // bg
@@ -73,6 +75,12 @@ public class KeyHandler implements KeyListener {
   }
 
   // For each Game State
+  
+  private void TitleKeyPress(int code){
+    if(code == KeyEvent.VK_ENTER){
+      enterPressed = true;
+    }
+  }
 
   private void BGKeyPress(int code){
     switch (code) {
