@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Graphics2D;
 import java.awt.Color;
-import gamestate.GameState;
 
 public class UI {
   GameState gameState = new GameState();

@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Dimension;
 import java.awt.Color;
-import gamestate.*;
 import entity.*;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -25,19 +24,12 @@ public class GamePanel extends JPanel implements Runnable{
   GameState gameState = new GameState(this, keyHand);
   UI ui = new UI(this);
 
-  int currentState;
-
   public GamePanel(){
     this.setDoubleBuffered(true); // drawing componet offscreen
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(Color.black);
     this.addKeyListener(keyHand);
     this.setFocusable(true);
-  }
-
-  public void setupGame(){
-    currentState = gameState.getGameState();
-    gameState.loadAsset();
   }
 
   public void startGameThread(){

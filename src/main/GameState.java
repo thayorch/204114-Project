@@ -1,4 +1,4 @@
-package gamestate;
+package main;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
@@ -7,23 +7,27 @@ import java.awt.Color;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-import java.awt.Image;
-
-import main.GamePanel;
-import main.KeyHandler;
+import entity.Player;
 
 public class GameState {
+
   // Game State
-  protected String name;
-  public final int titleState = 0;
-  public final int bgState = 1;
-  public final int characterState = 2;
-  public final int ammoState = 3;
-  public final int previewState = 4;
-  public final int bulletTimeState = 5;
+  public final int TITLESTATE = 0;
+  public final int BGSTATE = 1;
+  public final int CHARSTATE = 2;
+  public final int AMMOSTATE = 3;
+  public final int PREVIEWSTATE = 4;
+  public final int BULLETSTATE = 5;
+
   public int currentState = 1;
   public int currentBackGround = 0;
+  
+  // Image
   protected BufferedImage BackGround, Block, Aim, Evade, C1, C2, C3, P1, P2, Slot, Chamber, BG1, BG2, BG3;
+
+  // Player
+  Player p1 = new Player();
+  Player p2 = new Player();
 
   GamePanel gp;
   KeyHandler keyHand;
@@ -34,6 +38,7 @@ public class GameState {
   public GameState(GamePanel gp, KeyHandler keyHand){
     this.gp = gp;
     this.keyHand = keyHand;
+    loadAsset();
   }
 
   public GameState(){
@@ -50,22 +55,22 @@ public class GameState {
   // update
   public void update() {
     switch (currentState) {
-      case(titleState):
+      case(TITLESTATE):
         titleUpdate();
         break;
-      case(bgState):
+      case(BGSTATE):
         bgUpdate();
         break;
-      case(characterState):
+      case(CHARSTATE):
         charUpdate();
         break;
-      case(ammoState):
+      case(AMMOSTATE):
         ammoUpdate();
         break;
-      case(previewState):
+      case(PREVIEWSTATE):
         previewUpdate();
         break;
-      case(bulletTimeState):
+      case(BULLETSTATE):
         bulletUpdate();
         break;
     }
@@ -88,7 +93,7 @@ public class GameState {
     }
 
     if(keyHand.enterPressed == true){
-      currentState = characterState;
+      currentState = CHARSTATE;
     }
   }
 
@@ -112,22 +117,22 @@ public class GameState {
   public void draw(Graphics2D g2) {
     this.g2 = g2;
     switch (currentState) {
-      case(titleState):
+      case(TITLESTATE):
         drawTitleScreen(g2);
         break;
-      case(bgState):
+      case(BGSTATE):
         drawBGScreen(g2);
         break;
-      case(characterState):
+      case(CHARSTATE):
         drawCharacterScreen(g2);
         break;
-      case(ammoState):
+      case(AMMOSTATE):
         drawAmmoScreen(g2);
         break;
-      case(previewState):
+      case(PREVIEWSTATE):
         drawPreviewScreen(g2);
         break;
-      case(bulletTimeState):
+      case(BULLETSTATE):
         drawBulletTimeScreen(g2);
         break;
     }
@@ -139,25 +144,24 @@ public class GameState {
   }
 
   private void drawBGScreen(Graphics2D g2) {
-    BackGround = null;
-    System.out.println(currentBackGround);
+
     switch (currentBackGround) {
       case 0:
         BackGround = BG1;
-        gp.setBackground(Color.red);
+        gp.setBackground(Color.decode("#FF6666"));
         break;
       case 1:
         BackGround = BG2;
-        gp.setBackground(Color.yellow);
+        gp.setBackground(Color.decode("#B2Ff66"));
         break;
       case 2:
         BackGround = BG3;
-        gp.setBackground(Color.blue);
+        gp.setBackground(Color.decode("#66B2FF"));
         break;
     }
 
     //g2.drawImage(BG1, 0, 0, gp.screenWidth, gp.screenHeight, null); // (x, y, w, h, color) not working
-    g2.drawImage(BG1, 0, 0, null); // (x, y, w, h, color) not working
+    g2.drawImage(BackGround, 0, 0, null); // (x, y, w, h, color) not working
     // Title screen drawing logic here
   }
   
@@ -186,6 +190,8 @@ public class GameState {
       BG1 = ImageIO.read(getClass().getResourceAsStream("/img/bg/test-bg1.png"));
       BG2 = ImageIO.read(getClass().getResourceAsStream("/img/bg/test-bg2.png"));
       BG3 = ImageIO.read(getClass().getResourceAsStream("/img/bg/test-bg3.png"));
+
+      System.out.println("asset has been loaded");
     } catch (IOException e) {
       e.printStackTrace(); // can't find image
     }

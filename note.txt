@@ -1,3 +1,0 @@
-make ammo state happend
-store player 1 & 2 data in 2 list ammo & action
-

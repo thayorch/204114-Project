@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 //import javax.swing.JLabel;
 
-public class App {
+public class Main {
   public static void main(String[] args) {
 
     // init Object
