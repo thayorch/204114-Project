@@ -33,6 +33,7 @@ public class KeyHandler implements KeyListener {
         break;
 
       case(2): // character
+        CharPress(code);
         break;
 
       case(3): // ammo
@@ -83,6 +84,20 @@ public class KeyHandler implements KeyListener {
   }
 
   private void BGKeyPress(int code){
+    switch (code) {
+      case (KeyEvent.VK_Q):
+        qPressed = true;
+        break;
+      case (KeyEvent.VK_E):
+        ePressed = true;
+        break;
+      case (KeyEvent.VK_ENTER):
+        enterPressed = true;
+        break;
+    }
+  }
+
+  private void CharPress(int code) {
     switch (code) {
       case (KeyEvent.VK_Q):
         qPressed = true;

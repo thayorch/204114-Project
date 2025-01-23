@@ -21,32 +21,38 @@ public class GameState {
   protected final int PREVIEWSTATE = 4;
   protected final int BULLETSTATE = 5;
 
+  // DEFAULT variable
+  protected final int TOTAL_BG = 3; // n + 1
+  protected final int TOTAL_CHAR = 3;
+  protected final int CHAR1 = 0;
+  protected final int CHAR2 = 1;
+  protected final int CHAR3 = 2;
+
+
   protected int currentState;
+
   protected int currentBackGround = 0;
+
+  protected int currentChar = 0;
+
+  protected int currentBarrel = 0;
+  protected int currentActionSlot = 0;
   
-  // Image
-  protected BufferedImage BackGround, Block, Aim, Evade, C1, C2, C3, P1, P2, Slot, Chamber, BG1, BG2, BG3;
 
   // Player
-  Player p1 = new Player();
-  Player p2 = new Player();
+  Player player1;
+  Player player2;
 
   GamePanel gp;
   KeyHandler keyHand;
   Graphics2D g2;
-  int screenWidth;
-  int screenHeight;
-
-  Font arial_40 = new Font("Arial", Font.PLAIN, 40);
-  Font arial_20 = new Font("Arial", Font.PLAIN, 20);
 
   public GameState(GamePanel gp, KeyHandler keyHand){
     this.gp = gp;
     this.keyHand = keyHand;
+    player1 = gp.player1;
+    player2 = gp.player2;
     currentState = gp.currentState;
-    screenWidth = gp.screenWidth;
-    screenHeight = gp.screenHeight;
-    //loadAsset();
   }
 
   public GameState(){
@@ -93,14 +99,13 @@ public class GameState {
   }
 
   private void bgUpdate(){
-    int total_bg = 3; // n + 1
     if(keyHand.ePressed == true){
-      currentBackGround = (currentBackGround + 1)%total_bg;
+      currentBackGround = (currentBackGround + 1)%TOTAL_BG; // backward
       keyHand.ePressed = false;
     }
 
     if(keyHand.qPressed == true){
-      currentBackGround = (currentBackGround - 1 + total_bg) % total_bg; 
+      currentBackGround = (currentBackGround - 1 + TOTAL_BG) % TOTAL_BG; //forward
       keyHand.qPressed = false;
     }
 
@@ -111,7 +116,21 @@ public class GameState {
   }
 
   private void charUpdate(){
+    if(keyHand.ePressed == true){
+      keyHand.ePressed = false;
+      currentChar= (currentChar + 1)%TOTAL_CHAR;
+    }
 
+    if(keyHand.qPressed == true){
+      keyHand.qPressed = false;
+      currentChar= (currentChar - 1 + TOTAL_CHAR)%TOTAL_CHAR;
+    }
+
+    if(keyHand.enterPressed == true){
+      if(gp.player1.ready && gp.player2.ready){
+      currentState = AMMOSTATE;
+      }
+    }
   }
 
   private void ammoUpdate(){

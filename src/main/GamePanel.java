@@ -12,18 +12,23 @@ public class GamePanel extends JPanel implements Runnable{
   // Screen Settings
   // ratios 16:9 ; 16x9, 256x144, 640x360, 960x540, 1280x720, 1920x1080 
   // primary 640x360
-  protected float scalingFactor = 2f;
+  public float scalingFactor = 3f;
   public int screenWidth = (int)(640 * scalingFactor);
-
   public int screenHeight = (int)(360 * scalingFactor);
+
+  private int totalPlayer = 2;
 
   // FPS
   private int FPS = 60;
 
   Thread gameThread; // call game loop, call run()
   KeyHandler keyHand = new KeyHandler(this); // passing GamePanel class
-  GameState gameState = new GameState(this, keyHand);
-  UI ui = new UI(this, gameState);
+  GameState gameState = new GameState(this, keyHand); // handle Game Logic
+  UI ui = new UI(this, gameState); // handle Graphics
+  //Player[] players = new Player[totalPlayer];
+
+  public Player player1 = new Player(this, gameState, 1);
+  public Player player2 = new Player(this, gameState, 2);
 
   // Game State
   public int currentState = gameState.TITLESTATE;
@@ -88,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
     Graphics2D g2 = (Graphics2D)g; // turn to 2D
 
     //gameState.draw(g2); // gameState
-    ui.draw(g2);
+    ui.draw(g2); // ui - interface drawing 
     g2.dispose(); // memory saving
   }
 
