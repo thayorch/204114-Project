@@ -67,27 +67,27 @@ public class UI extends GameState{
     return x;
   }
 
-  public int getCenter(BufferedImage img, double divisor, int lenght,char type){ // img
+  public int getCenter(BufferedImage img, double divisor, int lenght){ // img
     int screen;
-    screen = gp.screenWidth;
+    screen = gp.screenHeight;
     scalingFactor = gp.scalingFactor;
 
-    if(type == 'y')
-      screen = gp.screenHeight;
+    if(lenght == gp.screenWidth)
+      screen = gp.screenWidth;
 
     int img_Width = (int)(img.getWidth()*scalingFactor);
     int value = (int)((screen - img_Width)/divisor); // /2 = center
     return value;
   }
 
-  public int getCenter(BufferedImage img, double manualScale, double divisor, int lenght,char type){ // get center with scale
+  public int getCenter(BufferedImage img, double manualScale, double divisor, int lenght){ // get center with scale
     int screen;
-    screen = gp.screenWidth;
+    screen = gp.screenHeight;
     scalingFactor = gp.scalingFactor;
     manualScale += scalingFactor;
 
-    if(type == 'y')
-      screen = gp.screenHeight;
+    if(lenght == gp.screenWidth)
+      screen = gp.screenWidth;
 
     int img_Width = (int)(img.getWidth() * manualScale);
     int value = (int)((screen - img_Width)/divisor); // /2 = center
@@ -190,14 +190,27 @@ public class UI extends GameState{
     // Draw from top left
     //S_CHAR = scaleImage(S_CHAR, 1.25);
     //drawImageScale(S_CHAR, getCenter(S_CHAR, 2, gp.screenWidth,'x'), getCenter(S_CHAR, 4.5, gp.screenHeight,'y')); // scaling
+    
+    setFontScale(font_20);
+    g2.setColor(Color.black);
+    String txt = "Player 1";
+
+    if (gs.currentPlayer == 1)
+      txt = "Player 2";
+
+    int x = (int)(getCenter(txt)/6);
+    int y = (int)(gp.screenHeight/8.5);
+
+    g2.drawString(txt, x, y);
+    
     double manualScale = 0.5;
-    drawImageScale(S_CHAR, manualScale, getCenter(SL_CHAR, manualScale, 2, gp.screenWidth,'x'), getCenter(SL_CHAR, manualScale, 4.5, gp.screenHeight,'y')); // scaling
-    drawImageScale(SL_CHAR, getCenter(SL_CHAR, 5.98, gp.screenWidth,'x'), getCenter(SL_CHAR, 4.5, gp.screenHeight,'y')); // scaling
-    drawImageScale(SR_CHAR, getCenter(SR_CHAR, 1.2, gp.screenWidth,'x'), getCenter(SR_CHAR, 4.5, gp.screenHeight,'y')); // scaling
+    drawImageScale(S_CHAR, manualScale, getCenter(SL_CHAR, manualScale, 2, gp.screenWidth), getCenter(SL_CHAR, manualScale, 4.5, gp.screenHeight)); // scaling
+    drawImageScale(SL_CHAR, getCenter(SL_CHAR, 5.98, gp.screenWidth), getCenter(SL_CHAR, 4.5, gp.screenHeight)); // scaling
+    drawImageScale(SR_CHAR, getCenter(SR_CHAR, 1.2, gp.screenWidth), getCenter(SR_CHAR, 4.5, gp.screenHeight)); // scaling
   }
   
   private void drawAmmoScreen(Graphics2D g2) {
-    gp.setBackground(Color.white);
+    gp.setBackground(Color.black);
     // Ammo screen drawing logic here
   }
   

@@ -4,22 +4,38 @@ import main.*;
 
 public class Player{
 
-  public int player_id, health, accuracy, evade, character;
+  public int player_id, health, evade, block, character, barrel, actionNum;
+  public int normalBullet = 12;
+  public int silverBullet = 1, magicBullet = 1, deathBullet = 1;
   public boolean ready = false;
-  int[] bullet = new int[6];
-  int[] action = new int[5];
+  public int[] bullet;
+  public int[] action;
   GamePanel gp;
   GameState gs;
 
-  public Player(GamePanel gp, GameState gs, int player_id){
+  public Player(GamePanel gp){
     this.gp = gp;
-    this.gs = gs;
+    setDefaultvalues();
   }
 
-  public void setdefaultvalues(int player_id){
-    this.player_id = player_id;
-    health = 3;
-    accuracy = 80;
-    evade = 3;
+  public Player(){
+  }
+
+  public void setDefaultvalues(){
+    health = 100;
+    evade = 2;
+    block = 1;
+
+    barrel = 6;
+    actionNum = 5;
+
+    bullet = new int[barrel];
+    action = new int[actionNum];
+  }
+
+  public int getTotalBullet(){
+    if(health > 10)
+      return normalBullet + silverBullet + magicBullet;
+    return normalBullet + silverBullet + magicBullet + deathBullet;
   }
 }

@@ -7,12 +7,11 @@ public class KeyHandler implements KeyListener {
 
   GamePanel gp;
 
-  public boolean qPressed, ePressed, spacePressed, vPressed, enterPressed, wPressed, sPressed;
-  int currentState;
+  public boolean qPressed, ePressed, spacePressed, enterPressed, wPressed, sPressed, numPressed;
+  public int numPressedNUM;
 
   public KeyHandler(GamePanel gp){
     this.gp = gp;
-    currentState = gp.currentState;
   }
 
 
@@ -42,6 +41,7 @@ public class KeyHandler implements KeyListener {
 
       case(4): // action
         break;
+
       case(5): //bulletTime
         break;
     }
@@ -61,16 +61,24 @@ public class KeyHandler implements KeyListener {
         ePressed = false;
         break;
 
-      case (KeyEvent.VK_V):
-        vPressed = false;
-        break;
-
       case (KeyEvent.VK_SPACE):
         spacePressed = false;
         break;
 
       case (KeyEvent.VK_ENTER):
         enterPressed = false;
+        break;
+
+      case (KeyEvent.VK_1):
+        numPressed = false;
+        break;
+
+      case (KeyEvent.VK_2):
+        numPressed = false;
+        break;
+
+      case (KeyEvent.VK_3):
+        numPressed = false;
         break;
     }
   }
@@ -119,8 +127,24 @@ public class KeyHandler implements KeyListener {
     case (KeyEvent.VK_E):
       ePressed = true;
       break;
-    case (KeyEvent.VK_V):
-      vPressed = true;
+    case (KeyEvent.VK_ENTER):
+      enterPressed = true;
+      break;
+    case (KeyEvent.VK_1):
+      numPressed = true;
+      numPressedNUM = 1;
+      break;
+    case (KeyEvent.VK_2):
+      numPressed = true;
+      numPressedNUM = 2;
+      break;
+    case (KeyEvent.VK_3):
+      numPressed = true;
+      numPressedNUM = 3;
+      break;
+    case (KeyEvent.VK_4):
+      numPressed = true;
+      numPressedNUM = 4;
       break;
     case (KeyEvent.VK_SPACE):
       spacePressed = true;
