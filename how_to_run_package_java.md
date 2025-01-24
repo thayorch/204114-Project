@@ -1,7 +1,7 @@
 # first compile 
 
 ```bash
-javac -d bin src/main/*.java
+javac -d bin src/**/*.java
 ```
 
 # how to run

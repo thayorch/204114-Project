@@ -55,6 +55,7 @@ public class GameState {
   protected int currentP1Action = 0;
   protected int currentP2Action = 0;
   protected int bulletType = 0;
+  protected int actionType = 0;
   protected int round = 1;
 
   // Player
@@ -206,7 +207,7 @@ public class GameState {
     gp.player1.setStartRoundValues();
     gp.player2.setStartRoundValues();
 
-    System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", currentPlayer,currentType, currentSlot, keyHand.numPressedNUM);
+    //System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", currentPlayer,currentType, currentSlot, keyHand.numPressedNUM);
     if(keyHand.ePressed){
       keyHand.ePressed = false;
       currentSlot = (currentSlot + 1)%TOTAL_SLOT;
@@ -271,7 +272,7 @@ public class GameState {
         System.out.println("player2 ready");
       }
 
-      if(gp.player1.ready && gp.player2.ready){
+      if(gp.player1.ready && gp.player2.ready && keyHand.enterPressed){
         System.out.println("change stage");
         currentState = PREVIEWSTATE;
         currentPlayer = 0;
@@ -284,48 +285,49 @@ public class GameState {
 
   private void previewUpdate(){
 
+    System.out.printf("Round: %d\n", round);
+
     int MAX_ACTION = Math.max(gp.player1.actionNum, gp.player2.actionNum);
 
-    // loop, Thread
-    if (currentAction < MAX_ACTION)
+    // loop check action
+    while (currentAction < MAX_ACTION){
       currentAction++;
+      // if want add ability / perk
+      if(currentAction >= gp.player1.getActionLength()){
+        currentP1Action = ACTION_NONE;}
+      else{
+        currentP1Action = gp.player1.getActionType(currentAction);}
 
-    // if want add ability / perk
-    if(currentAction >= gp.player1.getActionLength())
-      currentP1Action = ACTION_NONE;
-    else
-      currentP1Action = gp.player1.getActionType(currentAction);
+      if(currentAction >= gp.player2.getActionLength()){
+        currentP2Action = ACTION_NONE;}
+      else{
+        currentP2Action = gp.player2.getActionType(currentAction);}
 
-    if(currentAction >= gp.player2.getActionLength())
-      currentP2Action = ACTION_NONE;
-    else
-      currentP2Action = gp.player2.getActionType(currentAction);
+      System.out.printf("P1 %d : P2 %d\n", currentP1Action, currentP2Action);
 
-    System.out.printf("P1 %d : P2 %d\n", currentP1Action, currentP2Action);
+      // todo add Shoot-left, Shoot-right
+      if(currentP1Action == ACTION_SHOOT){
+        System.out.print("Player1 Shoot ");
+        switch (currentP2Action) {
 
-    // todo add Shoot-left, Shoot-right
-    if(currentP1Action == ACTION_SHOOT){
-      System.out.print("Player1 Shoot ");
-      switch (currentP2Action) {
+          case(ACTION_SHOOT):
+            System.out.println("Player2 Shoot");
+            //currentState = BULLETSTATE;
+            break;
 
-        case(ACTION_SHOOT):
-          System.out.println("Player2 Shoot");
-          //currentState = BULLETSTATE;
-          break;
+          case(ACTION_EVADE):
+            System.out.println("Player2 Evade");
+            // todo add evade-left, evade-right
+            break;
 
-        case(ACTION_EVADE):
-          System.out.println("Player2 Evade");
-          // todo add evade-left, evade-right
-          break;
+          case(ACTION_BLOCK):
+            System.out.println("Player2 Guard");
+            break;
 
-        case(ACTION_GUARD):
-          System.out.println("Player2 Guard");
-          break;
-
-        case(ACTION_NONE):
-          System.out.println("Player2 Stand");
-          break;
-      }
+          case(ACTION_NONE):
+            System.out.println("Player2 Stand");
+            break;
+        }
     }
 
     if(currentP2Action == ACTION_SHOOT){
@@ -341,7 +343,7 @@ public class GameState {
           System.out.println("Player1 Evade");
           break;
 
-        case(ACTION_GUARD):
+        case(ACTION_BLOCK):
           System.out.println("Player1 Guard");
           break;
 
@@ -350,9 +352,12 @@ public class GameState {
           break;
       }
     }
+    }
 
     // Round End
-    if (currentAction == (MAX_ACTION - 1)){
+    if (currentAction == (MAX_ACTION)){
+      currentAction = 0; // reset process action
+      round++;
 
       // GameOver
       if (gp.player1.health <= 0 && gp.player2.health <= 0)
@@ -366,26 +371,24 @@ public class GameState {
       if (gp.player1.health <= 0)
         System.out.println("Player 2 Win");
         currentState = TITLESTATE;
+    }
       
       // Round Over
-      if (round > 5){
+    if (round > 5){
+      if (gp.player1.getTotalBullet() > gp.player2.getTotalBullet())
+        System.out.println("Player 1 Win");
 
-        if (gp.player1.getTotalBullet() > gp.player2.getTotalBullet())
-          System.out.println("Player 1 Win");
+      if (gp.player1.getTotalBullet() < gp.player2.getTotalBullet())
+        System.out.println("Player 2 Win");
 
-        if (gp.player1.getTotalBullet() < gp.player2.getTotalBullet())
-          System.out.println("Player 2 Win");
+      if (gp.player1.getTotalBullet() == gp.player2.getTotalBullet())
+        System.out.println("Tie");
 
-        if (gp.player1.getTotalBullet() == gp.player2.getTotalBullet())
-          System.out.println("Tie");
-
-        currentState = TITLESTATE;
-      }
+      currentState = TITLESTATE;
+    }
 
       // Alive
       currentState = AMMOSTATE;
-      round++;
-    }
   }
 
   private void bulletUpdate(){
