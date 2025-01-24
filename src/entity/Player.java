@@ -207,7 +207,6 @@ public class Player{
   }
 
   public void versusAction(Player player1, Player player2){
-    if(player1.)
 
   }
 }
