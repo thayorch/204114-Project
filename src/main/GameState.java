@@ -45,7 +45,7 @@ public class GameState {
   protected final int DEATH_BULLET = 4; // Devil Contact, If it dosen't hit mean the shooter die.
 
   protected final int ACTION_NONE = 0;
-  protected final int ACTION_GUARD = 1;
+  protected final int ACTION_BLOCK = 1;
   protected final int ACTION_SHOOT = 2;
   protected final int ACTION_EVADE = 3;
 
@@ -167,83 +167,24 @@ public class GameState {
     }
   }
 
-  private void checkPlayerAmmo(int bulletType, Player player){ // check player when choose bullet, replace current bullet
-    switch (bulletType) {
-      case EMPTY_BULLET:
-        player.bullet[currentSlot] = EMPTY_BULLET;
-        setPlayerAmmoBack(player, bulletType);
-        break;
-
-      case NORMAL_BULLET:
-        player.bullet[currentSlot] = EMPTY_BULLET;
-        if (player.normalBullet > 0 && player.bullet[currentSlot] != NORMAL_BULLET){
-          setPlayerAmmoBack(player); // add back bullet type
-          player.normalBullet--;
-          player.bullet[currentSlot] = bulletType;
-        }
-        break;
-
-      case MAGIC_BULLET:
-        player.bullet[currentSlot] = EMPTY_BULLET;
-        if (player.bullet[currentSlot] != MAGIC_BULLET){
-          setPlayerAmmoBack(player);
-          player.magicBullet--;
-          player.bullet[currentSlot] = bulletType;
-        }
-        break;
-
-      default:
-        break;
+  private void checkPlayerAmmo(int bulletType, Player player){ // check player barrel when insert bullet, replace current bullet
+    if (player.getBullet(bulletType) > 0 && player.getBulletType(currentSlot) != bulletType){
+      player.addBullet(player.getBulletType(currentSlot)); // add back bullet type
+      player.removeBullet(bulletType); // insert bullet into barrel
+      player.setBulletType(currentSlot, bulletType);
     }
-
+    else 
+      player.setBulletType(currentSlot, EMPTY_BULLET);
   }
 
-  private void setPlayerAmmoBack(Player player){ // re add bullet to pool
-    switch (player.bullet[currentSlot]) {
-      case NORMAL_BULLET:
-        player.normalBullet++;
-        break;
-
-      case MAGIC_BULLET:
-        player.magicBullet++;
-        break;
-
-      case SILVER_BULLET:
-        player.silverBullet++;
-        break;
-
-      case DEATH_BULLET:
-        player.deathBullet++;
-        break;
+  private void checkPlayerAction(int actionType, Player player){ // same as bullet
+    if (player.getActionType(actionType) > 0 && player.getActionType(currentSlot) != actionType){
+      player.addAction(player.getActionType(currentSlot));
+      player.removeAction(actionType);
+      player.setActionType(currentSlot, actionType);
     }
-  }
-
-  private void setPlayerAmmoBack(Player player, int bulletType){ // re add bullet to pool
-    switch (player.bullet[currentSlot]) {
-
-      case EMPTY_BULLET:
-        if(bulletType == NORMAL_BULLET) player.normalBullet++;
-        if(bulletType == DEATH_BULLET) player.deathBullet++;
-        if(bulletType == SILVER_BULLET) player.silverBullet++;
-        if(bulletType == MAGIC_BULLET) player.magicBullet++;
-        break;
-
-      case NORMAL_BULLET:
-        player.normalBullet++;
-        break;
-
-      case MAGIC_BULLET:
-        player.magicBullet++;
-        break;
-
-      case SILVER_BULLET:
-        player.silverBullet++;
-        break;
-
-      case DEATH_BULLET:
-        player.deathBullet++;
-        break;
-    }
+    else 
+      player.setActionType(currentSlot, ACTION_NONE);
   }
 
   private void ammoUpdate(){
@@ -261,18 +202,19 @@ public class GameState {
         TOTAL_SLOT = TOTAL_ACTION;
         break;
     }
+    
+    gp.player1.setStartRoundValues();
+    gp.player2.setStartRoundValues();
 
-
+    System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", currentPlayer,currentType, currentSlot, keyHand.numPressedNUM);
     if(keyHand.ePressed){
       keyHand.ePressed = false;
       currentSlot = (currentSlot + 1)%TOTAL_SLOT;
-      System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", currentPlayer,currentType, currentSlot, keyHand.numPressedNUM);
     }
 
     if(keyHand.qPressed){
       keyHand.qPressed = false;
       currentSlot = (currentSlot - 1 + TOTAL_SLOT) % TOTAL_SLOT;
-      System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", currentPlayer,currentType, currentSlot, keyHand.numPressedNUM);
     }
 
     if(keyHand.spacePressed){
@@ -282,7 +224,6 @@ public class GameState {
         currentType = 1;
       else
         currentType = 0;
-      System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", currentPlayer,currentType, currentSlot, keyHand.numPressedNUM);
     }
 
     if(keyHand.numPressed){
@@ -293,8 +234,11 @@ public class GameState {
             bulletType = keyHand.numPressedNUM; // ammo check
             checkPlayerAmmo(bulletType, gp.player1);
           }
-          else
-            gp.player1.action[currentSlot] = keyHand.numPressedNUM;
+          else{
+            actionType = keyHand.numPressedNUM;
+            if(actionType == 4) actionType = 0;
+            checkPlayerAction(actionType, gp.player1);
+          }
           break;
 
         case 1:
@@ -303,10 +247,11 @@ public class GameState {
             checkPlayerAmmo(bulletType, gp.player2);
           }
           else
-            gp.player2.action[currentSlot] = keyHand.numPressedNUM;
+            actionType = keyHand.numPressedNUM;
+            if(actionType == 4) actionType = 0;
+            checkPlayerAction(actionType, gp.player2);
           break;
       } 
-      System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", currentPlayer,currentType, currentSlot, keyHand.numPressedNUM);
       keyHand.numPressedNUM = 0; // reset num
     }
 
@@ -337,40 +282,28 @@ public class GameState {
     }
   }
 
-  private int calculateDamage(int bulletType, Player p1, Player p2){ // Gunner Victim
-    int damage = 0;
-    switch (bulletType) {
-      case NORMAL_BULLET:
-        break;
-      case MAGIC_BULLET:
-        break;
-      case SILVER_BULLET:
-        break;
-      case DEATH_BULLET:
-        break;
-    }
-    return damage;
-  }
-
   private void previewUpdate(){
 
     int MAX_ACTION = Math.max(gp.player1.actionNum, gp.player2.actionNum);
 
+    // loop, Thread
     if (currentAction < MAX_ACTION)
       currentAction++;
 
-    if(currentAction >= gp.player1.action.length)
+    // if want add ability / perk
+    if(currentAction >= gp.player1.getActionLength())
       currentP1Action = ACTION_NONE;
     else
-      currentP1Action = gp.player1.action[currentAction];
+      currentP1Action = gp.player1.getActionType(currentAction);
 
-    if(currentAction >= gp.player2.action.length)
+    if(currentAction >= gp.player2.getActionLength())
       currentP2Action = ACTION_NONE;
     else
-      currentP2Action = gp.player2.action[currentAction];
+      currentP2Action = gp.player2.getActionType(currentAction);
 
     System.out.printf("P1 %d : P2 %d\n", currentP1Action, currentP2Action);
-    
+
+    // todo add Shoot-left, Shoot-right
     if(currentP1Action == ACTION_SHOOT){
       System.out.print("Player1 Shoot ");
       switch (currentP2Action) {
@@ -382,6 +315,7 @@ public class GameState {
 
         case(ACTION_EVADE):
           System.out.println("Player2 Evade");
+          // todo add evade-left, evade-right
           break;
 
         case(ACTION_GUARD):
@@ -417,6 +351,7 @@ public class GameState {
       }
     }
 
+    // Round End
     if (currentAction == (MAX_ACTION - 1)){
 
       // GameOver
