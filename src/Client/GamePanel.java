@@ -1,4 +1,4 @@
-package main;
+package client;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable{
   private int FPS = 60;
 
   Thread gameThread; // call game loop, call run()
-  KeyHandler keyHand = new KeyHandler(this); // passing GamePanel class
+  KeyHandler keyHand = new KeyHandler((GamePanel)this); // passing GamePanel class
   GameState gameState = new GameState(this, keyHand); // handle Game Logic
   UI ui = new UI(this, gameState); // handle Graphics
   //Player[] players = new Player[totalPlayer];
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
   public Player player2 = new Player(this);
 
   // Game State
-  public int currentState = gameState.TITLESTATE;
+  public int currentState = gameState.LOBBY_STATE;
 
   public GamePanel(){
     this.setDoubleBuffered(true); // drawing componet offscreen
@@ -49,18 +49,14 @@ public class GamePanel extends JPanel implements Runnable{
   @Override // Create Thread / game loop
   public void run(){ 
 
-    // fps stuff
     double drawInterval = 1_000_000_000.0 / FPS; // 1 second / FPS
     double delta = 0;
     long lastTime = System.nanoTime();
     long currentTime;
 
-    // FPS counter
-    //long timer = 0;
-    //int drawCount = 0;
+
 
     while (gameThread != null) {
-      // fps stuff
       currentTime = System.nanoTime();
       delta += (currentTime - lastTime)/drawInterval;
       lastTime = currentTime;
@@ -70,17 +66,8 @@ public class GamePanel extends JPanel implements Runnable{
         repaint(); // 2 Draw: scene, animation
         // it's paintComponent() but need to be call by name of repaint()
         delta--;
-        //drawCount++;
       }
-      /*
-      timer += (currentTime - lastTime);
-      // FPS counter
-      if(timer >= Math.pow(10,9)){ // Every 1 second
-        System.out.printf("FPS: %d\n", drawCount);
-        drawCount = 0;
-        timer = 0;
-      } 
-      */
+     
     }
   }
 
@@ -93,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable{
     Graphics2D g2 = (Graphics2D)g; // turn to 2D
 
     //gameState.draw(g2); // gameState
-    ui.draw(g2); // ui - interface drawing 
+    ui.draw(g2); // interface drawing 
     g2.dispose(); // memory saving
   }
 

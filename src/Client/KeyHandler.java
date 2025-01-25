@@ -1,48 +1,54 @@
-package main;
+package client;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-  GamePanel gp;
+  GamePanel gamePanel;
+  GameState gameState;
 
-  public boolean qPressed, ePressed, spacePressed, enterPressed, wPressed, sPressed, numPressed;
+  public boolean qPressed, ePressed, spacePressed,
+  enterPressed, wPressed, sPressed, numPressed;
   public int numPressedNUM;
 
-  public KeyHandler(GamePanel gp){
-    this.gp = gp;
+  public KeyHandler(GamePanel gamePanel){
+	    this.gamePanel = gamePanel;
   }
-
+  public void setState(GameState gameState) {
+	  	this.gameState = gameState;
+  }
+ 
 
   @Override
   public void keyTyped(KeyEvent e) {
   }
-
+  
+//  Key at Page
   @Override
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode(); // return number of key
-    switch (gp.currentState) {
-      case(0): // title
-        TitleKeyPress(code);
+    switch (gameState.getcurrentState()) {
+      case(0): // Lobby
+        LobbyKeyPress(code);
         break;
 
-      case(1): // bg
-        BGKeyPress(code);
+      case(1): // Select_Scence
+        ScenceKeyPress(code);
         break;
 
-      case(2): // character
-        CharPress(code);
+      case(2): // Select_Character
+        CharacterKeyPress(code);
         break;
 
-      case(3): // ammo
-        AmmoKeyPress(code);
+      case(3): // Select_Item
+        ItemKeyPress(code);
         break;
 
-      case(4): // action
+      case(4): // Preview
         break;
 
-      case(5): //bulletTime
+      case(5): // Victory
         break;
     }
   }
@@ -85,13 +91,13 @@ public class KeyHandler implements KeyListener {
 
   // For each Game State
   
-  private void TitleKeyPress(int code){
+  private void LobbyKeyPress(int code){
     if(code == KeyEvent.VK_ENTER){
       enterPressed = true;
     }
   }
 
-  private void BGKeyPress(int code){
+  private void ScenceKeyPress(int code){
     switch (code) {
       case (KeyEvent.VK_Q):
         qPressed = true;
@@ -105,7 +111,7 @@ public class KeyHandler implements KeyListener {
     }
   }
 
-  private void CharPress(int code) {
+  private void CharacterKeyPress(int code) {
     switch (code) {
       case (KeyEvent.VK_Q):
         qPressed = true;
@@ -119,7 +125,7 @@ public class KeyHandler implements KeyListener {
     }
   }
 
-  private void AmmoKeyPress(int code) {
+  private void ItemKeyPress(int code) {
     switch (code) {
     case (KeyEvent.VK_Q):
       qPressed = true;

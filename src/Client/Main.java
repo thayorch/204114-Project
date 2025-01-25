@@ -1,14 +1,10 @@
-package main;
+package client;
 
-// import lib
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
-//import javax.swing.JLabel;
-
+import java.awt.*;
 public class Main {
   public static void main(String[] args) {
 
-    // init Object
     JFrame frame = new JFrame(); 
     GamePanel gamePanel = new GamePanel();
 

@@ -1,26 +1,31 @@
 package entity;
 
-import main.*;
+import client.*;
 
 public class Player{
 
-  public int player_id, health, evade, block, character, barrel, actionNum;
+  public int player_id, health, evade, block, barrel, actionNum;
+  public String character;
   public int normalBullet = 12;
   public int silverBullet = 1, magicBullet = 1, deathBullet = 1;
   public boolean ready = false;
   public int[] bullet;
   public int[] action;
-  GamePanel gp;
-  GameState gs;
+  GamePanel gamePanel;
+  GameState gameState;
 
-  public Player(GamePanel gp){
-    this.gp = gp;
+  public Player(GamePanel gamePanel){
+    this.gamePanel = gamePanel;
     setDefaultvalues();
   }
 
   public Player(){
   }
 
+  public void setCharacter(String character) {
+	  this.character = character;
+  }
+  
   public void setDefaultvalues(){
     health = 100;
     evade = 2;
