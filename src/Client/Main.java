@@ -1,11 +1,11 @@
 package client;
 
 import javax.swing.JFrame;
-import java.awt.*;
+
 public class Main {
   public static void main(String[] args) {
 
-    JFrame frame = new JFrame(); 
+    JFrame frame = new JFrame();
     GamePanel gamePanel = new GamePanel();
 
     frame.add(gamePanel);
@@ -13,7 +13,7 @@ public class Main {
 
     frame.setResizable(false); // Prevent resizeable
     frame.setTitle("Gunslinger V.0.1"); // Set Title
-    //frame.setLayout(new BorderLayout()); // Set the layout manager for the frame
+    // frame.setLayout(new BorderLayout()); // Set the layout manager for the frame
 
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation
     frame.setLocationRelativeTo(null); // Set Window position to center

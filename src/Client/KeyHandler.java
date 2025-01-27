@@ -3,62 +3,66 @@ package client;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import client.router.Router;
+
 public class KeyHandler implements KeyListener {
 
   GamePanel gamePanel;
-  GameState gameState;
+  // GameState gameState;
+  Router route; 
 
   public boolean qPressed, ePressed, spacePressed,
-  enterPressed, wPressed, sPressed, numPressed;
+      enterPressed, backspacePressed, wPressed, sPressed, numPressed;
   public int numPressedNUM;
 
-  public KeyHandler(GamePanel gamePanel){
-	    this.gamePanel = gamePanel;
+  public KeyHandler(GamePanel gamePanel) {
+    this.gamePanel = gamePanel;
   }
-  public void setState(GameState gameState) {
-	  	this.gameState = gameState;
+
+  public void setRoute(Router route) {
+    this.route = route;
   }
- 
 
   @Override
   public void keyTyped(KeyEvent e) {
   }
-  
-//  Key at Page
+
+  // Key at Page
   @Override
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode(); // return number of key
-    switch (gameState.getcurrentState()) {
-      case(0): // Lobby
+    switch (Router.currentRoute) {
+      case (0): // Lobby
         LobbyKeyPress(code);
         break;
 
-      case(1): // Select_Scence
+      case (1): // Select_Scence
         ScenceKeyPress(code);
         break;
 
-      case(2): // Select_Character
+      case (2): // Select_Character
         CharacterKeyPress(code);
         break;
 
-      case(3): // Select_Item
+      case (3): // Select_Item
         ItemKeyPress(code);
         break;
 
-      case(4): // Preview
+      case (4): // Preview
+        PreviewKeyPress(code);
         break;
 
-      case(5): // Victory
+      case (5): // Victory
+        VictoryKeyPress(code);
         break;
     }
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
-    int code = e.getKeyCode(); 
+    int code = e.getKeyCode();
 
     switch (code) {
-
       case (KeyEvent.VK_Q):
         qPressed = false;
         break;
@@ -73,6 +77,10 @@ public class KeyHandler implements KeyListener {
 
       case (KeyEvent.VK_ENTER):
         enterPressed = false;
+        break;
+
+      case (KeyEvent.VK_BACK_SPACE):
+        backspacePressed = false;
         break;
 
       case (KeyEvent.VK_1):
@@ -90,14 +98,18 @@ public class KeyHandler implements KeyListener {
   }
 
   // For each Game State
-  
-  private void LobbyKeyPress(int code){
-    if(code == KeyEvent.VK_ENTER){
-      enterPressed = true;
+
+  private void LobbyKeyPress(int code) {
+    switch (code) {
+      case (KeyEvent.VK_ENTER):
+        enterPressed = true;
+        break;
+      default:
+        break;
     }
   }
 
-  private void ScenceKeyPress(int code){
+  private void ScenceKeyPress(int code) {
     switch (code) {
       case (KeyEvent.VK_Q):
         qPressed = true;
@@ -107,6 +119,9 @@ public class KeyHandler implements KeyListener {
         break;
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
+        break;
+      case (KeyEvent.VK_BACK_SPACE):
+        backspacePressed = true;
         break;
     }
   }
@@ -122,39 +137,69 @@ public class KeyHandler implements KeyListener {
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
         break;
+      case (KeyEvent.VK_BACK_SPACE):
+        backspacePressed = true;
+        break;
     }
   }
 
   private void ItemKeyPress(int code) {
     switch (code) {
-    case (KeyEvent.VK_Q):
-      qPressed = true;
-      break;
-    case (KeyEvent.VK_E):
-      ePressed = true;
-      break;
-    case (KeyEvent.VK_ENTER):
-      enterPressed = true;
-      break;
-    case (KeyEvent.VK_1):
-      numPressed = true;
-      numPressedNUM = 1;
-      break;
-    case (KeyEvent.VK_2):
-      numPressed = true;
-      numPressedNUM = 2;
-      break;
-    case (KeyEvent.VK_3):
-      numPressed = true;
-      numPressedNUM = 3;
-      break;
-    case (KeyEvent.VK_4):
-      numPressed = true;
-      numPressedNUM = 4;
-      break;
-    case (KeyEvent.VK_SPACE):
-      spacePressed = true;
-      break;
+      case (KeyEvent.VK_Q):
+        qPressed = true;
+        break;
+      case (KeyEvent.VK_E):
+        ePressed = true;
+        break;
+      case (KeyEvent.VK_ENTER):
+        enterPressed = true;
+        break;
+      case (KeyEvent.VK_1):
+        numPressed = true;
+        numPressedNUM = 1;
+        break;
+      case (KeyEvent.VK_2):
+        numPressed = true;
+        numPressedNUM = 2;
+        break;
+      case (KeyEvent.VK_3):
+        numPressed = true;
+        numPressedNUM = 3;
+        break;
+      case (KeyEvent.VK_4):
+        numPressed = true;
+        numPressedNUM = 4;
+        break;
+      case (KeyEvent.VK_SPACE):
+        spacePressed = true;
+        break;
+      case (KeyEvent.VK_BACK_SPACE):
+        backspacePressed = true;
+        break;
+    }
+  }
+
+  private void PreviewKeyPress(int code) {
+
+    switch (code) {
+      case (KeyEvent.VK_ENTER):
+        enterPressed = true;
+        break;
+      case (KeyEvent.VK_BACK_SPACE):
+        backspacePressed = true;
+        break;
+    }
+  }
+
+  private void VictoryKeyPress(int code) {
+
+    switch (code) {
+      case (KeyEvent.VK_ENTER):
+        enterPressed = true;
+        break;
+      case (KeyEvent.VK_BACK_SPACE):
+        backspacePressed = true;
+        break;
     }
   }
 }
