@@ -14,6 +14,7 @@ public class UI extends GameState {
   private S_Item scenceItem;
   private Preview preview;
   private Victory victory;
+  private Option option;
 
   public UI(GamePanel gamePanel, GameState gameState) {
     this.lobby = new Lobby(gamePanel, gameState);
@@ -22,6 +23,7 @@ public class UI extends GameState {
     this.scenceItem = new S_Item(gamePanel, gameState);
     this.preview = new Preview(gamePanel, gameState);
     this.victory = new Victory(gamePanel, gameState);
+    this.option = new Option(gamePanel, gameState);
     this.gamePanel = gamePanel;
   }
 
@@ -45,6 +47,9 @@ public class UI extends GameState {
         break;
       case (Router.VICTORY_STATE):
         victory.render(g2);
+        break;
+      case (Router.OPTION_STATE):
+        option.render(g2);
         break;
     }
   }

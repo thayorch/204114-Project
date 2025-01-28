@@ -13,7 +13,7 @@ public class S_Scence {
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
-    private BufferedImage background;
+    private BufferedImage background, card_1;
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
@@ -31,18 +31,19 @@ public class S_Scence {
     public void render(Graphics2D g2) {
         component.titleCenter(g2, "Select Scence", 100);
         component.setBackground(g2, background);
-        
-        // g2.setColor(Color.white);
-        // component.setFontScale(g2, component.font_20);
-        // String txt = "Hello World" ;
-        // int x = component.getXCenter(g2, txt);
-        // int y = (int) gamePanel.screenHeight / 3;
-        // g2.drawString(txt, x, y);
+        component.scenceCardleft(g2, "Scence L", card_1);
+        component.scenceCardcenter(g2, "Scence C", card_1);
+        component.scenceCardright(g2, "Scence R", card_1);
+
+
     }
 
     public void loadAsset() {
         try {
             background = component.img("/resources/background/Select_Scence.png");
+            card_1 = component.img("/resources/scence/test.png");
+
+            
             System.out.println("[log: Background loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();

@@ -43,6 +43,26 @@ public class Component {
         this.setFontScale(g2, this.font_30);
         g2.drawString(txt, getTextCenter(g2, txt) - 15, y);
     }
+    
+    public void scenceCardleft(Graphics2D g2, String txt, BufferedImage img){
+        g2.drawImage(img, (screenWidth / 2) - (265*2), 230, 150*2, 200*2, null);
+        this.setFontScale(g2, this.font_20);
+        g2.setColor(Color.white);
+        g2.drawString(txt, getTextCenter(g2, txt) - (190 *2), 300*2);
+    }
+
+    public void scenceCardcenter(Graphics2D g2, String txt, BufferedImage img){
+        g2.drawImage(img, (screenWidth / 2) - 150, 230, 150*2, 200*2, null);
+        this.setFontScale(g2, this.font_20);
+        g2.setColor(Color.white);
+        g2.drawString(txt, getTextCenter(g2, txt), 300*2);
+    }
+    public void scenceCardright(Graphics2D g2, String txt, BufferedImage img){
+        g2.drawImage(img, (screenWidth / 2) + 115*2, 230, 150*2, 200*2, null);
+        this.setFontScale(g2, this.font_20);
+        g2.setColor(Color.white);
+        g2.drawString(txt, getTextCenter(g2, txt) + (190 * 2), 300*2);
+    }
 
     // Style
     public int getTextCenter(Graphics2D g2, String text) {

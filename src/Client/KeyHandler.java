@@ -55,6 +55,8 @@ public class KeyHandler implements KeyListener {
       case (5): // Victory
         VictoryKeyPress(code);
         break;
+        case (6):
+        OptionKeyPress(code);
     }
   }
 
@@ -197,6 +199,14 @@ public class KeyHandler implements KeyListener {
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
         break;
+      case (KeyEvent.VK_BACK_SPACE):
+        backspacePressed = true;
+        break;
+    }
+  }
+
+  private void OptionKeyPress(int code){
+    switch (code) {
       case (KeyEvent.VK_BACK_SPACE):
         backspacePressed = true;
         break;

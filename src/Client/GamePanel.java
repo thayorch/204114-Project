@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
   Thread gameThread; // call game loop, call run()
   KeyHandler keyHand = new KeyHandler((GamePanel) this); // passing GamePanel class
   GameState gameState = new GameState(this, keyHand); // handle Game Logic
-  Router gameRouter = new Router(keyHand);
+  Router gameRouter = new Router(this, keyHand);
   UI ui = new UI(this, gameState); // handle Graphics
 
   public Player player1 = new Player(this);

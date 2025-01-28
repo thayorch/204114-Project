@@ -8,43 +8,36 @@ import client.Component;
 import client.GamePanel;
 import client.GameState;
 
-public class Lobby {
+public class Option {
+    
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
+    private BufferedImage background;
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
-    protected BufferedImage background, button;
 
-    public Lobby(GamePanel gamePanel, GameState gameState) {
+    public Option(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
-        this.screenWidth = gamePanel.screenWidth;
         loadAsset();
     }
 
     public void render(Graphics2D g2) {
-        gamePanel.setBackground(Color.white);
-        // component.setBackground(g2, background);
-        component.titleCenter(g2, "GAME TITLE", 150);
-        component.textBtn(g2, "START", button, 307);
-        component.textBtn(g2, "OPTION", button, 450);
-        component.textBtn(g2, "EXIT", button, 593);
+        component.titleCenter(g2, "Option", 100);
+        component.setBackground(g2, background);
 
     }
 
-    private void loadAsset() {
+    public void loadAsset() {
         try {
-            background = component.img("/resources/background/Lobby.png");
-            button = component.img("/resources/lobby/button.png");
+            background = component.img("/resources/background/Option.png");
             System.out.println("[log: Background loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");
         }
     }
-
-    
 }

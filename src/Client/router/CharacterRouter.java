@@ -20,7 +20,7 @@ public class CharacterRouter {
 
     // This Comment waiting move file to State...
         // protected final int TOTAL_CHAR = 3;
-        // protected int currentChar = 0;
+        // protected int currentChar = 0; 
         // protected int currentPlayer = 0;
         // protected boolean popup_confirm = false;
         // if (route.keyHand.ePressed) {
