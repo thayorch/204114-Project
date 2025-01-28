@@ -65,10 +65,13 @@ public class Router {
                 optionRoute.update();
                 break;
         }
+
         if(currentRoute != LOBBY_STATE){
             lobbyRoute.startButtonBounds = new Rectangle(0,0);
             lobbyRoute.optionButtonBounds = new Rectangle(0,0);
             lobbyRoute.exitButtonBounds= new Rectangle(0,0);
+        }else if(currentRoute == LOBBY_STATE){
+            lobbyRoute.setupMouseListener();
         }
     }
 }

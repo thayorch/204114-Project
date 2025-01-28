@@ -15,9 +15,6 @@ public class LobbyRoute {
     public LobbyRoute(Router router, GamePanel gamePanel) {
         this.router = router;
         this.gamePanel = gamePanel;
-        this.startButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 307 - 70, 290, 100);
-        this.optionButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 450 - 70, 290, 100);
-        this.exitButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 593 - 70, 290, 100);
         setupMouseListener();
     }
 
@@ -28,7 +25,10 @@ public class LobbyRoute {
         }
     }
 
-    private void setupMouseListener() {
+        protected void setupMouseListener() {
+        this.startButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 307 - 70, 290, 100);
+        this.optionButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 450 - 70, 290, 100);
+        this.exitButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 593 - 70, 290, 100);
         gamePanel.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
