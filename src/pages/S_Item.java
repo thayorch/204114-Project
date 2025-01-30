@@ -28,7 +28,6 @@ public class S_Item {
     public void render(Graphics2D g2) {
         component.titleCenter(g2, "Select Item", 100);
         component.setBackground(g2, background);
-
     }
 
     public void loadAsset() {

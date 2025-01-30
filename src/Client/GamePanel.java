@@ -16,9 +16,9 @@ public class GamePanel extends JPanel implements Runnable {
   // Screen Settings
   // ratios 16:9 ; 16x9, 256x144, 640x360, 960x540, 1280x720, 1920x1080
   // primary 640x360
-  public float scalingFactor = 2f;
-  public int screenWidth = (int) (640 * scalingFactor);
-  public int screenHeight = (int) (360 * scalingFactor);
+  public static float scalingFactor = 2f;
+  public static int screenWidth = (int) (640 * scalingFactor);
+  public static int screenHeight = (int) (360 * scalingFactor);
 
   // private int totalPlayer = 2;
 
@@ -27,21 +27,20 @@ public class GamePanel extends JPanel implements Runnable {
 
   Thread gameThread; // call game loop, call run()
   KeyHandler keyHand = new KeyHandler((GamePanel) this); // passing GamePanel class
+  MouseHandler mouHand = new MouseHandler((GamePanel) this); // MouseHandler
   GameState gameState = new GameState(this, keyHand); // handle Game Logic
-  Router gameRouter = new Router(keyHand);
+  Router gameRouter = new Router(keyHand, mouHand, gameState);
   UI ui = new UI(this, gameState); // handle Graphics
 
-  public Player player1 = new Player(this);
-  public Player player2 = new Player(this);
-
-  // Game State
-  public static int index = Router.LOBBY_STATE;
+  //public Player player1 = new Player(this);
+  //public Player player2 = new Player(this);
 
   public GamePanel() {
     this.setDoubleBuffered(true); // drawing componet offscreen
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(Color.black);
-    this.addKeyListener(keyHand);
+    this.addKeyListener(keyHand); // key
+    this.addMouseListener(mouHand); // mouse
     this.setFocusable(true);
   }
 
@@ -81,9 +80,5 @@ public class GamePanel extends JPanel implements Runnable {
     Graphics2D g2 = (Graphics2D) g; // turn to 2D
     ui.draw(g2); // interface drawing
     g2.dispose(); // memory saving
-  }
-
-  public KeyHandler getKeyHand() {
-    return keyHand;
   }
 }

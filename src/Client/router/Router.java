@@ -2,6 +2,8 @@ package client.router;
 
 import client.GamePanel;
 import client.KeyHandler;
+import client.MouseHandler;
+import client.GameState;
 
 public class Router {
     // Constance Variable GameStates (page)
@@ -14,45 +16,53 @@ public class Router {
     public static int currentRoute;
 
     public KeyHandler keyHand;
+    public MouseHandler mouHand;
     private LobbyRoute lobbyRoute;
     private ScenceRoute scenceRoute;
     private CharacterRouter characterRoute;
     private ItemRoute itemRoute;
     private PreviewRoute previewRoute;
     private VictoryRoute victoryRoute;
+    private GameState gameState;
 
-    public Router(KeyHandler keyHand) {
-        Router.currentRoute = GamePanel.index;
+    public Router(KeyHandler keyHand, MouseHandler mouHand, GameState gameState) {
+        currentRoute = GameState.currentRoute;
         this.keyHand = keyHand;
+        this.mouHand = mouHand;
+
         this.keyHand.setRoute(this);
+        this.mouHand.setRoute(this);
+
+        this.gameState = gameState;
         this.lobbyRoute = new LobbyRoute(this);
-        this.scenceRoute = new ScenceRoute(this);
-        this.characterRoute = new CharacterRouter(this);
-        this.itemRoute = new ItemRoute(this);
-        this.previewRoute = new PreviewRoute(this);
+        this.scenceRoute = new ScenceRoute(this, gameState);
+        this.characterRoute = new CharacterRouter(this, gameState);
+        this.itemRoute = new ItemRoute(this, gameState);
+        this.previewRoute = new PreviewRoute(this, gameState);
         this.victoryRoute = new VictoryRoute(this);
     }
 
     public void update() {
-        switch (currentRoute) {
-            case LOBBY_STATE:
-                lobbyRoute.update();
-                break;
-            case S_SCENCE_STATE:
-                scenceRoute.update();
-                break;
-            case S_CHAR_STATE:
-                characterRoute.update();
-                break;
-            case S_ITEM_STATE:
-                itemRoute.update();
-                break;
-            case PREVIEW_STATE:
-                previewRoute.update();
-                break;
-            case VICTORY_STATE:
-                victoryRoute.update();
-                break;
+      GameState.currentRoute = currentRoute;
+      switch (Router.currentRoute) {
+        case LOBBY_STATE:
+          lobbyRoute.update();
+          break;
+        case S_SCENCE_STATE:
+          scenceRoute.update();
+          break;
+        case S_CHAR_STATE:
+          characterRoute.update();
+          break;
+        case S_ITEM_STATE:
+          itemRoute.update();
+          break;
+        case PREVIEW_STATE:
+          previewRoute.update();
+          break;
+        case VICTORY_STATE:
+          victoryRoute.update();
+          break;
         }
     }
 }

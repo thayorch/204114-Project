@@ -17,7 +17,7 @@ public class Component {
     public Font font_20 = new Font(fontName, Font.PLAIN, 20);
     public Font font_10 = new Font(fontName, Font.PLAIN, 10);
 
-    public Component(GamePanel gamePanel, GameState gameState) {
+    public Component(GamePanel gamePanel, GameState gameSate) {
         this.screenWidth = gamePanel.screenWidth;
         this.screenHeight = gamePanel.screenHeight;
         this.scalingFactor = gamePanel.scalingFactor;
@@ -39,9 +39,9 @@ public class Component {
 
     public void textBtn(Graphics2D g2, String txt, BufferedImage button, int y) {
         g2.setColor(Color.white);
-        g2.drawImage(button, (screenWidth / 2) - 155, y - 70, 290, 100, null);
+        g2.drawImage(button, (screenWidth / 2) - (int)(77.5 * scalingFactor), y - (int)(35 * scalingFactor), (int)(145 * scalingFactor), (int)(50 * scalingFactor), null); // base value at 640x360
         this.setFontScale(g2, this.font_30);
-        g2.drawString(txt, getTextCenter(g2, txt) - 15, y);
+        g2.drawString(txt, getTextCenter(g2, txt) - (int)(7.5 * scalingFactor), y);
     }
 
     // Style

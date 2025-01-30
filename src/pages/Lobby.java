@@ -22,16 +22,17 @@ public class Lobby {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
+        this.scalingFactor = gamePanel.scalingFactor;
         loadAsset();
     }
 
     public void render(Graphics2D g2) {
         gamePanel.setBackground(Color.white);
         // component.setBackground(g2, background);
-        component.titleCenter(g2, "GAME TITLE", 150);
-        component.textBtn(g2, "START", button, 307);
-        component.textBtn(g2, "OPTION", button, 450);
-        component.textBtn(g2, "EXIT", button, 593);
+        component.titleCenter(g2, "GAME TITLE", (int)(75f * scalingFactor));
+        component.textBtn(g2, "START", button, (int)(153.5f * scalingFactor));
+        component.textBtn(g2, "OPTION", button, (int)(225f * scalingFactor));
+        component.textBtn(g2, "EXIT", button, (int)(296.5f * scalingFactor));
     }
 
     public void loadAsset() {

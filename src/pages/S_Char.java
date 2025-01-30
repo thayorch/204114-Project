@@ -22,6 +22,7 @@ public class S_Char {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
+        this.scalingFactor = gamePanel.scalingFactor;
         loadAsset();
     }
 

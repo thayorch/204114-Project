@@ -14,11 +14,13 @@ public class Victory {
     protected GameState gameState;
     protected Component component;
     private BufferedImage background;
+    protected float scalingFactor;
 
     public Victory(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
+        this.scalingFactor = gamePanel.scalingFactor;
         loadAsset();
     }
 

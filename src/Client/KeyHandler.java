@@ -8,7 +8,6 @@ import client.router.Router;
 public class KeyHandler implements KeyListener {
 
   GamePanel gamePanel;
-  // GameState gameState;
   Router route; 
 
   public boolean qPressed, ePressed, spacePressed,
@@ -94,11 +93,14 @@ public class KeyHandler implements KeyListener {
       case (KeyEvent.VK_3):
         numPressed = false;
         break;
+
+      case (KeyEvent.VK_4):
+        numPressed = false;
+        break;
     }
   }
 
   // For each Game State
-
   private void LobbyKeyPress(int code) {
     switch (code) {
       case (KeyEvent.VK_ENTER):
@@ -154,19 +156,19 @@ public class KeyHandler implements KeyListener {
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
         break;
-      case (KeyEvent.VK_1):
+      case (KeyEvent.VK_1): // aim, normal
         numPressed = true;
         numPressedNUM = 1;
         break;
-      case (KeyEvent.VK_2):
+      case (KeyEvent.VK_2): // block, silver
         numPressed = true;
         numPressedNUM = 2;
         break;
-      case (KeyEvent.VK_3):
+      case (KeyEvent.VK_3): // evade, magic
         numPressed = true;
         numPressedNUM = 3;
         break;
-      case (KeyEvent.VK_4):
+      case (KeyEvent.VK_4): // nothing, deathbullet
         numPressed = true;
         numPressedNUM = 4;
         break;
