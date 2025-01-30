@@ -14,6 +14,7 @@ public class Component {
     public Font font_title = new Font(fontName, Font.PLAIN, 60);
     public Font font_40 = new Font(fontName, Font.PLAIN, 40);
     public Font font_30 = new Font(fontName, Font.PLAIN, 30);
+    public Font font_25 = new Font(fontName, Font.PLAIN, 25);
     public Font font_20 = new Font(fontName, Font.PLAIN, 20);
     public Font font_10 = new Font(fontName, Font.PLAIN, 10);
 
@@ -34,6 +35,12 @@ public class Component {
     public void titleCenter(Graphics2D g2, String txt, int y) {
         g2.setColor(Color.black);
         this.setFontScale(g2, this.font_title);
+        g2.drawString(txt, getTextCenter(g2, txt), y);
+    }
+
+    public void title_40(Graphics2D g2, String txt, int y) {
+        g2.setColor(Color.black);
+        this.setFontScale(g2, this.font_25);
         g2.drawString(txt, getTextCenter(g2, txt), y);
     }
 

@@ -33,7 +33,7 @@ public class S_Char {
     public void loadAsset() {
         try {
             background = component.img("/resources/background/Select_Character.png");
-            System.out.println("[log: Background loaded successfully]");
+            System.out.println("[log: Select Character Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");

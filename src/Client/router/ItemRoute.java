@@ -17,6 +17,10 @@ public class ItemRoute {
             Router.currentRoute = Router.PREVIEW_STATE;
             router.keyHand.enterPressed = false;
         }
-
+        if (router.keyHand.spacePressed) {
+            Router.currentRoute = Router.PREVIEW_STATE;
+            router.keyHand.spacePressed = false;
+        }
+        
     }
 }

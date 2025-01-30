@@ -34,7 +34,7 @@ public class Option {
     public void loadAsset() {
         try {
             background = component.img("/resources/background/Option.png");
-            System.out.println("[log: Background loaded successfully]");
+            System.out.println("[log: Option Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");

@@ -34,7 +34,7 @@ public class Preview {
     public void loadAsset() {
         try {
             background = component.img("/resources/background/Preview.png");
-            System.out.println("[log: Background loaded successfully]");
+            System.out.println("[log: Preview Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");

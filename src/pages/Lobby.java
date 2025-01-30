@@ -27,7 +27,7 @@ public class Lobby {
 
     public void render(Graphics2D g2) {
         gamePanel.setBackground(Color.white);
-        // component.setBackground(g2, background);
+        component.setBackground(g2, background);
         component.titleCenter(g2, "GAME TITLE", 150);
         component.textBtn(g2, "START", button, 307);
         component.textBtn(g2, "OPTION", button, 450);
@@ -37,9 +37,9 @@ public class Lobby {
 
     private void loadAsset() {
         try {
-            background = component.img("/resources/background/Lobby.png");
+            background = component.img("/resources/lobby/lobby_bg.png");
             button = component.img("/resources/lobby/button.png");
-            System.out.println("[log: Background loaded successfully]");
+            System.out.println("[log: Lobby Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");

@@ -29,12 +29,12 @@ public class S_Scence {
     }
 
     public void render(Graphics2D g2) {
-        component.titleCenter(g2, "Select Scence", 100);
-        component.setBackground(g2, background);
+        // component.setBackground(g2, background);
+        component.titleCenter(g2, "Select Scence", 150);
         component.scenceCardleft(g2, "Scence L", card_1);
         component.scenceCardcenter(g2, "Scence C", card_1);
         component.scenceCardright(g2, "Scence R", card_1);
-
+        component.title_40(g2, "Space to continue...", 700);
 
     }
 
@@ -44,7 +44,7 @@ public class S_Scence {
             card_1 = component.img("/resources/scence/test.png");
 
             
-            System.out.println("[log: Background loaded successfully]");
+            System.out.println("[log: Select Scence Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");

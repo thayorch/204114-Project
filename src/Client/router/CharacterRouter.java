@@ -17,6 +17,12 @@ public class CharacterRouter {
         if (router.keyHand.enterPressed) {
             Router.currentRoute = Router.S_ITEM_STATE;
             router.keyHand.enterPressed = false;
+        }
+
+        if (router.keyHand.spacePressed) {
+            Router.currentRoute = Router.S_ITEM_STATE;
+            router.keyHand.spacePressed = false;
+        }
 
     // This Comment waiting move file to State...
         // protected final int TOTAL_CHAR = 3;
@@ -51,6 +57,6 @@ public class CharacterRouter {
         // route.keyHand.enterPressed = false;
         // }
 
-        }
+        
     }
 }

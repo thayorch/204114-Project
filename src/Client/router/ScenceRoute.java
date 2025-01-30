@@ -12,6 +12,11 @@ public class ScenceRoute {
             router.keyHand.enterPressed = false;
         }
         
+        if (router.keyHand.spacePressed) {
+            Router.currentRoute = Router.S_CHAR_STATE;
+            router.keyHand.spacePressed = false;
+        }
+        
         if (router.keyHand.backspacePressed) {
             Router.currentRoute = Router.LOBBY_STATE;
             router.keyHand.backspacePressed = false;

@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements Runnable {
   // Screen Settings
   // ratios 16:9 ; 16x9, 256x144, 640x360, 960x540, 1280x720, 1920x1080
   // primary 640x360
+  
   public float scalingFactor = 2f;
   public int screenWidth = (int) (640 * scalingFactor);
   public int screenHeight = (int) (360 * scalingFactor);
@@ -25,11 +26,13 @@ public class GamePanel extends JPanel implements Runnable {
   // FPS
   private int FPS = 60;
 
-  Thread gameThread; // call game loop, call run()
-  KeyHandler keyHand = new KeyHandler((GamePanel) this); // passing GamePanel class
-  GameState gameState = new GameState(this, keyHand); // handle Game Logic
-  Router gameRouter = new Router(this, keyHand);
-  UI ui = new UI(this, gameState); // handle Graphics
+  private Thread gameThread; // call game loop, call run()
+  private KeyHandler keyHand = new KeyHandler((GamePanel) this); // passing GamePanel class
+  private GameState gameState = new GameState(this, keyHand); // handle Game Logic
+  private Router gameRouter = new Router(this, keyHand);
+  private UI ui = new UI(this, gameState); // handle Graphics
+  private MusicPlayer musicPlayer;
+
 
   public Player player1 = new Player(this);
   public Player player2 = new Player(this);
@@ -43,11 +46,13 @@ public class GamePanel extends JPanel implements Runnable {
     this.setBackground(Color.black);
     this.addKeyListener(keyHand);
     this.setFocusable(true);
+    this.musicPlayer = new MusicPlayer();
   }
 
   public void startGameThread() {
     gameThread = new Thread(this); // passing GamePanel Class
     gameThread.start();
+    musicPlayer.playMusic("resources/test.wav");
   }
 
   @Override // Create Thread / game loop
@@ -69,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
         // it's paintComponent() but need to be call by name of repaint()
         delta--;
       }
+
     }
   }
 
