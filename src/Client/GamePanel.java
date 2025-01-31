@@ -30,8 +30,8 @@ public class GamePanel extends JPanel implements Runnable {
   private KeyHandler keyHand = new KeyHandler((GamePanel) this); // passing GamePanel class
   private GameState gameState = new GameState(this, keyHand); // handle Game Logic
   private Router gameRouter = new Router(this, keyHand);
+  public MusicPlayer musicPlayer;
   private UI ui = new UI(this, gameState); // handle Graphics
-  private MusicPlayer musicPlayer;
 
 
   public Player player1 = new Player(this);

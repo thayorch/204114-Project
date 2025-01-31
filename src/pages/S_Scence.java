@@ -29,7 +29,7 @@ public class S_Scence {
     }
 
     public void render(Graphics2D g2) {
-        // component.setBackground(g2, background);
+        component.setBackground(g2, background);
         component.titleCenter(g2, "Select Scence", 150);
         component.scenceCardleft(g2, "Scence L", card_1);
         component.scenceCardcenter(g2, "Scence C", card_1);

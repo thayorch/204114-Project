@@ -7,6 +7,8 @@ import java.io.IOException;
 import client.Component;
 import client.GamePanel;
 import client.GameState;
+import client.components.Slider;
+import client.MusicPlayer;
 
 public class Option {
     
@@ -17,11 +19,13 @@ public class Option {
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
+    protected MusicPlayer musicPlayer;
 
     public Option(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
+        Slider slider = new Slider(gamePanel.musicPlayer);
         loadAsset();
     }
 

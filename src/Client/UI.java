@@ -17,6 +17,7 @@ public class UI extends GameState {
   private Option option;
 
   public UI(GamePanel gamePanel, GameState gameState) {
+    this.gamePanel = gamePanel;
     this.lobby = new Lobby(gamePanel, gameState);
     this.scence = new S_Scence(gamePanel, gameState);
     this.scenceChar = new S_Char(gamePanel, gameState);
@@ -24,7 +25,6 @@ public class UI extends GameState {
     this.preview = new Preview(gamePanel, gameState);
     this.victory = new Victory(gamePanel, gameState);
     this.option = new Option(gamePanel, gameState);
-    this.gamePanel = gamePanel;
   }
 
   // Page rendering
