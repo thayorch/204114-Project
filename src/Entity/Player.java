@@ -395,7 +395,7 @@ public class Player {
     if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
 
       // left
-      if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L){
+      if (myActionDirection == ACTION_SHOOT_L && enActionDirection == ACTION_SHOOT_L){
         duelStatus = true;
         missed = false;
       }
@@ -412,6 +412,10 @@ public class Player {
         missed = false;
       }
 
+      // enemey shoot left, right
+      else if (enActionDirection == ACTION_SHOOT_R || enActionDirection == ACTION_SHOOT_L){
+        missed = true;
+      }
     }
     
     // hit or miss
