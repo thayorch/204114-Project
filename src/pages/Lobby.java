@@ -28,10 +28,13 @@ public class Lobby {
     public void render(Graphics2D g2) {
         gamePanel.setBackground(Color.white);
         component.setBackground(g2, background);
-        component.titleCenter(g2, "GAME TITLE", 150);
-        component.textBtn(g2, "START", button, 307);
-        component.textBtn(g2, "OPTION", button, 450);
-        component.textBtn(g2, "EXIT", button, 593);
+        component.titleCenter(g2, "Shadow Markmen", 150);
+        component.textBtn(g2, "Start", button, 290);
+        component.textBtn(g2, "Exit", button, 450);
+
+        
+        // component.textBtn(g2, "Option", button, 450);
+        // component.textBtn(g2, "Exit", button, 593);
 
     }
 
@@ -46,5 +49,4 @@ public class Lobby {
         }
     }
 
-    
 }

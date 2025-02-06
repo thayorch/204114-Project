@@ -13,7 +13,6 @@ public class Main {
 
     frame.setResizable(false); // Prevent resizeable
     frame.setTitle("Gunslinger V.0.1"); // Set Title
-    
     // frame.setLayout(new BorderLayout()); // Set the layout manager for the frame
 
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation

@@ -23,14 +23,15 @@ public class Victory {
     }
 
     public void render(Graphics2D g2) {
-        component.titleCenter(g2, "Victory", 100);
-
+        
         component.setBackground(g2, background);
+        component.titleCenter(g2, "Victory", 100);
     }
 
     public void loadAsset() {
         try {
-            background = component.img("/resources/background/Victory.png");
+            // background = component.img("/resources/background/Victory.png");
+            background = component.img("/resources/lobby/lobby_bg.png");
             System.out.println("[log: Victory Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();

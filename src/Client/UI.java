@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import client.router.Router;
 import pages.*;
 
-public class UI extends GameState {
+public class UI {
 
   // Page Objects
   private Lobby lobby;
@@ -14,22 +14,19 @@ public class UI extends GameState {
   private S_Item scenceItem;
   private Preview preview;
   private Victory victory;
-  private Option option;
 
   public UI(GamePanel gamePanel, GameState gameState) {
-    this.gamePanel = gamePanel;
     this.lobby = new Lobby(gamePanel, gameState);
     this.scence = new S_Scence(gamePanel, gameState);
     this.scenceChar = new S_Char(gamePanel, gameState);
     this.scenceItem = new S_Item(gamePanel, gameState);
     this.preview = new Preview(gamePanel, gameState);
     this.victory = new Victory(gamePanel, gameState);
-    this.option = new Option(gamePanel, gameState);
   }
 
   // Page rendering
   public void draw(Graphics2D g2) { // Graphics2D fronm GamePanel.java
-    switch (Router.currentRoute) {
+    switch (GameState.currentRoute) {
       case (Router.LOBBY_STATE):
         lobby.render(g2);
         break;
@@ -48,9 +45,7 @@ public class UI extends GameState {
       case (Router.VICTORY_STATE):
         victory.render(g2);
         break;
-      case (Router.OPTION_STATE):
-        option.render(g2);
-        break;
     }
+    
   }
 }
