@@ -132,6 +132,19 @@ public class Component {
         g2.fillRect(screenWidth-475, screenHeight - 100, 50, 50);
         g2.drawImage(chamber, screenWidth-175, screenHeight - 125, 100, 100, null);
     }
+    // Bullet
+    
+    public void Bullet(Graphics2D g2,int x, int y,Color color){
+        g2.setColor(color);
+        g2.fillOval(x, screenHeight-y, 20, 20);
+    }
+    
+    // public void silverBullet(Graphics2D g2,int x, int y){
+    //     g2.setColor(Color.GRAY);
+    //     g2.fillOval(x, screenHeight-y, 20, 20);
+    // }
+
+
     // Style
 
     public int getTextCenter(Graphics2D g2, String text) {

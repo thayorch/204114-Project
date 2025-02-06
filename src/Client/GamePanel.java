@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
   // Game State
   public static final int index = Router.LOBBY_STATE;
-  public static boolean stopMusic = false;
+  // public static boolean stopMusic = false;
 
   public GamePanel() {
     this.setDoubleBuffered(true); // drawing componet offscreen
@@ -86,9 +86,9 @@ public class GamePanel extends JPanel implements Runnable {
 
   public void update() {
     gameRouter.update();
-    if (stopMusic) {
-      musicPlayer.stopMusic();
-    }
+    // if (stopMusic) {
+      // musicPlayer.stopMusic();
+    // }
 
   }
 

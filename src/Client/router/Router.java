@@ -50,7 +50,7 @@ public class Router {
         lobbyRoute.update();
         break;
       case S_SCENCE_STATE:
-        GamePanel.stopMusic = true;
+        // GamePanel.stopMusic = true;
         scenceRoute.update();
         break;
       case S_CHAR_STATE:
