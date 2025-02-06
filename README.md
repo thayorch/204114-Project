@@ -1,3 +1,3 @@
 # 204114 - Project
-![[todo.md]]
-- Dont pull this [ Waiting to rename variable to Create Class Diagram ] 
+# Don't Commit at main branch
+# Bruh
