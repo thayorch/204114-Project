@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements Runnable {
 
   public float scalingFactor = 2f;
   public int screenWidth = (int) (640 * scalingFactor);
-  public int screenHeight = (int) (360 * scalingFactor);
+  public int screenHeight = (int) (380 * scalingFactor);
 
   // private int totalPlayer = 2;
 

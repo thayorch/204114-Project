@@ -48,10 +48,19 @@ public class Modal extends JPanel {
         // g2.drawString("Java Version: " + System.getProperty("java.version"), 20, y += 20);
 
         // // Draw semi-transparent black background for the debug panel
+
+
+        String type = "";
+        if (GameState.currentType == 0)
+            type = "Ammo";
+        else if (GameState.currentType == 1)
+            type = "Actions";
+            
         g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
         component.text_10_alginCenter(g2, "Map : "+ S_Scence.Map, 10,20);
         component.text_10_alginCenter(g2, "Character  : "+ S_Char.character, 10,40);
+        component.text_10_alginCenter(g2, "Slot : " + (GameState.currentSlot + 1) + " | " + type + " : Type", 0, 60);
         
         // characterLog(g2);
         playerLog(g2);
@@ -89,11 +98,7 @@ public class Modal extends JPanel {
         final boolean P1_READY = gameState.player1.readyStatus();
         final boolean P2_READY = gameState.player2.readyStatus();
 
-        String type = "";
-        if (GameState.currentType == 0)
-            type = "Ammo";
-        else if (GameState.currentType == 1)
-            type = "Actions";
+        
 
         component.text_10_alginLeft(g2, "Player : " + P1_ID, 10, 20);
         component.text_10_alginRight(g2, "Player : " + P2_ID, 90, 20);
@@ -142,14 +147,13 @@ public class Modal extends JPanel {
         component.text_10_alginRight(g2, "" + P2_ACTIONS[3], 43, 140);
         component.text_10_alginRight(g2, "" + P2_ACTIONS[4] + " ]", 30, 140);
 
-        component.text_10_alginLeft(g2, "Ready : " + P1_READY, 10, 685);
-        component.text_10_alginRight(g2, "Ready : " + P2_READY, 115, 685);
+        component.text_10_alginLeft(g2, "Ready : " + P1_READY, 10, 735);
+        component.text_10_alginRight(g2, "Ready : " + P2_READY, 115, 735);
 
         component.text_10_alginLeft(g2, "Deathdoor : " + P1_DEATHDOOR + " | Magic Status : " + P1_MAJIC_STATUS
-                + " | Duel Status : " + P1_DUEL_STATUS, 10, 700);
+                + " | Duel Status : " + P1_DUEL_STATUS, 10, 750);
         component.text_10_alginRight(g2, "Deathdoor : " + P2_DEATHDOOR + " | Magic Status : " + P2_MAJIC_STATUS
-                + " | Duel Status : " + P2_DUEL_STATUS, 505, 700);
-        component.text_10_alginCenter(g2, "Slot : " + (GameState.currentSlot + 1) + " | " + type + " : Type", 0, 710);
+                + " | Duel Status : " + P2_DUEL_STATUS, 505, 750);
 
     }
 
