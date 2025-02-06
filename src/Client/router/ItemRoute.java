@@ -28,29 +28,30 @@ public class ItemRoute {
     int bulletType = 0;
     int actionType = 0;
 
+    // DEBUG
     //System.out.printf("P%d, Current Type %d, Current Slot %d, NUM = %d\n", gameState.currentPlayer + 1, gameState.currentType, gameState.currentSlot, router.keyHand.numPressedNUM); // DEBUG
-    System.out.printf("currentSlot %d currentType %d\n" , currentSlot, currentType); 
-    gameState.player1.printInventory();
-    System.out.println();
-    gameState.player2.printInventory();
-    System.out.println();
+    // System.out.printf("currentSlot %d currentType %d\n" , currentSlot, currentType); 
+    // gameState.player1.printInventory();
+    //System.out.println();
+    // gameState.player2.printInventory();
+    //System.out.println();
     
     int TOTAL_SLOT = TOTAL_BARREL;
     if(currentType == gameState.ACTION) TOTAL_SLOT = TOTAL_ACTION;
 
     int[] SLOT;
-    if(router.keyHand.ePressed){ // e
-      router.keyHand.ePressed = false;
+    if(router.keyHand.rightPressed){ // e
+      router.keyHand.rightPressed = false;
       gameState.currentSlot = (currentSlot + 1)%TOTAL_SLOT;
     }
 
-    if(router.keyHand.qPressed){ // q
-      router.keyHand.qPressed = false;
+    if(router.keyHand.leftPressed){ // q
+      router.keyHand.leftPressed = false;
       gameState.currentSlot = (currentSlot - 1 + TOTAL_SLOT) % TOTAL_SLOT;
     }
 
     // switch slot type
-    if(router.keyHand.spacePressed){ // space
+    if(router.keyHand.spacePressed || router.keyHand.shiftPressed){ // space
       router.keyHand.spacePressed = false;
 
       if(currentType == AMMO)
@@ -62,6 +63,7 @@ public class ItemRoute {
       directionNeed = false;
       gameState.currentSlot = 0; // reset slot
       gameState.currentType = currentType;
+      
     }
 
     if(router.keyHand.numPressed){ // number pressed
@@ -115,14 +117,15 @@ public class ItemRoute {
       router.keyHand.backspacePressed = false;
       gameState.currentSlot = 0;
 
-      if(!gameState.player1.ready && !gameState.player2.ready){
-        Router.currentRoute = Router.S_CHAR_STATE;
-        gameState.player2.ready = false;
-        gameState.player1.ready = false;
-        gameState.currentPlayer = PLAYER1;
-        System.out.println("[log: Switch Back!]");
-      }
-      else if(gameState.player2.ready && currentPlayer == PLAYER2){ // final accident check
+      // if(!gameState.player1.ready && !gameState.player2.ready){
+      //   Router.currentRoute = Router.S_CHAR_STATE;
+      //   gameState.player2.ready = false;
+      //   gameState.player1.ready = false;
+      //   gameState.currentPlayer = PLAYER1;
+      //   System.out.println("[log: Switch Back!]");
+      // }
+      // else 
+      if(gameState.player2.ready && currentPlayer == PLAYER2){ // final accident check
         gameState.player2.ready = false;
         System.out.println("[log: player2 unready]");
       }
@@ -150,7 +153,7 @@ public class ItemRoute {
         gameState.currentSlot = 0;
         gameState.currentType = 0;
         gameState.currentPlayer = PLAYER1;
-        System.out.println("[log: Switch!]");
+        // System.out.println("[log: Switch!]");
       }
 
       else if(!gameState.player1.ready && currentPlayer == PLAYER1){

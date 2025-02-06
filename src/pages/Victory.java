@@ -14,26 +14,25 @@ public class Victory {
     protected GameState gameState;
     protected Component component;
     private BufferedImage background;
-    protected float scalingFactor;
 
     public Victory(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
-        this.scalingFactor = gamePanel.scalingFactor;
         loadAsset();
     }
 
     public void render(Graphics2D g2) {
-        component.titleCenter(g2, "Victory", 100);
-
+        
         component.setBackground(g2, background);
+        component.titleCenter(g2, "Victory", 100);
     }
 
     public void loadAsset() {
         try {
-            background = component.img("/resources/background/Victory.png");
-            System.out.println("[log: Background loaded successfully]");
+            // background = component.img("/resources/background/Victory.png");
+            background = component.img("/resources/lobby/lobby_bg.png");
+            System.out.println("[log: Victory Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");

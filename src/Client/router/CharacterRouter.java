@@ -21,20 +21,20 @@ public class CharacterRouter {
   
   // DEBUG
   //System.out.printf("P1 %s %d\nP2 %s %d\n%d currentChar: %d\n", gameState.player1.ready, gameState.player1.character, gameState.player2.ready, gameState.player2.character, gameState.currentPlayer+1, gameState.currentChar);
-  System.out.println(currentPlayer + 1); 
-  gameState.player1.printInventory();
-  gameState.player2.printInventory();
+  // System.out.println(currentPlayer + 1); 
+  // gameState.player1.printInventory();
+  // gameState.player2.printInventory();
 
-  if (router.keyHand.qPressed) { // Left 
+  if (router.keyHand.leftPressed) { // Left 
     currentChar = (currentChar - 1 + TOTAL_CHAR) % TOTAL_CHAR;
     gameState.currentChar = currentChar;
-    router.keyHand.qPressed = false;
+    router.keyHand.leftPressed = false;
   }
 
-  if (router.keyHand.ePressed) { // Right
+  if (router.keyHand.rightPressed) { // Right
     currentChar = (currentChar + 1) % TOTAL_CHAR;
     gameState.currentChar = currentChar;
-    router.keyHand.ePressed = false;
+    router.keyHand.rightPressed = false;
   }
 
   if (router.keyHand.backspacePressed) { // Return
@@ -88,13 +88,16 @@ public class CharacterRouter {
       gameState.player1.ready = false;
       gameState.player2.ready = false;
       gameState.currentPlayer = PLAYER1;
+      gameState.currentChar = 0;
       System.out.println("[log: Switch!]");
     }
 
     else if(!gameState.player1.ready && currentPlayer == PLAYER1){
+      
       gameState.player1.character = currentChar;
       gameState.player1.ready = true;
       gameState.currentPlayer = PLAYER2;
+      gameState.currentChar = 0;
       System.out.println("[log: player1 ready]");
       //System.out.println("Pass 1");
     }

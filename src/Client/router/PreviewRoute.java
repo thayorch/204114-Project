@@ -22,7 +22,7 @@ public class PreviewRoute {
   private final int ACTION_SHOOT_R = 6;
   private final int ACTION_EVADE_L = 7;
   private final int ACTION_EVADE_R = 8;
-  
+
   private final int EMPTY_BULLET = 0;
   private final int NORMAL_BULLET = 1;
   private final int MAGIC_BULLET = 2; // Reduce Evade & BLock
@@ -30,14 +30,14 @@ public class PreviewRoute {
   private final int DEATH_BULLET = 4; // Devil Contact, If it dosen't hit mean the shooter die.
 
   public PreviewRoute(Router router, GameState gameState) {
-      this.router = router;
-      this.gameState = gameState;
+    this.router = router;
+    this.gameState = gameState;
   }
 
   protected void update() {
-
-    int currentPlayer = gameState.currentPlayer;
-    int currentRound = gameState.currentRound;
+    
+    int currentPlayer = GameState.currentPlayer;
+    int currentRound = GameState.currentRound;
     int max_slot = gameState.player1.player_actions.length - 1;
 
     Player player1 = gameState.player1;
@@ -45,87 +45,88 @@ public class PreviewRoute {
     int P1hp = player1.health;
     int P2hp = player2.health;
 
-    System.out.printf("Round: %d currentActionSlot: %d\n", currentRound, currentActionSlot);
-    System.out.printf("finished: %s finishedAnimation: %s\n", finished, finishedAnimation);
-    gameState.player1.printInventory();
-    gameState.player2.printInventory();
-    System.out.println();
-    
+    // DEBUG
+    // System.out.printf("Round: %d currentActionSlot: %d\n", currentRound, currentActionSlot);
+    // System.out.printf("finished: %s finishedAnimation: %s\n", finished, finishedAnimation);
+    // gameState.player1.printInventory();
+    // gameState.player2.printInventory();
+    // System.out.println();
+
     // action check
     gameState.player1.actionCompare(currentActionSlot, gameState.player2);
     gameState.player2.actionCompare(currentActionSlot, gameState.player1);
-    
+
     // if shoot & shoot & hit
-    if(gameState.player1.duelStatus && gameState.player2.duelStatus){
-      System.out.println("[log: iniate a duel/quick draw]");
+    if (gameState.player1.duelStatus && gameState.player2.duelStatus) {
+      // System.out.println("[log: iniate a duel/quick draw]");
       // TODO: duel some how?
     }
 
-    if(currentActionSlot >= max_slot){
+    if (currentActionSlot >= max_slot) {
       currentActionSlot = 0;
       finishedAnimation = true;
     }
 
     // slot
-    else if(currentActionSlot < max_slot)
+    else if (currentActionSlot < max_slot)
       currentActionSlot++;
-    
+
     // win condition
-    if(P1hp == 0 || P2hp == 0){
-      if(P1hp == P2hp){
+    if (P1hp <= 0 || P2hp <= 0) {
+      if (P1hp == P2hp) {
         gameState.player1.win = true;
         gameState.player2.win = true;
-      }
-      else if(P1hp == 0)
+      } else if (P1hp <= 0)
         gameState.player2.win = true;
-      else 
+      else
         gameState.player1.win = true;
       finished = true;
     }
-    
+
     // run out of bullet
-    if(player1.getTotalBullet() == 0 || player2.getTotalBullet() == 0){
-      if(player1.getTotalBullet() == player2.getTotalBullet()){ // continue to hp check
-        if(P1hp > P2hp)
+    if (player1.getTotalBullet() == 0 || player2.getTotalBullet() == 0) {
+      if (player1.getTotalBullet() == player2.getTotalBullet()) { // continue to hp check
+        if (P1hp > P2hp)
           gameState.player1.win = true;
-        if(P1hp < P2hp)
+        if (P1hp < P2hp)
           gameState.player2.win = true;
-        if(P1hp == P2hp)
+        if (P1hp == P2hp)
           gameState.player1.win = true;
-          gameState.player2.win = true;
+        gameState.player2.win = true;
       }
 
-      else if(player1.getTotalBullet() > player2.getTotalBullet())
+      else if (player1.getTotalBullet() > player2.getTotalBullet())
         gameState.player1.win = true;
 
-      else if(player1.getTotalBullet() < player2.getTotalBullet())
+      else if (player1.getTotalBullet() < player2.getTotalBullet())
         gameState.player2.win = true;
 
       finished = true;
     }
 
-    if(finishedAnimation || finished){
-      System.out.println("[log : enter to continue]");
+    if (finishedAnimation || finished) {
+      // System.out.println("[log : enter to continue]");
     }
 
     if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
       router.keyHand.enterPressed = false;
-      if(finished){ // win condition met
+      if (finished) { // win condition met
         finished = false; // reset
         Router.currentRoute = Router.VICTORY_STATE;
-      }
-      else if(finishedAnimation){ // next round
-        gameState.currentRound++;
+        player1.setDefaultvalues();
+        player2.setDefaultvalues();
+      } else if (finishedAnimation) { // next round
+        GameState.currentRound++;
         player1.setNewRoundvalues(); // set next round
         player2.setNewRoundvalues();
+
         finishedAnimation = false; // reset
         Router.currentRoute = Router.S_ITEM_STATE;
       }
     }
-
     if (router.keyHand.backspacePressed && finished) {
-        Router.currentRoute = Router.S_ITEM_STATE;
-        router.keyHand.backspacePressed = false;
+      Router.currentRoute = Router.S_ITEM_STATE;
+      router.keyHand.backspacePressed = false;
     }
   }
 }

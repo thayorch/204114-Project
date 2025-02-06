@@ -8,10 +8,11 @@ import client.router.Router;
 public class KeyHandler implements KeyListener {
 
   GamePanel gamePanel;
-  Router route; 
+  Router route;
 
   public boolean qPressed, ePressed, spacePressed,
-      enterPressed, backspacePressed, wPressed, sPressed, numPressed;
+      enterPressed, backspacePressed, wPressed, sPressed, numPressed, leftPressed, rightPressed, shiftPressed,
+      F3Pressed;
   public int numPressedNUM;
 
   public KeyHandler(GamePanel gamePanel) {
@@ -30,6 +31,9 @@ public class KeyHandler implements KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode(); // return number of key
+    if (code == KeyEvent.VK_F3) {
+      F3Pressed = true;
+    }
     switch (Router.currentRoute) {
       case (0): // Lobby
         LobbyKeyPress(code);
@@ -97,6 +101,18 @@ public class KeyHandler implements KeyListener {
       case (KeyEvent.VK_4):
         numPressed = false;
         break;
+      case (KeyEvent.VK_LEFT):
+        leftPressed = false;
+        break;
+      case (KeyEvent.VK_RIGHT):
+        rightPressed = false;
+        break;
+      case (KeyEvent.VK_SHIFT):
+        shiftPressed = false;
+        break;
+      case (KeyEvent.VK_F3):
+        F3Pressed = false;
+        break;
     }
   }
 
@@ -106,18 +122,16 @@ public class KeyHandler implements KeyListener {
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
         break;
-      default:
-        break;
     }
   }
 
   private void ScenceKeyPress(int code) {
     switch (code) {
-      case (KeyEvent.VK_Q):
-        qPressed = true;
+      case (KeyEvent.VK_LEFT):
+        leftPressed = true;
         break;
-      case (KeyEvent.VK_E):
-        ePressed = true;
+      case (KeyEvent.VK_RIGHT):
+        rightPressed = true;
         break;
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
@@ -130,11 +144,11 @@ public class KeyHandler implements KeyListener {
 
   private void CharacterKeyPress(int code) {
     switch (code) {
-      case (KeyEvent.VK_Q):
-        qPressed = true;
+      case (KeyEvent.VK_LEFT):
+        leftPressed = true;
         break;
-      case (KeyEvent.VK_E):
-        ePressed = true;
+      case (KeyEvent.VK_RIGHT):
+        rightPressed = true;
         break;
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
@@ -147,11 +161,11 @@ public class KeyHandler implements KeyListener {
 
   private void ItemKeyPress(int code) {
     switch (code) {
-      case (KeyEvent.VK_Q):
-        qPressed = true;
+      case (KeyEvent.VK_LEFT):
+        leftPressed = true;
         break;
-      case (KeyEvent.VK_E):
-        ePressed = true;
+      case (KeyEvent.VK_RIGHT):
+        rightPressed = true;
         break;
       case (KeyEvent.VK_ENTER):
         enterPressed = true;
@@ -177,6 +191,9 @@ public class KeyHandler implements KeyListener {
         break;
       case (KeyEvent.VK_BACK_SPACE):
         backspacePressed = true;
+        break;
+      case (KeyEvent.VK_SHIFT):
+        shiftPressed = true;
         break;
     }
   }

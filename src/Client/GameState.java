@@ -6,11 +6,6 @@ import entity.Player;
 public class GameState {
 
   private static final int LOBBY_STATE = 0;
-  private static final int S_SCENCE_STATE = 1;
-  private static final int S_CHAR_STATE = 2;
-  private static final int S_ITEM_STATE = 3;
-  private static final int PREVIEW_STATE = 4;
-  private static final int VICTORY_STATE = 5;
 
   // Default Game State
   public static final int TOTAL_BG = 3; // n - 1
@@ -24,12 +19,13 @@ public class GameState {
 
   public static int currentRoute = LOBBY_STATE;
   public static int currentPlayer = PLAYER1;
-  public static int currentBG = 0;
+  public static int currentScence = 0;
   public static int currentChar = 0;
   public static int currentSlot = 0; // Action 5, Gun Barrel 6
   public static int currentType = 0; // Barrel 0, Action 1
   public static int currentRound = 1; // init Start Round
 
+  public static boolean logger = false;
   public Player player1 = new Player(this, 0); // no static
   public Player player2 = new Player(this, 1);
 
@@ -44,5 +40,4 @@ public class GameState {
   public GameState() {
   }
 
-  // LOBBY_STATE
 }

@@ -22,20 +22,20 @@ public class Preview {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
-        this.scalingFactor = gamePanel.scalingFactor;
         loadAsset();
     }
 
     public void render(Graphics2D g2) {
-        component.titleCenter(g2, "Preview", 100);
         component.setBackground(g2, background);
+        component.titleCenter(g2, "Preview", 100);
 
     }
 
     public void loadAsset() {
         try {
-            background = component.img("/resources/background/Preview.png");
-            System.out.println("[log: Background loaded successfully]");
+            // background = component.img("/resources/background/Preview.png");
+            background = component.img("/resources/lobby/lobby_bg.png");
+            System.out.println("[log: Preview Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
             System.out.println("[error: Failed to load background]");

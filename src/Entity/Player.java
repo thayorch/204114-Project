@@ -434,21 +434,77 @@ public class Player {
     }
   }
   
-  // for DEBUG
-  public void printInventory(){
 
-    System.out.println("===========================");
-    System.out.printf("player%d - character %d: %s\n", id+1, character, ready);
-    System.out.printf("hp: %d, magicStatus: %s, deathDoor: %s, duelStatus: %s\n", health, magicStatus, deathDoor, duelStatus);
-    System.out.printf("n:%d s:%d m:%d d:%d | b:%d e:%d\n", normalBullet, silverBullet, magicBullet, deathBullet, block, evade);
-    System.out.printf("bullet: [ ");
-    for (int bullet : gun_barrel) 
-      System.out.printf("%d ", bullet);
+  // GET Medthod
 
-    System.out.printf("]\naction: [ ");
-    for(int action: player_actions)
-      System.out.printf("%d ", action);
-    System.out.printf("]\n");
-
+  public int getID(){
+    return id+1;
   }
+  public int getCharacter(){
+    return character+1;
+  }
+
+  public boolean readyStatus(){
+    return ready;
+  }
+
+  public int getHealth(){
+    return health;
+  }
+
+  public boolean getMagigstatus(){
+    return magicStatus;
+  }
+
+  public boolean getDeathDoor(){
+    return deathDoor;
+  }
+
+  public boolean getDuelStatus(){
+    return duelStatus;
+  }
+
+  public int getNormalBullet(){
+    return normalBullet;
+  }
+  public int getSilverBullet(){
+    return silverBullet;
+  }
+  public int getMagicBullet(){
+    return magicBullet;
+  }
+  public int getDeathBullet(){
+    return deathBullet;
+  }
+  public int getBlock(){
+    return block;
+  }
+  public int getEvade(){
+    return evade;
+  }
+
+  public int[] getGun_barrel(){
+    return gun_barrel;
+  }
+  public int[] getPlayer_actions(){
+    return player_actions;
+  }
+
+
+  // for DEBUG
+  // public void printInventory(){
+  //   System.out.println("===========================");
+  //   System.out.printf("player%d - character %d: %s\n", id+1, character, ready);
+  //   System.out.printf("hp: %d, magicStatus: %s, deathDoor: %s, duelStatus: %s\n", health, magicStatus, deathDoor, duelStatus);
+  //   System.out.printf("n:%d s:%d m:%d d:%d | b:%d e:%d\n", normalBullet, silverBullet, magicBullet, deathBullet, block, evade);
+  //   System.out.printf("bullet: [ ");
+  //   for (int bullet : gun_barrel) 
+  //     System.out.printf("%d ", bullet);
+
+  //   System.out.printf("]\naction: [ ");
+  //   for(int action: player_actions)
+  //     System.out.printf("%d ", action);
+  //   System.out.printf("]\n");
+
+  // }
 }

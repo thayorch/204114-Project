@@ -3,7 +3,6 @@ package client;
 import java.awt.Graphics2D;
 
 import client.router.Router;
-import client.GameState;
 import pages.*;
 
 public class UI {
@@ -15,7 +14,6 @@ public class UI {
   private S_Item scenceItem;
   private Preview preview;
   private Victory victory;
-  private GamePanel gamePanel;
 
   public UI(GamePanel gamePanel, GameState gameState) {
     this.lobby = new Lobby(gamePanel, gameState);
@@ -24,7 +22,6 @@ public class UI {
     this.scenceItem = new S_Item(gamePanel, gameState);
     this.preview = new Preview(gamePanel, gameState);
     this.victory = new Victory(gamePanel, gameState);
-    this.gamePanel = gamePanel;
   }
 
   // Page rendering
@@ -49,5 +46,6 @@ public class UI {
         victory.render(g2);
         break;
     }
+    
   }
 }

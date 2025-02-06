@@ -1,100 +1,67 @@
-package  client;
+package client;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseListener;
 
 import client.router.Router;
-import client.GamePanel;
 
-public class MouseHandler extends MouseAdapter{
+public class MouseHandler extends MouseAdapter {
 
   private GamePanel gamePanel;
-  private Router route;
+  public Rectangle startButtonBounds;
+  protected Rectangle optionButtonBounds;
+  public Rectangle exitButtonBounds;
+  private boolean hoverStart, hoverOption, hoverExit;
 
   public MouseHandler(GamePanel gamePanel) {
     this.gamePanel = gamePanel;
   }
 
-  public void setRoute(Router route) {
-    this.route = route;
-  }
-
-  //private Rectangle hoverStart, hoverOption, hoverExit;
-
-  public Rectangle createButton(int x, int y, int w, int h){
-    return new Rectangle(x, y, w, h);
-  }
-  
-  //@Override
-  public void mouseMoved(MouseEvent e){
-    Point mousePoint = e.getPoint();
-    //LobbyMouseHover(mousePoint);
+  public void update() {
     switch (Router.currentRoute) {
-      case (0):
-        LobbyMouseHover(mousePoint);
-        break;
-    }
-  }
-  
-  @Override
-  public void mouseClicked(MouseEvent e) {
-    Point mousePoint = e.getPoint();
-    //LobbyMouseHover(mousePoint);
-    switch (Router.currentRoute) {
-      case (0):
-        LobbyMouseClick(mousePoint);
+      case 0:
+        this.startButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 307 - 70, 290, 100);
+        this.exitButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 450 - 70, 290, 100);
+        LobbyMouseHover();
+        LobbyMouseClick();
         break;
     }
   }
 
-  @Override
-  public void mouseEntered(MouseEvent e) {
-      // You can leave this empty if you don't need it
-  }
-  
-  @Override
-  public void mouseExited(MouseEvent e) {
-      // You can leave this empty if you don't need it
-  }
-  
-  @Override
-  public void mousePressed(MouseEvent e) {
-      // You can leave this empty if you don't need it
-  }
-  
-  @Override
-  public void mouseReleased(MouseEvent e) {
-      // You can leave this empty if you don't need it
-  }
+  private void LobbyMouseHover() {
+    gamePanel.addMouseMotionListener(new MouseMotionAdapter() {
+      @Override
+      public void mouseMoved(MouseEvent e) {
+        Point mousePoint = e.getPoint();
 
-  private void LobbyMouseHover(Point e){
+        hoverStart = startButtonBounds.contains(mousePoint);
+        hoverExit = exitButtonBounds.contains(mousePoint);
 
-    // This just a sample
-    Point mousePoint = e;
-    int screenWidth = GamePanel.screenWidth;
-    float scalingFactor = GamePanel.scalingFactor;
-
-    // Creat Button
-    Rectangle btnStart = new Rectangle((screenWidth / 2) - (int)(77.5 * scalingFactor), 154 - (int)(35 * scalingFactor), (int)(145 * scalingFactor), (int)(50 * scalingFactor));
-    Rectangle btnOption = new Rectangle((screenWidth / 2) - (int)(77.5 * scalingFactor), 225 - (int)(35 * scalingFactor), (int)(145 * scalingFactor), (int)(50 * scalingFactor));
-    Rectangle btnExit = new Rectangle((screenWidth / 2) - (int)(77.5 * scalingFactor), 297 - (int)(35 * scalingFactor), (int)(145 * scalingFactor), (int)(50 * scalingFactor));
-
-    // Check if the mouse is hovering over any button
-    boolean hoverStart = btnStart.contains(mousePoint);
-    boolean hoverOption = btnOption.contains(mousePoint);
-    boolean hoverExit = btnExit.contains(mousePoint);
-
-    if (hoverStart || hoverOption || hoverExit) 
-      System.out.println("Yes");
-      //gamePanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    else 
-      System.out.println("No");
+        if (hoverStart || hoverOption || hoverExit) {
+          gamePanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        } else {
+          gamePanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        }
+        gamePanel.repaint();
+      }
+    });
   }
 
-  private void LobbyMouseClick(Point e){
-
+  private void LobbyMouseClick() {
+    gamePanel.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        Point clickPoint = e.getPoint();
+        if (startButtonBounds.contains(clickPoint)) {
+          startButtonBounds = new Rectangle(0, 0, 0, 0);
+          exitButtonBounds = new Rectangle(0, 0, 0, 0);
+          Router.currentRoute = Router.S_SCENCE_STATE;
+        } else if (exitButtonBounds.contains(clickPoint)) {
+          System.exit(0);
+        }
+      }
+    });
   }
 }
