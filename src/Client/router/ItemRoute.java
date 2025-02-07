@@ -1,6 +1,7 @@
 package client.router;
 
 import client.GameState;
+import pages.S_Item;
 
 public class ItemRoute {
   private Router router;
@@ -150,9 +151,9 @@ public class ItemRoute {
         // reset values
         gameState.player1.ready = false;
         gameState.player2.ready = false;
-        gameState.currentSlot = 0;
         gameState.currentType = 0;
         gameState.currentPlayer = PLAYER1;
+        gameState.currentSlot = 0;
         // System.out.println("[log: Switch!]");
       }
 

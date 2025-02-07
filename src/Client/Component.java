@@ -92,10 +92,55 @@ public class Component {
         g2.drawString(txt, getTextCenter(g2, txt) + (190 * 2), 300 * 2);
     }
 
-    // Chamber
+    public void chamberSlot_P1(Graphics2D g2, BufferedImage img, int slot) {
+        switch (slot) {
+            case 0:
+                g2.drawImage(img, 115, screenHeight - 119, 25, 25, null);
+                break;
+            case 1:
+                g2.drawImage(img, 142, screenHeight - 103, 25, 25, null);
+                break;
+            case 2:
+                g2.drawImage(img, 142, screenHeight - 67, 25, 25, null);
+                break;
+            case 3:
+                g2.drawImage(img, 115, screenHeight - 52, 25, 25, null);
+                break;
+            case 4:
+                g2.drawImage(img, 89, screenHeight - 68, 25, 25, null);
+                break;
+            case 5:
+                g2.drawImage(img, 87, screenHeight - 103, 25, 25, null);
+                break;
 
-    public void chamberLeft(Graphics2D g2, BufferedImage chamber) {
-        g2.fillRect(125, screenHeight - 100, 350, 50);
+        }
+    }
+
+    public void chamberSlot_P2(Graphics2D g2, BufferedImage img, int slot) {
+        switch (slot) {
+            case 0:
+                g2.drawImage(img, 1145, screenHeight - 119, 25, 25, null);
+                break;
+            case 1:
+                g2.drawImage(img, 1172, screenHeight - 103, 25, 25, null);
+                break;
+            case 2:
+                g2.drawImage(img, 1172, screenHeight - 67, 25, 25, null);
+                break;
+            case 3:
+                g2.drawImage(img, 1145, screenHeight - 52, 25, 25, null);
+                break;
+            case 4:
+                g2.drawImage(img, 1119, screenHeight - 68, 25, 25, null);
+                break;
+            case 5:
+                g2.drawImage(img, 1117, screenHeight - 103, 25, 25, null);
+                break;
+
+        }
+    }
+
+    public void chamberP1(Graphics2D g2, BufferedImage chamber) {
         g2.setColor(Color.WHITE);
         g2.fillRect(125, screenHeight - 100, 50, 50);
         g2.setColor(Color.GRAY);
@@ -108,44 +153,72 @@ public class Component {
         g2.fillRect(325, screenHeight - 100, 50, 50);
         g2.setColor(Color.GRAY);
         g2.fillRect(375, screenHeight - 100, 50, 50);
-        g2.setColor(Color.WHITE);
-        g2.fillRect(425, screenHeight - 100, 50, 50);
         g2.drawImage(chamber, 75, screenHeight - 125, 100, 100, null);
     }
-    
-    public void chamberRight(Graphics2D g2, BufferedImage chamber) {
-        g2.fillRect(screenWidth-475, screenHeight - 100, 350, 50);
-        
+
+    public void chamberP2(Graphics2D g2, BufferedImage chamber) {
         g2.setColor(Color.WHITE);
-        g2.fillRect(screenWidth-175, screenHeight - 100, 50, 50);
+        g2.fillRect(screenWidth - 175, screenHeight - 100, 50, 50);
         g2.setColor(Color.GRAY);
-        g2.fillRect(screenWidth-225, screenHeight - 100, 50, 50);
+        g2.fillRect(screenWidth - 225, screenHeight - 100, 50, 50);
         g2.setColor(Color.WHITE);
-        g2.fillRect(screenWidth-275, screenHeight - 100, 50, 50);
+        g2.fillRect(screenWidth - 275, screenHeight - 100, 50, 50);
         g2.setColor(Color.GRAY);
-        g2.fillRect(screenWidth-325, screenHeight - 100, 50, 50);
+        g2.fillRect(screenWidth - 325, screenHeight - 100, 50, 50);
         g2.setColor(Color.WHITE);
-        g2.fillRect(screenWidth-375, screenHeight - 100, 50, 50);
+        g2.fillRect(screenWidth - 375, screenHeight - 100, 50, 50);
         g2.setColor(Color.GRAY);
-        g2.fillRect(screenWidth-425, screenHeight - 100, 50, 50);
-        g2.setColor(Color.WHITE);
-        g2.fillRect(screenWidth-475, screenHeight - 100, 50, 50);
-        g2.drawImage(chamber, screenWidth-175, screenHeight - 125, 100, 100, null);
+        g2.fillRect(screenWidth - 425, screenHeight - 100, 50, 50);
+        g2.drawImage(chamber, screenWidth - 175, screenHeight - 125, 100, 100, null);
     }
+
     // Bullet
-    
-    public void Bullet(Graphics2D g2,int x, int y,Color color){
+
+    public void Bullet(Graphics2D g2, int x, int y, Color color) {
         g2.setColor(color);
-        g2.fillOval(x, screenHeight-y, 20, 20);
+        g2.fillOval(x, screenHeight - y, 20, 20);
     }
-    
-    // public void silverBullet(Graphics2D g2,int x, int y){
-    //     g2.setColor(Color.GRAY);
-    //     g2.fillOval(x, screenHeight-y, 20, 20);
-    // }
+    // Action slot
 
+    public void actionSlot_P1(Graphics2D g2, BufferedImage img, int slot) {
+        switch (slot) {
+            case 0:
+                g2.drawImage(img, 175, screenHeight - 100, 50, 50, null);
+                break;
+            case 1:
+                g2.drawImage(img, 225, screenHeight - 100, 50, 50, null);
+                break;
+            case 2:
+                g2.drawImage(img, 275, screenHeight - 100, 50, 50, null);
+                break;
+            case 3:
+                g2.drawImage(img, 325, screenHeight - 100, 50, 50, null);
+                break;
+            case 4:
+                g2.drawImage(img, 375, screenHeight - 100, 50, 50, null);
+                break;
+        }
+    }
 
-    // Style
+    public void actionSlot_P2(Graphics2D g2, BufferedImage img, int slot) {
+        switch (slot) {
+            case 0:
+                g2.drawImage(img, screenWidth - 425, screenHeight - 100, 50, 50, null);
+                break;
+            case 1:
+                g2.drawImage(img, screenWidth - 375, screenHeight - 100, 50, 50, null);
+                break;
+            case 2:
+                g2.drawImage(img, screenWidth - 325, screenHeight - 100, 50, 50, null);
+                break;
+            case 3:
+                g2.drawImage(img, screenWidth - 275, screenHeight - 100, 50, 50, null);
+                break;
+            case 4:
+                g2.drawImage(img, screenWidth - 225, screenHeight - 100, 50, 50, null);
+                break;
+        }
+    }
 
     public int getTextCenter(Graphics2D g2, String text) {
         int text_length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();

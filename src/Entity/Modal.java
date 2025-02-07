@@ -28,25 +28,7 @@ public class Modal extends JPanel {
     // @Override
     public void log(Graphics2D g2) {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        // frameCount++;
-        // long currentTime = System.currentTimeMillis();
-        // if (currentTime - lastTimeCheck >= 1000) {
-        //     fps = frameCount;
-        //     frameCount = 0;
-        //     lastTimeCheck = currentTime;
-        // }
         
-        // // Set text color
-        // g2.setColor(Color.WHITE);
-        // g2.setFont(new Font("Consolas", Font.BOLD, 14));
-        
-        // int y = 30;
-        // g2.drawString("Debug Screen - Java", 20, y);
-        // g2.drawString("FPS: " + fps, 20, y += 20);
-        // g2.drawString("Memory Usage: " + getMemoryUsage() + " MB", 20, y += 20);
-        // g2.drawString("Screen Size: " + gamePanel.screenWidth + "x" + gamePanel.screenHeight, 20, y += 20);
-        // g2.drawString("Java Version: " + System.getProperty("java.version"), 20, y += 20);
-
         // // Draw semi-transparent black background for the debug panel
 
 
@@ -58,10 +40,23 @@ public class Modal extends JPanel {
             
         g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
-        component.text_10_alginCenter(g2, "Map : "+ S_Scence.Map, 10,20);
-        component.text_10_alginCenter(g2, "Character  : "+ S_Char.character, 10,40);
-        component.text_10_alginCenter(g2, "Slot : " + (GameState.currentSlot + 1) + " | " + type + " : Type", 0, 60);
         
+        frameCount++;
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastTimeCheck >= 1000) {
+            fps = frameCount;
+            frameCount = 0;
+            lastTimeCheck = currentTime;
+        }
+        
+        component.text_10_alginCenter(g2, "Debug Screen - Java Version"+ System.getProperty("java.version"), 20, 20);
+        component.text_10_alginCenter(g2, "FPS: " + fps + " | "+ "Memory Usage: " + getMemoryUsage() + " MB", 20, 40);
+        component.text_10_alginCenter(g2, "Screen Size: " + gamePanel.screenWidth + "x" + gamePanel.screenHeight, 20, 60);
+        component.text_10_alginCenter(g2, "Map : "+ S_Scence.Map, 10,80);
+        component.text_10_alginCenter(g2, "Character  : "+ S_Char.character, 10,100);
+        component.text_10_alginCenter(g2, "Slot : " + (GameState.currentSlot + 1) + " | " + type + " : Type", 0, 120);
+
+
         // characterLog(g2);
         playerLog(g2);
 
@@ -97,8 +92,6 @@ public class Modal extends JPanel {
         final boolean P2_DUEL_STATUS = gameState.player2.getDuelStatus();
         final boolean P1_READY = gameState.player1.readyStatus();
         final boolean P2_READY = gameState.player2.readyStatus();
-
-        
 
         component.text_10_alginLeft(g2, "Player : " + P1_ID, 10, 20);
         component.text_10_alginRight(g2, "Player : " + P2_ID, 90, 20);
@@ -158,24 +151,24 @@ public class Modal extends JPanel {
     }
 
     // private void characterLog(Graphics2D g2){
-    //     final int P1_ID = gameState.player1.getID();
-    //     final int P2_ID = gameState.player2.getID();
-    //     final int P1_CHAR = gameState.player1.getCharacter();
-    //     final int P2_CHAR = gameState.player2.getCharacter();
-        
-    //     if (GameState.currentPlayer == 0) {
-    //         component.text_10_alginLeft(g2, "Player : " + P1_ID, 10, 20);
-    //         component.text_10_alginRight(g2, "Player : " + P2_ID , 87, 20);
+    // final int P1_ID = gameState.player1.getID();
+    // final int P2_ID = gameState.player2.getID();
+    // final int P1_CHAR = gameState.player1.getCharacter();
+    // final int P2_CHAR = gameState.player2.getCharacter();
 
-    //         component.text_10_alginLeft(g2, "Character : " + S_Char.character, 10, 35);
-    //         component.text_10_alginRight(g2, "Character : " + P2_CHAR, 110, 35);
-    //     }else{
-    //         component.text_10_alginLeft(g2, "Player : " + P1_ID, 10, 20);
-    //         component.text_10_alginRight(g2, "Player : " + P2_ID, 87, 20);
+    // if (GameState.currentPlayer == 0) {
+    // component.text_10_alginLeft(g2, "Player : " + P1_ID, 10, 20);
+    // component.text_10_alginRight(g2, "Player : " + P2_ID , 87, 20);
 
-    //         component.text_10_alginLeft(g2, "Character : " + P1_CHAR , 10, 35);
-    //         component.text_10_alginRight(g2, "Character : " + S_Char.character, 110, 35);
-    //     }
+    // component.text_10_alginLeft(g2, "Character : " + S_Char.character, 10, 35);
+    // component.text_10_alginRight(g2, "Character : " + P2_CHAR, 110, 35);
+    // }else{
+    // component.text_10_alginLeft(g2, "Player : " + P1_ID, 10, 20);
+    // component.text_10_alginRight(g2, "Player : " + P2_ID, 87, 20);
+
+    // component.text_10_alginLeft(g2, "Character : " + P1_CHAR , 10, 35);
+    // component.text_10_alginRight(g2, "Character : " + S_Char.character, 110, 35);
+    // }
     // }
 
     private String getMemoryUsage() {

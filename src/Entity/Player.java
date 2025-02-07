@@ -10,15 +10,15 @@ public class Player {
   private final int SILVER_BULLET = 3; // Garuntee Hit
   private final int DEATH_BULLET = 4; // Devil Contact, If it dosen't hit mean the shooter die.
   
-  private final int ACTION_NONE = 0;
-  private final int ACTION_SHOOT = 1;
-  private final int ACTION_BLOCK = 2;
-  private final int ACTION_EVADE = 3;
-  private final int ACTION_SHOOT_L = 4;
-  private final int ACTION_SHOOT_M = 5;
-  private final int ACTION_SHOOT_R = 6;
-  private final int ACTION_EVADE_L = 7;
-  private final int ACTION_EVADE_R = 8;
+  public static final int ACTION_NONE = 0;
+  public static final int ACTION_SHOOT = 1;
+  public static final int ACTION_BLOCK = 2;
+  public static final int ACTION_EVADE = 3;
+  public static final int ACTION_SHOOT_L = 4;
+  public static final int ACTION_SHOOT_M = 5;
+  public static final int ACTION_SHOOT_R = 6;
+  public static final int ACTION_EVADE_L = 7;
+  public static final int ACTION_EVADE_R = 8;
   
   private final int NORMAL_DAMAGE = 20;
   private final int MAGIC_DAMAGE = 15;

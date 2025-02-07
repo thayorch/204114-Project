@@ -17,7 +17,7 @@ public class S_Scence {
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
-    public static String Map = "";
+    public static String Map = "None";
 
     public S_Scence(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);

@@ -35,7 +35,6 @@ public class GamePanel extends JPanel implements Runnable {
   private UI ui = new UI(this, gameState);
   public MusicPlayer musicPlayer;
 
-  public static String music = "resources/victory_music.wav";
   public Player player1 = new Player(this);
   public Player player2 = new Player(this);
   public Modal debugScreen = new Modal(this, gameState);
@@ -57,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
   public void startGameThread() {
     gameThread = new Thread(this); // passing GamePanel Class
     gameThread.start();
-    musicPlayer.play(1);
+    // musicPlayer.play(1);
     new Timer(16, e -> debugScreen.repaint()).start();
   }
 
