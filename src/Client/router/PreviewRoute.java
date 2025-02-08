@@ -32,9 +32,6 @@ public class PreviewRoute {
   public PreviewRoute(Router router, GameState gameState) {
     this.router = router;
     this.gameState = gameState;
-    for(int i = 0; i <=6; i++){
-      gameState.currentSlot = i;
-    }
   }
 
   protected void update() {
