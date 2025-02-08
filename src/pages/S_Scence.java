@@ -13,7 +13,7 @@ public class S_Scence {
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
-    private BufferedImage background, card_1, card_2, card_3;
+    private BufferedImage card_1, card_2, card_3;
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
@@ -30,7 +30,7 @@ public class S_Scence {
     }
 
     public void render(Graphics2D g2) {
-        component.setBackground(g2, background);
+        component.setBackground(g2, Lobby.background);
         component.titleCenter(g2, "Select Scence", 150);
         
 
@@ -62,8 +62,6 @@ public class S_Scence {
 
     public void loadAsset() {
         try {
-            // background = component.img("/resources/background/Select_Scence.png");
-            background = component.img("/resources/lobby/lobby_bg.png");
             card_1 = component.img("/resources/scence/1.png");
             card_2 = component.img("/resources/scence/2.png");
             card_3 = component.img("/resources/scence/3.png");

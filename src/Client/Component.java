@@ -75,21 +75,21 @@ public class Component {
         g2.drawImage(img, (screenWidth / 2) - (265 * 2), 230, 150 * 2, 200 * 2, null);
         this.setFontScale(g2, this.font_20);
         g2.setColor(Color.white);
-        g2.drawString(txt, getTextCenter(g2, txt) - (190 * 2), 300 * 2);
+        g2.drawString("", getTextCenter(g2, txt) - (190 * 2), 300 * 2);
     }
 
     public void scenceCardcenter(Graphics2D g2, String txt, BufferedImage img) {
         g2.drawImage(img, (screenWidth / 2) - 150, 230, 150 * 2, 200 * 2, null);
         this.setFontScale(g2, this.font_20);
         g2.setColor(Color.white);
-        g2.drawString(txt, getTextCenter(g2, txt), 300 * 2);
+        g2.drawString("", getTextCenter(g2, txt), 300 * 2);
     }
 
     public void scenceCardright(Graphics2D g2, String txt, BufferedImage img) {
         g2.drawImage(img, (screenWidth / 2) + 115 * 2, 230, 150 * 2, 200 * 2, null);
         this.setFontScale(g2, this.font_20);
         g2.setColor(Color.white);
-        g2.drawString(txt, getTextCenter(g2, txt) + (190 * 2), 300 * 2);
+        g2.drawString("", getTextCenter(g2, txt) + (190 * 2), 300 * 2);
     }
 
     public void chamberSlot_P1(Graphics2D g2, BufferedImage img, int slot) {

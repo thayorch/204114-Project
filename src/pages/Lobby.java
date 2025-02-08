@@ -15,7 +15,8 @@ public class Lobby {
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
-    protected BufferedImage background, button;
+    protected static BufferedImage background;
+    private BufferedImage button;
 
     public Lobby(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);

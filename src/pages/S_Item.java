@@ -14,28 +14,58 @@ public class S_Item {
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
+    private BufferedImage char_P1, char_P2;
     private BufferedImage background, chamber, frame;
     private BufferedImage shied, eva;
     private BufferedImage bullet1, bullet2;
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
-    BufferedImage P1_ACT1, P1_ACT2, P1_ACT3, P1_ACT4, P1_ACT5;
-    BufferedImage P2_ACT1, P2_ACT2, P2_ACT3, P2_ACT4, P2_ACT5;
+    public static BufferedImage P1_ACT1, P1_ACT2, P1_ACT3, P1_ACT4, P1_ACT5;
+    public static BufferedImage P2_ACT1, P2_ACT2, P2_ACT3, P2_ACT4, P2_ACT5;
 
-    Color P1_CHAM1 = Color.BLACK;
-    Color P1_CHAM2 = Color.BLACK;
-    Color P1_CHAM3 = Color.BLACK;
-    Color P1_CHAM4 = Color.BLACK;
-    Color P1_CHAM5 = Color.BLACK;
-    Color P1_CHAM6 = Color.BLACK;
+    public static Color P1_CHAM1 = Color.BLACK;
+    public static Color P1_CHAM2 = Color.BLACK;
+    public static Color P1_CHAM3 = Color.BLACK;
+    public static Color P1_CHAM4 = Color.BLACK;
+    public static Color P1_CHAM5 = Color.BLACK;
+    public static Color P1_CHAM6 = Color.BLACK;
 
-    Color P2_CHAM1 = Color.BLACK;
-    Color P2_CHAM2 = Color.BLACK;
-    Color P2_CHAM3 = Color.BLACK;
-    Color P2_CHAM4 = Color.BLACK;
-    Color P2_CHAM5 = Color.BLACK;
-    Color P2_CHAM6 = Color.BLACK;
+    public static  Color P2_CHAM1 = Color.BLACK;
+    public static  Color P2_CHAM2 = Color.BLACK;
+    public static  Color P2_CHAM3 = Color.BLACK;
+    public static  Color P2_CHAM4 = Color.BLACK;
+    public static  Color P2_CHAM5 = Color.BLACK;
+    public static  Color P2_CHAM6 = Color.BLACK;
+
+    public static void resetItem(){
+        P1_ACT1 = null;
+        P1_ACT2 = null;
+        P1_ACT3 = null;
+        P1_ACT4 = null;
+        P1_ACT5 = null;
+
+        P2_ACT1 = null;
+        P2_ACT2 = null;
+        P2_ACT3 = null;
+        P2_ACT4 = null;
+        P2_ACT5 = null;
+
+
+        P1_CHAM1 = Color.BLACK;
+        P1_CHAM2 = Color.BLACK;
+        P1_CHAM3 = Color.BLACK;
+        P1_CHAM4 = Color.BLACK;
+        P1_CHAM5 = Color.BLACK;
+        P1_CHAM6 = Color.BLACK;
+
+        P2_CHAM1 = Color.BLACK;
+        P2_CHAM2 = Color.BLACK;
+        P2_CHAM3 = Color.BLACK;
+        P2_CHAM4 = Color.BLACK;
+        P2_CHAM5 = Color.BLACK;
+        P2_CHAM6 = Color.BLACK;
+    }
 
     public S_Item(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
@@ -45,6 +75,7 @@ public class S_Item {
         this.screenHeight = gamePanel.screenHeight;
         loadAsset();
     }
+    
 
     public void render(Graphics2D g2) {
         component.setBackground(g2, background);
@@ -69,6 +100,13 @@ public class S_Item {
         if (GameState.currentType == 1 && GameState.currentPlayer == GameState.PLAYER2) {
             component.actionSlot_P2(g2, frame, GameState.currentSlot);
         }
+
+        S_Char.animation.P1(g2, char_P1);
+        S_Char.animation.P2(g2, char_P2);
+
+
+
+
     }
 
     private void P1_ACTION(Graphics2D g2) {
@@ -369,6 +407,11 @@ public class S_Item {
             frame = component.img("/resources/assets/frame.png");
             shied = component.img("/resources/assets/shied.png");
             eva = component.img("/resources/assets/eva.png");
+
+
+            char_P1 = component.img("/resources/character/char"+ Integer.toString(gameState.player1.getCharacter()) + ".png");
+            char_P2 = component.img("/resources/character/char"+ Integer.toString(gameState.player2.getCharacter()) + ".png");
+
             System.out.println("[log: Select Item Image loaded successfully]");
         } catch (IOException |
 

@@ -14,11 +14,11 @@ public class S_Char {
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
-    private BufferedImage background, card_1, card_2, card_3, character_1, character_2, character_3;
+    private BufferedImage card_1, card_2, card_3, character_1, character_2, character_3;
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
-    protected Animation animation;
+    protected static Animation animation;
     public static int character=1;
 
     public S_Char(GamePanel gamePanel, GameState gameState) {
@@ -30,42 +30,42 @@ public class S_Char {
     }
 
     public void render(Graphics2D g2) {
-        component.setBackground(g2, background);
+        component.setBackground(g2, Lobby.background);
         component.titleCenter(g2, "Select Character", 100);
 
         switch (GameState.currentChar) {
             case 0:
-                component.scenceCardleft(g2, "L", card_2);
+                // component.scenceCardleft(g2, "L", card_2);
                 animation.leftCharacter(g2, character_2);
 
                 component.scenceCardcenter(g2, "Select", card_1);
                 animation.centerCharacter(g2, character_1);
 
-                component.scenceCardright(g2, "R", card_3);
+                // component.scenceCardright(g2, "R", card_3);
                 animation.rightCharacter(g2, character_3);
                 character = 1;
                 break;
 
             case 1:
-                component.scenceCardleft(g2, "L", card_3);
+                // component.scenceCardleft(g2, "L", card_3);
                 animation.leftCharacter(g2, character_3);
 
                 component.scenceCardcenter(g2, "Select", card_2);
                 animation.centerCharacter(g2, character_2);
 
-                component.scenceCardright(g2, "R", card_1);
+                // component.scenceCardright(g2, "R", card_1);
                 animation.rightCharacter(g2, character_1);
                 character = 2;
                 break;
 
             case 2:
-                component.scenceCardleft(g2, "L", card_1);
+                // component.scenceCardleft(g2, "L", card_1);
                 animation.leftCharacter(g2, character_1);
 
                 component.scenceCardcenter(g2, "Select", card_3);
                 animation.centerCharacter(g2, character_3);
 
-                component.scenceCardright(g2, "R", card_2);
+                // component.scenceCardright(g2, "R", card_2);
                 animation.rightCharacter(g2, character_2);
                 character = 3;
                 break;
@@ -77,8 +77,6 @@ public class S_Char {
 
     public void loadAsset() {
         try {
-            // background = component.img("/resources/background/Select_Character.png");
-            background = component.img("/resources/lobby/lobby_bg.png");
             character_1 = component.img("/resources/character/char1.png");
             character_2 = component.img("/resources/character/char2.png");
             character_3 = component.img("/resources/character/char3.png");

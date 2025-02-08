@@ -3,6 +3,7 @@ package client.router;
 import client.GamePanel;
 import client.KeyHandler;
 import client.MouseHandler;
+import pages.S_Item;
 import client.GameState;
 
 public class Router {

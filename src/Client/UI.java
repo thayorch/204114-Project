@@ -40,6 +40,7 @@ public class UI {
         scenceItem.render(g2);
         break;
       case (Router.PREVIEW_STATE):
+        S_Item.resetItem();
         preview.render(g2);
         break;
       case (Router.VICTORY_STATE):

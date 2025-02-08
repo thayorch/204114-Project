@@ -36,6 +36,7 @@ public class Option {
 
     public void render(Graphics2D g2) {
         component.setBackground(g2, background);
+        
         component.titleCenter(g2, "Option", 150);
         // component.Slider(g2, sfxSliderRect, "SFX Volume", sfxVolume);
         // component.Slider(g2, musicSliderRect, "Music Volume", musicVolume);

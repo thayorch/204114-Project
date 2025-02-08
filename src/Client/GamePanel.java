@@ -18,9 +18,9 @@ public class GamePanel extends JPanel implements Runnable {
   // ratios 16:9 ; 16x9, 256x144, 640x360, 960x540, 1280x720, 1920x1080
   // primary 640x360
 
-  public float scalingFactor = 2f;
-  public int screenWidth = (int) (640 * scalingFactor);
-  public int screenHeight = (int) (380 * scalingFactor);
+  public static float scalingFactor = 2f;
+  public static int screenWidth = (int) (640 * scalingFactor);
+  public static int screenHeight = (int) (380 * scalingFactor);
 
   // private int totalPlayer = 2;
 
