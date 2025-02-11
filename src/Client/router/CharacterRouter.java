@@ -13,11 +13,11 @@ public class CharacterRouter {
   }
 
   public void update() {
-    int TOTAL_CHAR = gameState.TOTAL_CHAR;
-    int currentChar = gameState.currentChar;
-    int currentPlayer = gameState.currentPlayer;
-    int PLAYER1 = gameState.PLAYER1;
-    int PLAYER2 = gameState.PLAYER2;
+    int TOTAL_CHAR = GameState.TOTAL_CHAR;
+    int currentChar = GameState.currentChar;
+    int currentPlayer = GameState.currentPlayer;
+    int PLAYER1 = GameState.PLAYER1;
+    int PLAYER2 = GameState.PLAYER2;
   
   // DEBUG
   //System.out.printf("P1 %s %d\nP2 %s %d\n%d currentChar: %d\n", gameState.player1.ready, gameState.player1.character, gameState.player2.ready, gameState.player2.character, gameState.currentPlayer+1, gameState.currentChar);

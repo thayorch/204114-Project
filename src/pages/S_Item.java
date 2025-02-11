@@ -7,6 +7,7 @@ import java.io.IOException;
 import client.Component;
 import client.GamePanel;
 import client.GameState;
+import client.UI;
 import entity.Player;
 
 public class S_Item {
@@ -15,7 +16,7 @@ public class S_Item {
     protected GameState gameState;
     protected Component component;
     private BufferedImage char_P1, char_P2;
-    private BufferedImage background, chamber, frame;
+    private BufferedImage chamber, frame;
     private BufferedImage shied, eva;
     private BufferedImage bullet1, bullet2;
     protected int screenWidth;
@@ -71,23 +72,23 @@ public class S_Item {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
-        this.screenWidth = gamePanel.screenWidth;
-        this.screenHeight = gamePanel.screenHeight;
+        this.screenWidth = GamePanel.screenWidth;
+        this.screenHeight = GamePanel.screenHeight;
         loadAsset();
     }
     
 
     public void render(Graphics2D g2) {
-        component.setBackground(g2, background);
+        UI.animation.background(g2, Lobby.background);
         component.titleCenter(g2, "Select Item", 100);
         component.chamberP1(g2, chamber);
         component.chamberP2(g2, chamber);
-
+        
         P1_CHAMBER(g2);
         P2_CHAMBER(g2);
         P1_ACTION(g2);
         P2_ACTION(g2);
-
+        
         if (GameState.currentType == 0 && GameState.currentPlayer == GameState.PLAYER1) {
             component.chamberSlot_P1(g2, frame, GameState.currentSlot);
         }
@@ -100,13 +101,14 @@ public class S_Item {
         if (GameState.currentType == 1 && GameState.currentPlayer == GameState.PLAYER2) {
             component.actionSlot_P2(g2, frame, GameState.currentSlot);
         }
-
-        S_Char.animation.P1(g2, char_P1);
-        S_Char.animation.P2(g2, char_P2);
-
-
-
-
+        
+        UI.animation.P1(g2, char_P1);
+        UI.animation.P2(g2, char_P2);
+        
+        
+        
+        
+        // component.setBackground(g2, background);
     }
 
     private void P1_ACTION(Graphics2D g2) {
@@ -400,7 +402,6 @@ public class S_Item {
     public void loadAsset() {
         try {
             // background = component.img("/resources/background/Select_Item.png");
-            background = component.img("/resources/lobby/lobby_bg.png");
             chamber = component.img("/resources/assets/chamber.png");
             bullet1 = component.img("/resources/assets/b1.png");
             bullet2 = component.img("/resources/assets/b2.png");

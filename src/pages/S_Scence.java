@@ -7,6 +7,7 @@ import java.io.IOException;
 import client.Component;
 import client.GamePanel;
 import client.GameState;
+import client.UI;
 
 public class S_Scence {
 
@@ -23,14 +24,15 @@ public class S_Scence {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
-        this.screenWidth = gamePanel.screenWidth;
-        this.screenHeight = gamePanel.screenHeight;
-        this.scalingFactor = gamePanel.scalingFactor;
+        this.screenWidth = GamePanel.screenWidth;
+        this.screenHeight = GamePanel.screenHeight;
+        this.scalingFactor = GamePanel.scalingFactor;
         loadAsset();
     }
 
     public void render(Graphics2D g2) {
-        component.setBackground(g2, Lobby.background);
+        UI.animation.background(g2, Lobby.background);
+        // component.setBackground(g2, Lobby.background);
         component.titleCenter(g2, "Select Scence", 150);
         
 

@@ -2,6 +2,11 @@ package client;
 
 import java.awt.*;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import org.w3c.dom.events.MouseEvent;
+
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 
@@ -219,6 +224,10 @@ public class Component {
                 break;
         }
     }
+
+
+
+    // Style
 
     public int getTextCenter(Graphics2D g2, String text) {
         int text_length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();

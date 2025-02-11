@@ -7,7 +7,7 @@ import java.io.IOException;
 import client.Component;
 import client.GamePanel;
 import client.GameState;
-import entity.Animation;
+import client.UI;
 
 public class S_Char {
 
@@ -18,55 +18,54 @@ public class S_Char {
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
-    protected static Animation animation;
     public static int character=1;
 
     public S_Char(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
-        this.animation = new Animation();
         loadAsset();
     }
 
     public void render(Graphics2D g2) {
-        component.setBackground(g2, Lobby.background);
+        UI.animation.background(g2, Lobby.background);
+        // component.setBackground(g2, Lobby.background);
         component.titleCenter(g2, "Select Character", 100);
 
         switch (GameState.currentChar) {
             case 0:
                 // component.scenceCardleft(g2, "L", card_2);
-                animation.leftCharacter(g2, character_2);
+                UI.animation.leftCharacter(g2, character_2);
 
                 component.scenceCardcenter(g2, "Select", card_1);
-                animation.centerCharacter(g2, character_1);
+                UI.animation.centerCharacter(g2, character_1);
 
                 // component.scenceCardright(g2, "R", card_3);
-                animation.rightCharacter(g2, character_3);
+                UI.animation.rightCharacter(g2, character_3);
                 character = 1;
                 break;
 
             case 1:
                 // component.scenceCardleft(g2, "L", card_3);
-                animation.leftCharacter(g2, character_3);
+                UI.animation.leftCharacter(g2, character_3);
 
                 component.scenceCardcenter(g2, "Select", card_2);
-                animation.centerCharacter(g2, character_2);
+                UI.animation.centerCharacter(g2, character_2);
 
                 // component.scenceCardright(g2, "R", card_1);
-                animation.rightCharacter(g2, character_1);
+                UI.animation.rightCharacter(g2, character_1);
                 character = 2;
                 break;
 
             case 2:
                 // component.scenceCardleft(g2, "L", card_1);
-                animation.leftCharacter(g2, character_1);
+                UI.animation.leftCharacter(g2, character_1);
 
                 component.scenceCardcenter(g2, "Select", card_3);
-                animation.centerCharacter(g2, character_3);
+                UI.animation.centerCharacter(g2, character_3);
 
                 // component.scenceCardright(g2, "R", card_2);
-                animation.rightCharacter(g2, character_2);
+                UI.animation.rightCharacter(g2, character_2);
                 character = 3;
                 break;
         }

@@ -1,6 +1,9 @@
 package entity;
 
 import javax.swing.*;
+
+import client.GamePanel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +17,7 @@ public class Animation extends JPanel implements ActionListener {
     private Timer timer;
 
     public Animation() {
-        timer = new Timer(100, this);
+        timer = new Timer(200, this);
         timer.start();
     }
 
@@ -24,9 +27,25 @@ public class Animation extends JPanel implements ActionListener {
         repaint();
     }
 
-
     // Component
-    
+
+    public void background(Graphics2D g2, BufferedImage img) {
+        int frameWidth = GamePanel.screenWidth / 2;
+        int frameHeight = GamePanel.screenHeight / 2;
+        int frameX = this.currentFrame * frameWidth;
+        g2.drawImage(img, frameWidth * 2, 0, 0, frameHeight * 2, frameX, 0,
+                frameX + frameWidth, frameHeight, this);
+    }
+
+    // int frameX = currentFrame * frameWidth;
+    // int centerX = (GamePanel.screenWidth - frameWidth) / 2; // Horizontal
+    // centering
+    // int centerY = (GamePanel.screenHeight - frameHeight) / 2; // Vertical
+    // centering
+    // g2.drawImage(img, centerX, centerY, centerX + frameWidth, centerY +
+    // frameHeight,
+    // frameX, 0, frameX + frameWidth, frameHeight, this);
+
     public void P1(Graphics2D g2, BufferedImage img) {
         int frameX = this.currentFrame * frameWidth;
         int centerX = 540 - 430;
@@ -42,8 +61,6 @@ public class Animation extends JPanel implements ActionListener {
         g2.drawImage(img, centerX, centerY, frameWidth + centerX + 100, frameHeight + centerY + 100, frameX, 0,
                 frameX + frameWidth, frameHeight, this);
     }
-
-
 
     public void centerCharacter(Graphics2D g2, BufferedImage img) {
         int frameX = this.currentFrame * frameWidth;

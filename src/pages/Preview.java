@@ -7,6 +7,7 @@ import java.io.IOException;
 import client.Component;
 import client.GamePanel;
 import client.GameState;
+import client.UI;
 
 public class Preview {
 
@@ -26,11 +27,12 @@ public class Preview {
     }
 
     public void render(Graphics2D g2) {
-        component.setBackground(g2, Lobby.background);
+        // component.setBackground(g2, Lobby.background);
+        UI.animation.background(g2, Lobby.background);
         component.titleCenter(g2, "Preview", 100);
 
-        S_Char.animation.P1(g2, char_P1);
-        S_Char.animation.P2(g2, char_P2);
+        UI.animation.P1(g2, char_P1);
+        UI.animation.P2(g2, char_P2);
 
     }
 
