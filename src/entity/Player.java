@@ -192,6 +192,10 @@ public class Player {
     health = 100;
     evade = 2;
     block = 1;
+    normalBullet = 12; 
+    silverBullet = 1; 
+    magicBullet = 1; 
+    deathBullet = 1;
 
     barrel = 6;
     actionNum = 5;
@@ -316,10 +320,6 @@ public class Player {
   public void checkPlayerAction(int actionType){
     
     int slot = GameState.currentSlot;
-    //System.out.println(slot + " " + actionType);
-    //System.out.println(actionType == ACTION_SHOOT_L);
-    //System.out.println(convertActionType(actionType));
-    //System.out.println(getActionType(slot));
 
     if (getAction(actionType) > 0 && getActionType_slot(slot) != getActionType(actionType)){ //  add getActionType(actionType) for shoot & evade
       action.addAction(this, getActionType_slot(slot));
@@ -502,19 +502,19 @@ public class Player {
 
 
   // for DEBUG
-  // public void printInventory(){
-  //   System.out.println("===========================");
-  //   System.out.printf("player%d - character %d: %s\n", id+1, character, ready);
-  //   System.out.printf("hp: %d, magicStatus: %s, deathDoor: %s, duelStatus: %s\n", health, magicStatus, deathDoor, duelStatus);
-  //   System.out.printf("n:%d s:%d m:%d d:%d | b:%d e:%d\n", normalBullet, silverBullet, magicBullet, deathBullet, block, evade);
-  //   System.out.printf("bullet: [ ");
-  //   for (int bullet : gun_barrel) 
-  //     System.out.printf("%d ", bullet);
+   public void printInventory(){
+     System.out.println("===========================");
+     System.out.printf("player%d - character %d: %s\n", id+1, character, ready);
+     System.out.printf("hp: %d, magicStatus: %s, deathDoor: %s, duelStatus: %s\n", health, magicStatus, deathDoor, duelStatus);
+     System.out.printf("n:%d s:%d m:%d d:%d | b:%d e:%d\n", normalBullet, silverBullet, magicBullet, deathBullet, block, evade);
+     System.out.printf("bullet: [ ");
+     for (int bullet : gun_barrel) 
+       System.out.printf("%d ", bullet);
 
-  //   System.out.printf("]\naction: [ ");
-  //   for(int action: player_actions)
-  //     System.out.printf("%d ", action);
-  //   System.out.printf("]\n");
+     System.out.printf("]\naction: [ ");
+     for(int action: player_actions)
+       System.out.printf("%d ", action);
+     System.out.printf("]\n");
 
-  // }
+   }
 }

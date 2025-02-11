@@ -122,9 +122,9 @@ public class PreviewRoute {
       router.keyHand.enterPressed = false;
       if (finished) { // win condition met
         finished = false; // reset
-        Router.currentRoute = Router.VICTORY_STATE;
         player1.setDefaultvalues();
         player2.setDefaultvalues();
+        Router.currentRoute = Router.VICTORY_STATE;
       } 
       else if (finishedAnimation) { // next round
         GameState.currentRound++;
@@ -135,6 +135,7 @@ public class PreviewRoute {
         Router.currentRoute = Router.S_ITEM_STATE;
       }
     }
+
     if (router.keyHand.backspacePressed && finished) {
       Router.currentRoute = Router.S_ITEM_STATE;
       router.keyHand.backspacePressed = false;
