@@ -422,6 +422,10 @@ public class Player {
     if(enAction == ACTION_SHOOT){
 
       if(!missed){
+
+        if(enBullet == MAGIC_BULLET)
+          magicStatus = true;
+
         damageTake(enBullet);
         enemey.rotateBarrel(enemey.currentBarrel);
       }
