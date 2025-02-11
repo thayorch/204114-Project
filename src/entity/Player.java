@@ -172,7 +172,7 @@ public class Player {
         return ACTION_EVADE;
 
       default:
-        return actionType;
+        return ACTION_NONE;
     }
   }
 
@@ -198,7 +198,7 @@ public class Player {
 
     gun_barrel = new int[barrel];
     player_actions = new int[actionNum];
-    System.out.printf("[log: set player default values]");
+    System.out.printf("[log: set player default values]\n");
   }
 
   public void setNewRoundvalues(){
@@ -367,7 +367,7 @@ public class Player {
       evaded = true;
     
     // me None | blocked, enemey Shoot 
-    if((myAction == ACTION_NONE || myAction == ACTION_BLOCK)){
+    if((myAction == ACTION_NONE || myAction == ACTION_BLOCK) && enAction == ACTION_SHOOT){
 
       // hit
       if(enActionDirection == ACTION_SHOOT_M)
@@ -379,7 +379,7 @@ public class Player {
     }
 
     // me Evade, enemey Shoot
-    if(myAction == ACTION_EVADE && enAction == ACTION_SHOOT){ 
+    else if(myAction == ACTION_EVADE && enAction == ACTION_SHOOT){ 
 
       // left
       if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L)
@@ -392,10 +392,16 @@ public class Player {
     }
 
     // me shoot, enemey Shoot
-    if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
+    else if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
+
+      //silverBullet
+      if (myBullet == SILVER_BULLET || enBullet == SILVER_BULLET){
+        duelStatus = true;
+        missed = false;
+      }
 
       // left
-      if (myActionDirection == ACTION_SHOOT_L && enActionDirection == ACTION_SHOOT_L){
+      else if (myActionDirection == ACTION_SHOOT_L && enActionDirection == ACTION_SHOOT_L){
         duelStatus = true;
         missed = false;
       }

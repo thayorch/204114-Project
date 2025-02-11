@@ -38,7 +38,7 @@ public class PreviewRoute {
     
     int currentPlayer = GameState.currentPlayer;
     int currentRound = GameState.currentRound;
-    int max_slot = gameState.player1.player_actions.length - 1;
+    int max_slot = gameState.player1.player_actions.length;
 
     Player player1 = gameState.player1;
     Player player2 = gameState.player2;
@@ -52,31 +52,41 @@ public class PreviewRoute {
     // gameState.player2.printInventory();
     // System.out.println();
 
-    // action check
-    gameState.player1.actionCompare(currentActionSlot, gameState.player2);
-    gameState.player2.actionCompare(currentActionSlot, gameState.player1);
-
     // if shoot & shoot & hit
     if (gameState.player1.duelStatus && gameState.player2.duelStatus) {
       // System.out.println("[log: iniate a duel/quick draw]");
       // TODO: duel some how?
     }
 
-    if (currentActionSlot >= max_slot) {
-      currentActionSlot = 0;
-      finishedAnimation = true;
+    if (!finishedAnimation){
+      for (currentActionSlot = 0; currentActionSlot < max_slot; currentActionSlot++) {
+        System.out.println(currentActionSlot);
+        gameState.player1.actionCompare(currentActionSlot, gameState.player2);
+        gameState.player2.actionCompare(currentActionSlot, gameState.player1);
+        // display animation
+      }
     }
 
-    // slot
-    else if (currentActionSlot < max_slot)
-      currentActionSlot++;
+    // after finished signal this finishedAnimation to be 'true'
+    finishedAnimation = true;
+
+    // before try for loop
+    //if (currentActionSlot >= max_slot)
+    //  currentActionSlot = 0;
+    //  finishedAnimation = true;
+
+    //// action check, slot
+    //if(!finishedAnimation)
+    //  System.out.println("currentAciton : "+ currentActionSlot);
+    //  currentActionSlot++;
 
     // win condition
     if (P1hp <= 0 || P2hp <= 0) {
       if (P1hp == P2hp) {
         gameState.player1.win = true;
         gameState.player2.win = true;
-      } else if (P1hp <= 0)
+      } 
+      else if (P1hp <= 0)
         gameState.player2.win = true;
       else
         gameState.player1.win = true;
@@ -105,7 +115,7 @@ public class PreviewRoute {
     }
 
     if (finishedAnimation || finished) {
-      // System.out.println("[log : enter to continue]");
+      //System.out.println("[log : found winner, enter to continue]");
     }
 
     if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
@@ -115,7 +125,8 @@ public class PreviewRoute {
         Router.currentRoute = Router.VICTORY_STATE;
         player1.setDefaultvalues();
         player2.setDefaultvalues();
-      } else if (finishedAnimation) { // next round
+      } 
+      else if (finishedAnimation) { // next round
         GameState.currentRound++;
         player1.setNewRoundvalues(); // set next round
         player2.setNewRoundvalues();
