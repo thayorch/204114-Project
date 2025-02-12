@@ -365,6 +365,10 @@ public class Player {
 
     if(myAction == ACTION_EVADE)
       evaded = true;
+
+    if (enBullet == SILVER_BULLET){
+      missed = false;
+    }
     
     // me None | blocked, enemey Shoot 
     if((myAction == ACTION_NONE || myAction == ACTION_BLOCK) && enAction == ACTION_SHOOT){
@@ -373,9 +377,6 @@ public class Player {
       if(enActionDirection == ACTION_SHOOT_M)
         missed = false;
 
-      // miss
-      else
-        missed = true;
     }
 
     // me Evade, enemey Shoot
@@ -502,19 +503,19 @@ public class Player {
 
 
   // for DEBUG
-   public void printInventory(){
-     System.out.println("===========================");
-     System.out.printf("player%d - character %d: %s\n", id+1, character, ready);
-     System.out.printf("hp: %d, magicStatus: %s, deathDoor: %s, duelStatus: %s\n", health, magicStatus, deathDoor, duelStatus);
-     System.out.printf("n:%d s:%d m:%d d:%d | b:%d e:%d\n", normalBullet, silverBullet, magicBullet, deathBullet, block, evade);
-     System.out.printf("bullet: [ ");
-     for (int bullet : gun_barrel) 
-       System.out.printf("%d ", bullet);
+  // public void printInventory(){
+  //   System.out.println("===========================");
+  //   System.out.printf("player%d - character %d: %s\n", id+1, character, ready);
+  //   System.out.printf("hp: %d, magicStatus: %s, deathDoor: %s, duelStatus: %s\n", health, magicStatus, deathDoor, duelStatus);
+  //   System.out.printf("n:%d s:%d m:%d d:%d | b:%d e:%d\n", normalBullet, silverBullet, magicBullet, deathBullet, block, evade);
+  //   System.out.printf("bullet: [ ");
+  //   for (int bullet : gun_barrel) 
+  //     System.out.printf("%d ", bullet);
 
-     System.out.printf("]\naction: [ ");
-     for(int action: player_actions)
-       System.out.printf("%d ", action);
-     System.out.printf("]\n");
+  //   System.out.printf("]\naction: [ ");
+  //   for(int action: player_actions)
+  //     System.out.printf("%d ", action);
+  //   System.out.printf("]\n");
 
-   }
+  // }
 }

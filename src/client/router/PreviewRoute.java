@@ -60,7 +60,6 @@ public class PreviewRoute {
 
     if (!finishedAnimation){
       for (currentActionSlot = 0; currentActionSlot < max_slot; currentActionSlot++) {
-        System.out.println(currentActionSlot);
         gameState.player1.actionCompare(currentActionSlot, gameState.player2);
         gameState.player2.actionCompare(currentActionSlot, gameState.player1);
         // display animation
@@ -115,7 +114,7 @@ public class PreviewRoute {
     }
 
     if (finishedAnimation || finished) {
-      //System.out.println("[log : found winner, enter to continue]");
+      System.out.println("[log : found winner / finished round, enter to continue]");
     }
 
     if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
