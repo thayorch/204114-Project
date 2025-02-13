@@ -426,7 +426,7 @@ public class Player {
     }
     
     // hit or miss
-    if(enAction == ACTION_SHOOT){
+    if(enAction == ACTION_SHOOT && !duelStatus){
 
       if(!missed){
 
@@ -444,7 +444,10 @@ public class Player {
       }
     }
   }
-  
+
+  public void duelingQTE(Player player){
+
+  }
 
   // GET Medthod
 
