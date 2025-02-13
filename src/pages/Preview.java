@@ -8,6 +8,7 @@ import client.Component;
 import client.GamePanel;
 import client.GameState;
 import client.UI;
+import entity.Dialog;
 
 public class Preview {
 
@@ -18,9 +19,11 @@ public class Preview {
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
+    private Dialog di;
 
     public Preview(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
+        this.di = new Dialog(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
         loadAsset();
@@ -34,6 +37,11 @@ public class Preview {
         UI.animation.P1(g2, char_P1);
         UI.animation.P2(g2, char_P2);
 
+        if(gameState.player1.duelStatus)
+          di.showDialog(g2);
+
+        else if(gameState.player2.duelStatus)
+          di.showDialog(g2);
     }
 
     public void loadAsset() {

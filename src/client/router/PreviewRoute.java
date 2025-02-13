@@ -62,6 +62,37 @@ public class PreviewRoute {
       for (currentActionSlot = 0; currentActionSlot < max_slot; currentActionSlot++) {
         gameState.player1.actionCompare(currentActionSlot, gameState.player2);
         gameState.player2.actionCompare(currentActionSlot, gameState.player1);
+
+        // dueling
+        if (gameState.player1.duelStatus || gameState.player2.duelStatus){
+
+          while (gameState.player1.duelStatus) {
+            if(router.keyHand.enterPressed){
+              router.keyHand.enterPressed = false;
+              gameState.player1.bulletPower = gameState.bulletPower;
+              gameState.bulletPower = 0; // reset
+              gameState.player1.duelStatus = false;
+              gameState.random_X(); // set new value
+            }
+          }
+
+          System.out.println("Pass 1");
+
+          while (gameState.player2.duelStatus) {
+            if(router.keyHand.enterPressed){
+              router.keyHand.enterPressed = false;
+              gameState.player2.bulletPower = gameState.bulletPower;
+              gameState.bulletPower = 0; // reset
+              gameState.player2.duelStatus = false;
+              gameState.random_X();
+            }
+          }
+
+          System.out.println("Pass 2");
+
+          gameState.player1.duelingQTE(gameState.player2);
+          gameState.player2.duelingQTE(gameState.player1);
+        }
         // display animation
       }
     }
@@ -117,7 +148,8 @@ public class PreviewRoute {
       System.out.println("[log : found winner / finished round, enter to continue]");
     }
 
-    if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
+
+    else if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
       router.keyHand.enterPressed = false;
       if (finished) { // win condition met
         finished = false; // reset

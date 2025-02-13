@@ -445,8 +445,22 @@ public class Player {
     }
   }
 
-  public void duelingQTE(Player player){
+  // dueling
+  public void duelingQTE(Player enemey){
+    int myPower = bulletPower;
+    int enPower = enemey.bulletPower;
 
+    int myBullet = gun_barrel[currentBarrel];
+    int enBullet = enemey.gun_barrel[enemey.currentBarrel];
+
+    if(myPower < enPower)
+      damageTake(enBullet);
+      System.out.println(id+1 + " lost");
+
+    if(myPower == enPower)
+      damageTake(enBullet);
+      enemey.damageTake(myBullet);
+      System.out.println("draw");
   }
 
   // GET Medthod
