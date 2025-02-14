@@ -172,7 +172,7 @@ public class Player {
         return ACTION_EVADE;
 
       default:
-        return ACTION_NONE;
+        return actionType;
     }
   }
 
