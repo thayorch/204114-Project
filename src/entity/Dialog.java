@@ -21,13 +21,9 @@ public class Dialog {
     private int zone_3_width = 8;
     private int zone_2_width = 14;
     private int zone_1_width = 20;
-    private int random_x; 
 
     public Dialog(GamePanel gamePanel, GameState gameState) {
         this.gameState = gameState;
-        gameState.random_X();
-
-        random_x = gameState.random_x;
         this.x_position = gamePanel.screenWidth / 2 - 170;
         this.y_position = gamePanel.screenHeight / 2 + 300;
         gauge = x_position; // Initialize gauge position
@@ -68,7 +64,7 @@ public class Dialog {
         return gauge;
     }
 
-    public void showDialog(Graphics2D g2) {
+    public void showDialog(Graphics2D g2, int random_x) {
         gameState.gauge = gauge;
 
         // Enable anti-aliasing for smoother graphics
@@ -115,6 +111,7 @@ public class Dialog {
         else if(gauge >= x_position + random_x + zone_3_width + zone_2_width && gauge <= x_position + random_x + zone_3_width + zone_2_width + zone_1_width) // right
           gameState.bulletPower = 1;
 
+        // zone 0
         else
           gameState.bulletPower = 0;
     }

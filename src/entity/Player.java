@@ -196,6 +196,7 @@ public class Player {
     silverBullet = 1; 
     magicBullet = 1; 
     deathBullet = 1;
+    bulletPower = 0;
 
     barrel = 6;
     actionNum = 5;
@@ -210,6 +211,7 @@ public class Player {
     block = 1;
     evaded = false;
     blocked = false;
+    bulletPower = 0;
 
     if(magicStatus){
       evade = 1;
@@ -395,8 +397,15 @@ public class Player {
     // me shoot, enemey Shoot
     else if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
 
-      //silverBullet
-      if (myBullet == SILVER_BULLET || enBullet == SILVER_BULLET){
+
+      // EMPTY_BULLET
+      if (myBullet == EMPTY_BULLET || enBullet == EMPTY_BULLET){
+        duelStatus = false;
+        missed = false;
+      }
+
+      // SILVER_BULLET
+      else if (myBullet == SILVER_BULLET || enBullet == SILVER_BULLET){
         duelStatus = true;
         missed = false;
       }
@@ -453,14 +462,10 @@ public class Player {
     int myBullet = gun_barrel[currentBarrel];
     int enBullet = enemey.gun_barrel[enemey.currentBarrel];
 
-    if(myPower < enPower)
+    if(myPower <= enPower && enPower != 0){
       damageTake(enBullet);
-      System.out.println(id+1 + " lost");
-
-    if(myPower == enPower)
-      damageTake(enBullet);
-      enemey.damageTake(myBullet);
-      System.out.println("draw");
+      System.out.println(id+1 + " take damage");
+    }
   }
 
   // GET Medthod
@@ -516,6 +521,10 @@ public class Player {
   }
   public int[] getPlayer_actions(){
     return player_actions;
+  }
+
+  public int getBulletPower(){
+    return bulletPower;
   }
 
 

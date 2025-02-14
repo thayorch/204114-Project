@@ -53,7 +53,7 @@ public class PreviewRoute {
     // System.out.println();
 
     // if shoot & shoot & hit
-    if (gameState.player1.duelStatus && gameState.player2.duelStatus) {
+    if (gameState.player1.duelStatus || gameState.player2.duelStatus) {
       // System.out.println("[log: iniate a duel/quick draw]");
       // TODO: duel some how?
     }
@@ -67,7 +67,9 @@ public class PreviewRoute {
         if (gameState.player1.duelStatus || gameState.player2.duelStatus){
 
           while (gameState.player1.duelStatus) {
+            System.out.println("1 " + gameState.player1.duelStatus); // for some reason need to print output to make it work
             if(router.keyHand.enterPressed){
+              System.out.println("player1 inputed bulletPower");
               router.keyHand.enterPressed = false;
               gameState.player1.bulletPower = gameState.bulletPower;
               gameState.bulletPower = 0; // reset
@@ -76,9 +78,8 @@ public class PreviewRoute {
             }
           }
 
-          System.out.println("Pass 1");
-
           while (gameState.player2.duelStatus) {
+            System.out.println("2 " + gameState.player2.duelStatus);
             if(router.keyHand.enterPressed){
               router.keyHand.enterPressed = false;
               gameState.player2.bulletPower = gameState.bulletPower;
@@ -88,10 +89,14 @@ public class PreviewRoute {
             }
           }
 
-          System.out.println("Pass 2");
-
           gameState.player1.duelingQTE(gameState.player2);
           gameState.player2.duelingQTE(gameState.player1);
+
+          //gameState.player1.bulletPower = 0;
+          //gameState.player2.bulletPower = 0;
+
+          gameState.player1.rotateBarrel(gameState.player1.currentBarrel);
+          gameState.player2.rotateBarrel(gameState.player2.currentBarrel);
         }
         // display animation
       }
@@ -145,11 +150,10 @@ public class PreviewRoute {
     }
 
     if (finishedAnimation || finished) {
-      System.out.println("[log : found winner / finished round, enter to continue]");
+      //System.out.println("[log : found winner / finished round, enter to continue]");
     }
 
-
-    else if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
+    if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
       router.keyHand.enterPressed = false;
       if (finished) { // win condition met
         finished = false; // reset

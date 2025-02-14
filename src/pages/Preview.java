@@ -38,10 +38,10 @@ public class Preview {
         UI.animation.P2(g2, char_P2);
 
         if(gameState.player1.duelStatus)
-          di.showDialog(g2);
+          di.showDialog(g2, gameState.random_x);
 
         else if(gameState.player2.duelStatus)
-          di.showDialog(g2);
+          di.showDialog(g2, gameState.random_x);
     }
 
     public void loadAsset() {

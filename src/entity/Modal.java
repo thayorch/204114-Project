@@ -92,6 +92,8 @@ public class Modal extends JPanel {
         final boolean P2_DUEL_STATUS = gameState.player2.getDuelStatus();
         final boolean P1_READY = gameState.player1.readyStatus();
         final boolean P2_READY = gameState.player2.readyStatus();
+        final int P1_POWER = gameState.player1.getBulletPower();
+        final int P2_POWER = gameState.player2.getBulletPower();
 
         component.text_10_alginLeft(g2, "Player : " + P1_ID, 10, 20);
         component.text_10_alginRight(g2, "Player : " + P2_ID, 90, 20);
@@ -110,6 +112,9 @@ public class Modal extends JPanel {
 
         component.text_10_alginLeft(g2, "Silver-bullet : " + P1_SILVER, 10, 95);
         component.text_10_alginRight(g2, "Silver-bullet : " + P2_SILVER, 142, 95);
+
+        component.text_10_alginLeft(g2, "bulletPower : " + P1_POWER, 10, 155);
+        component.text_10_alginRight(g2, "bulletPower : " + P2_POWER, 142, 155);
 
         component.text_10_alginLeft(g2, "Block : " + P1_BLOCK + " | EVA : " + P1_EVA, 10, 110);
         component.text_10_alginRight(g2, "Block : " + P2_BLOCK + " | EVA : " + P2_EVA, 158, 110);

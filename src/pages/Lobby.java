@@ -34,7 +34,7 @@ public class Lobby {
         component.textBtn(g2, "Start", button, 290);
         component.textBtn(g2, "Exit", button, 450);
         
-        di.showDialog(g2);
+        //di.showDialog(g2);
         
         // component.setBackground(g2, background);
         // component.textBtn(g2, "Option", button, 450);
