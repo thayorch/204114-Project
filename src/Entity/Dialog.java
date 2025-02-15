@@ -16,8 +16,8 @@ public class Dialog {
     private Timer timer; // Timer for animation
 
     public Dialog(GamePanel gamePanel, GameState gameState) {
-        this.x_position = gamePanel.screenWidth / 2 - 170;
-        this.y_position = gamePanel.screenHeight / 2 + 300;
+        this.x_position = GamePanel.screenWidth / 2 - 170;
+        this.y_position = GamePanel.screenHeight / 2 + 300;
         gate = x_position; // Initialize gate position
 
         // Initialize and start the timer for animation
@@ -33,7 +33,7 @@ public class Dialog {
 
     private void updateGatePosition() {
         // Define the boundaries for the gate movement
-        int minX = x_position;
+        int minX = x_position;  
         int maxX = x_position + 360 - 10; // Adjust for gate width
 
         // Move the gate
@@ -62,10 +62,15 @@ public class Dialog {
 
         // Draw semi-transparent background
         g2.setColor(new Color(0, 0, 0, 150));
-        g2.fillRect(x_position, y_position, 360, 25);
+        // g2.fillRect(x_position, y_position, 360, 25);
+        g2.fillRoundRect(x_position, y_position, 360, 25, 15,15);
+        
+        g2.setColor(new Color(0, 255, 0));
+        g2.fillRoundRect(x_position+200, y_position, 60, 25,15,15);
 
         // Draw the red gate (moving rectangle)
         g2.setColor(new Color(255, 0, 0));
-        g2.fillRect(gate, y_position, 10, 25);
+        g2.fillRoundRect(gate, y_position, 10, 25,5,5);
+
     }
 }

@@ -18,7 +18,8 @@ public class S_Item {
     private BufferedImage char_P1, char_P2;
     private BufferedImage chamber, frame;
     private BufferedImage shied, eva;
-    private BufferedImage bullet1, bullet2;
+    private BufferedImage bullet1;
+    private BufferedImage bullet2;
     protected int screenWidth;
     protected int screenHeight;
     protected float scalingFactor;
@@ -79,11 +80,18 @@ public class S_Item {
     
 
     public void render(Graphics2D g2) {
+
+
+
+
         UI.animation.background(g2, Lobby.background);
         component.titleCenter(g2, "Select Item", 100);
         component.chamberP1(g2, chamber);
         component.chamberP2(g2, chamber);
         
+        component.healthBar(g2, gameState.player1.getHealth());
+
+
         P1_CHAMBER(g2);
         P2_CHAMBER(g2);
         P1_ACTION(g2);
@@ -102,6 +110,14 @@ public class S_Item {
             component.actionSlot_P2(g2, frame, GameState.currentSlot);
         }
         
+        try{
+            char_P1 = component.img("/resources/character/char"+ Integer.toString(gameState.player1.getCharacter()) + ".png");
+            char_P2 = component.img("/resources/character/char"+ Integer.toString(gameState.player2.getCharacter()) + ".png");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
         UI.animation.P1(g2, char_P1);
         UI.animation.P2(g2, char_P2);
         

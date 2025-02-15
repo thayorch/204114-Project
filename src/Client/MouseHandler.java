@@ -22,8 +22,8 @@ public class MouseHandler extends MouseAdapter {
   public void update() {
     switch (Router.currentRoute) {
       case 0:
-        this.startButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 307 - 70, 290, 100);
-        this.exitButtonBounds = new Rectangle((gamePanel.screenWidth / 2) - 155, 450 - 70, 290, 100);
+        this.startButtonBounds = new Rectangle((GamePanel.screenWidth / 2) - 155, 307 - 70, 290, 100);
+        this.exitButtonBounds = new Rectangle((GamePanel.screenWidth / 2) - 155, 450 - 70, 290, 100);
         LobbyMouseHover();
         LobbyMouseClick();
         break;
