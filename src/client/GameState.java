@@ -34,6 +34,7 @@ public class GameState {
 
   public static boolean logger = false;
   public static boolean duel_input = false;
+  public static boolean in_animation = false;
   public Player player1 = new Player(this, 0); // no static
   public Player player2 = new Player(this, 1);
 

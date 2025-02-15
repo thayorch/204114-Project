@@ -50,15 +50,16 @@ public class Animation extends JPanel implements ActionListener {
         int frameX = this.currentFrame * frameWidth;
         int centerX = 540 - 430;
         int centerY = 360 - 100;
+        // (img, x, y, w, h, sprite_long, start, step height)
         g2.drawImage(img, centerX, centerY, frameWidth + centerX + 100, frameHeight + centerY + 100, frameX, 0,
                 frameX + frameWidth, frameHeight, this);
     }
 
     public void P2(Graphics2D g2, BufferedImage img) {
         int frameX = this.currentFrame * frameWidth;
-        int centerX = 540 + 330;
+        int centerX = 540 + 630;
         int centerY = 360 - 100;
-        g2.drawImage(img, centerX, centerY, frameWidth + centerX + 100, frameHeight + centerY + 100, frameX, 0,
+        g2.drawImage(img, centerX, centerY, -frameWidth + centerX - 100, frameHeight + centerY + 100, frameX, 0,
                 frameX + frameWidth, frameHeight, this);
     }
 

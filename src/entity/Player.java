@@ -14,20 +14,28 @@ public class Player {
   public static final int ACTION_SHOOT = 1;
   public static final int ACTION_BLOCK = 2;
   public static final int ACTION_EVADE = 3;
-  public static final int ACTION_SHOOT_L = 4;
-  public static final int ACTION_SHOOT_M = 5;
-  public static final int ACTION_SHOOT_R = 6;
-  public static final int ACTION_EVADE_L = 7;
-  public static final int ACTION_EVADE_R = 8;
+  public static final int ACTION_EVADE_L = 4;
+  public static final int ACTION_EVADE_R = 5;
+  public static final int ACTION_SHOOT_L = 6;
+  public static final int ACTION_SHOOT_M = 7;
+  public static final int ACTION_SHOOT_R = 8;
   
   private final int NORMAL_DAMAGE = 20;
   private final int MAGIC_DAMAGE = 15;
   private final int SILVER_DAMAGE = 17;
   private final int DEATH_DAMAGE = 9999;
-  
+
   public static final int AMMO = 0; // for inventory
   public static final int ACTION = 1;
 
+// animation idel 0
+// animation shoot 1
+// animation block 2
+// animation evade 3 4 l,5 r
+// animation hurt 6 ? do you guys want hurt animation?
+  
+  public int animationType = ACTION_NONE;
+  
   public int health, evade, block, barrel, actionNum, id, character;
 
   public boolean ready = false, blocked = false, evaded = false; // no static
@@ -53,10 +61,6 @@ public class Player {
     this.gameState = gameState;
     this.id = id;
     setDefaultvalues();
-  }
-
-  public Player() {
-
   }
 
   public void setCharacter(int character) {
@@ -361,42 +365,52 @@ public class Player {
     int enBullet = enemey.gun_barrel[enemey.currentBarrel];
 
     boolean missed = false; // for enemey
+    
+    if(myAction == ACTION_NONE)
+      animationType = ACTION_NONE;
+    
+    if(getActionType(myAction) == ACTION_SHOOT)
+      animationType = ACTION_SHOOT;
 
     if(myAction == ACTION_BLOCK)
+      animationType = ACTION_BLOCK;
       blocked = true;
 
-    if(myAction == ACTION_EVADE)
+    if(getActionType(myAction) == ACTION_EVADE)
+      animationType = ACTION_EVADE_L;
+      if(myAction == ACTION_EVADE_R)
+        animationType = ACTION_EVADE_R;
       evaded = true;
 
-    if (enBullet == SILVER_BULLET){
+    if (enBullet == SILVER_BULLET) // always hit
       missed = false;
-    }
     
     // me None | blocked, enemey Shoot 
     if((myAction == ACTION_NONE || myAction == ACTION_BLOCK) && enAction == ACTION_SHOOT){
-
+      
       // hit
       if(enActionDirection == ACTION_SHOOT_M)
         missed = false;
-
     }
 
     // me Evade, enemey Shoot
     else if(myAction == ACTION_EVADE && enAction == ACTION_SHOOT){ 
-
+      
       // left
-      if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L)
+      if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L){
+        animationType = ACTION_EVADE_L;
         missed = false;
+      }
       
       // right
-      else if (myActionDirection == ACTION_EVADE_R && enActionDirection == ACTION_SHOOT_R)
+      else if (myActionDirection == ACTION_EVADE_R && enActionDirection == ACTION_SHOOT_R){
+        animationType = ACTION_EVADE_R;
         missed = false;
-
+      }
     }
 
     // me shoot, enemey Shoot
     else if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
-
 
       // EMPTY_BULLET
       if (myBullet == EMPTY_BULLET || enBullet == EMPTY_BULLET){
@@ -438,6 +452,8 @@ public class Player {
     if(enAction == ACTION_SHOOT && !duelStatus){
 
       if(!missed){
+
+        animationType = 4; // hurt
 
         if(enBullet == MAGIC_BULLET)
           magicStatus = true;

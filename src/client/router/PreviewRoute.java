@@ -99,6 +99,10 @@ public class PreviewRoute {
           gameState.player2.rotateBarrel(gameState.player2.currentBarrel);
         }
         // display animation
+        gameState.in_animation = true;
+        while (gameState.in_animation) {
+          System.out.println("in animation");
+        }
       }
     }
 
