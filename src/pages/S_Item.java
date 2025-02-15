@@ -91,7 +91,6 @@ public class S_Item {
         
         component.healthBar(g2, gameState.player1.getHealth());
 
-
         P1_CHAMBER(g2);
         P2_CHAMBER(g2);
         P1_ACTION(g2);

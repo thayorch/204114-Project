@@ -243,6 +243,7 @@ public class Component {
 
         // Health text
         g2d.setColor(Color.WHITE);
+        g2d.setFont(font_10);
         g2d.drawString("Health: " + health + "/100", 100, 65);
     }
 
