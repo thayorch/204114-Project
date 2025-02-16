@@ -50,9 +50,15 @@ public class Preview {
 
         //UI.animation.P1(g2, char_P1);
         //UI.animation.P1(g2, char_P[1]);
+        
         UI.animation.P1(g2, char_P[gameState.player1.animationType]);
         UI.animation.P2(g2, char_P2);
+
         gameState.in_animation = false;
+        
+        // back to idle
+        UI.animation.P1(g2, char_P[0]);
+        UI.animation.P2(g2, char_P2);
     }
 
     public void loadAsset() {

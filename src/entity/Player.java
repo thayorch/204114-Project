@@ -74,6 +74,7 @@ public class Player {
 
   public void damageTake(int bulletType){
     int damage = 0;
+
     switch (bulletType) {
       case NORMAL_BULLET:
         damage = NORMAL_DAMAGE;
@@ -86,12 +87,14 @@ public class Player {
         break;
       case DEATH_BULLET:
         health = 0;
-        damage = DEATH_DAMAGE;
+        damage = (int)(DEATH_DAMAGE * 1.25) + 1;
         break;
     }
 
-    if(blocked)
+    if(blocked){
       damage *= 0.8;
+      blocked = false;
+    }
 
     health -= damage;
   }
@@ -180,12 +183,12 @@ public class Player {
     }
   }
 
-  public int getBulletType(int slot){
-    return gun_barrel[slot];
-  }
-
   public void setActionType(int slot, int actionType){
     player_actions[slot] = actionType;
+  }
+
+  public int getBulletType(int slot){
+    return gun_barrel[slot];
   }
 
   public void setBulletType(int slot, int bulletType){
@@ -364,7 +367,7 @@ public class Player {
     int enActionDirection = enemey.player_actions[slot];
     int enBullet = enemey.gun_barrel[enemey.currentBarrel];
 
-    boolean missed = false; // for enemey
+    boolean missed = true; // for enemey
     
     if(myAction == ACTION_NONE)
       animationType = ACTION_NONE;
@@ -372,9 +375,10 @@ public class Player {
     if(getActionType(myAction) == ACTION_SHOOT)
       animationType = ACTION_SHOOT;
 
-    if(myAction == ACTION_BLOCK)
+    if(myAction == ACTION_BLOCK){
       animationType = ACTION_BLOCK;
       blocked = true;
+    }
 
     if(getActionType(myAction) == ACTION_EVADE)
       animationType = ACTION_EVADE_L;
@@ -399,12 +403,14 @@ public class Player {
       // left
       if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L){
         animationType = ACTION_EVADE_L;
+        evaded = false;
         missed = false;
       }
       
       // right
       else if (myActionDirection == ACTION_EVADE_R && enActionDirection == ACTION_SHOOT_R){
         animationType = ACTION_EVADE_R;
+        evaded = false;
         missed = false;
       }
     }
@@ -415,7 +421,6 @@ public class Player {
       // EMPTY_BULLET
       if (myBullet == EMPTY_BULLET || enBullet == EMPTY_BULLET){
         duelStatus = false;
-        missed = false;
       }
 
       // SILVER_BULLET
@@ -468,6 +473,9 @@ public class Player {
         enemey.rotateBarrel(enemey.currentBarrel);
       }
     }
+
+    // reset
+    evaded = false;
   }
 
   // dueling

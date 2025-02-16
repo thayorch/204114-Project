@@ -45,23 +45,13 @@ public class PreviewRoute {
     int P1hp = player1.health;
     int P2hp = player2.health;
 
-    // DEBUG
-    // System.out.printf("Round: %d currentActionSlot: %d\n", currentRound, currentActionSlot);
-    // System.out.printf("finished: %s finishedAnimation: %s\n", finished, finishedAnimation);
-    // gameState.player1.printInventory();
-    // gameState.player2.printInventory();
-    // System.out.println();
-
-    // if shoot & shoot & hit
-    if (gameState.player1.duelStatus || gameState.player2.duelStatus) {
-      // System.out.println("[log: iniate a duel/quick draw]");
-      // TODO: duel some how?
-    }
-
     if (!finishedAnimation){
-      for (currentActionSlot = 0; currentActionSlot < max_slot; currentActionSlot++) {
+      currentActionSlot = 0;
+
+      while(currentActionSlot < max_slot) {
         gameState.player1.actionCompare(currentActionSlot, gameState.player2);
         gameState.player2.actionCompare(currentActionSlot, gameState.player1);
+        currentActionSlot++;
 
         // dueling
         if (gameState.player1.duelStatus || gameState.player2.duelStatus){
@@ -98,10 +88,16 @@ public class PreviewRoute {
           gameState.player1.rotateBarrel(gameState.player1.currentBarrel);
           gameState.player2.rotateBarrel(gameState.player2.currentBarrel);
         }
-        // display animation
+
+        // TODO not finished yet need to wait for animation to finished
         gameState.in_animation = true;
         while (gameState.in_animation) {
-          System.out.println("in animation");
+            // Optionally, add a small sleep to avoid a busy-wait loop that hogs CPU.
+            try {
+                Thread.sleep(10); // sleep for 10ms to avoid tight loop
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
       }
     }
