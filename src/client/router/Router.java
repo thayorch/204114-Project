@@ -37,7 +37,7 @@ public class Router {
     this.characterRoute = new CharacterRouter(this, gameState);
     this.itemRoute = new ItemRoute(this, gameState);
     this.previewRoute = new PreviewRoute(this, gameState);
-    this.victoryRoute = new VictoryRoute(this);
+    this.victoryRoute = new VictoryRoute(this, gameState);
   }
 
   public void update() {

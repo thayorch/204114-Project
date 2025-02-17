@@ -9,7 +9,6 @@ public class CharacterRouter {
   public CharacterRouter(Router router, GameState gameState) {
       this.router = router;
       this.gameState = gameState;
-      System.out.println("Bug in Character Selection please fix it later");
   }
 
   public void update() {

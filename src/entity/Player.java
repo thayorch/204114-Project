@@ -210,7 +210,7 @@ public class Player {
 
     gun_barrel = new int[barrel];
     player_actions = new int[actionNum];
-    System.out.printf("[log: set player default values]\n");
+    System.out.println("[log: set player default values]");
   }
 
   public void setNewRoundvalues(){
@@ -391,13 +391,16 @@ public class Player {
     // me None | blocked, enemey Shoot 
     if((myAction == ACTION_NONE || myAction == ACTION_BLOCK) && enAction == ACTION_SHOOT){
       
-      // hit
-      if(enActionDirection == ACTION_SHOOT_M)
+      // blocked always got hit
+      if(enAction == ACTION_SHOOT && myAction == ACTION_BLOCK)
+        missed = false;
+
+      else if(enActionDirection == ACTION_SHOOT_M)
         missed = false;
     }
 
     // me Evade, enemey Shoot
-    else if(myAction == ACTION_EVADE && enAction == ACTION_SHOOT){ 
+    if(myAction == ACTION_EVADE && enAction == ACTION_SHOOT){ 
       
       // left
       if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L){
@@ -415,7 +418,7 @@ public class Player {
     }
 
     // me shoot, enemey Shoot
-    else if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
+    if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
 
       // EMPTY_BULLET
       if (myBullet == EMPTY_BULLET || enBullet == EMPTY_BULLET){
@@ -435,18 +438,8 @@ public class Player {
       }
 
       // enemey shoot middle and me shoot left & right
-      else if (myActionDirection != enActionDirection && enActionDirection == ACTION_SHOOT_M){
-        System.out.println((id+1) + " take damage"); 
+      if (enActionDirection == ACTION_SHOOT_M && myActionDirection != ACTION_SHOOT_M)
         missed = false;
-      }
-
-      // else if (myActionDirection == ACTION_SHOOT_R && enActionDirection == ACTION_SHOOT_M){
-      //   missed = false;
-      // }
-
-      // else if (myActionDirection == ACTION_SHOOT_L && enActionDirection == ACTION_SHOOT_M){
-      //   missed = false;
-      // }
 
     }
     

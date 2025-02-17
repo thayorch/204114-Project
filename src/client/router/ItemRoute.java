@@ -53,6 +53,7 @@ public class ItemRoute {
     // switch slot type
     if(router.keyHand.spacePressed || router.keyHand.shiftPressed){ // space
       router.keyHand.spacePressed = false;
+      router.keyHand.shiftPressed = false;
 
       if(currentType == AMMO)
         currentType = ACTION;
@@ -63,7 +64,6 @@ public class ItemRoute {
       directionNeed = false;
       gameState.currentSlot = 0; // reset slot
       gameState.currentType = currentType;
-      
     }
 
     if(router.keyHand.numPressed){ // number pressed
@@ -81,7 +81,7 @@ public class ItemRoute {
           }
 
           else if((numPressedNUM == ACTION_EVADE || numPressedNUM == ACTION_SHOOT) && currentType == ACTION && !directionNeed){ // check shoot & evade
-            type = numPressedNUM;
+            type = numPressedNUM; // shoot or evade
             directionNeed = true;
           }
 

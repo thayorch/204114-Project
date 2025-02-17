@@ -12,6 +12,7 @@ public class PreviewRoute {
   private int PLAYER1 = gameState.PLAYER1;
   private int PLAYER2 = gameState.PLAYER2;
   private int currentActionSlot = 0;
+  private final int MAX_ROUND = 5;
 
   private final int ACTION_NONE = 0;
   private final int ACTION_SHOOT = 1;
@@ -28,10 +29,58 @@ public class PreviewRoute {
   private final int MAGIC_BULLET = 2; // Reduce Evade & BLock
   private final int SILVER_BULLET = 3; // Garuntee Hit
   private final int DEATH_BULLET = 4; // Devil Contact, If it dosen't hit mean the shooter die.
+  
+  Player player1;
+  Player player2;
 
   public PreviewRoute(Router router, GameState gameState) {
     this.router = router;
     this.gameState = gameState;
+    player1 = gameState.player1;
+    player2 = gameState.player2;
+  }
+
+  private void checkVictory() {
+    player1 = gameState.player1;
+    player2 = gameState.player2;
+
+    int P1hp = player1.health;
+    int P2hp = player2.health;
+
+    // win condition
+    if (P1hp <= 0 || P2hp <= 0) {
+      if (P1hp == P2hp) {
+        gameState.player1.win = true;
+        gameState.player2.win = true;
+      } 
+      else if (P1hp <= 0)
+        gameState.player2.win = true;
+      else
+        gameState.player1.win = true;
+      finished = true;
+    }
+
+    // run out of bullet
+    if (player1.getTotalBullet() == 0 || player2.getTotalBullet() == 0) {
+      
+      if (player1.getTotalBullet() == player2.getTotalBullet()) { // continue to hp check
+        if (P1hp > P2hp)
+          gameState.player1.win = true;
+        if (P1hp < P2hp)
+          gameState.player2.win = true;
+        if (P1hp == P2hp)
+          gameState.player1.win = true;
+          gameState.player2.win = true;
+      }
+
+      else if (player1.getTotalBullet() > player2.getTotalBullet())
+        gameState.player1.win = true;
+
+      else if (player1.getTotalBullet() < player2.getTotalBullet())
+        gameState.player2.win = true;
+
+      finished = true;
+    }
   }
 
   protected void update() {
@@ -40,10 +89,8 @@ public class PreviewRoute {
     int currentRound = GameState.currentRound;
     int max_slot = gameState.player1.player_actions.length;
 
-    Player player1 = gameState.player1;
-    Player player2 = gameState.player2;
-    int P1hp = player1.health;
-    int P2hp = player2.health;
+    player1 = gameState.player1;
+    player2 = gameState.player2;
 
     if (!finishedAnimation){
       currentActionSlot = 0;
@@ -59,7 +106,6 @@ public class PreviewRoute {
           while (gameState.player1.duelStatus) {
             System.out.println("1 " + gameState.player1.duelStatus); // for some reason need to print output to make it work
             if(router.keyHand.enterPressed){
-              System.out.println("player1 inputed bulletPower");
               router.keyHand.enterPressed = false;
               gameState.player1.bulletPower = gameState.bulletPower;
               gameState.bulletPower = 0; // reset
@@ -115,39 +161,7 @@ public class PreviewRoute {
     //  System.out.println("currentAciton : "+ currentActionSlot);
     //  currentActionSlot++;
 
-    // win condition
-    if (P1hp <= 0 || P2hp <= 0) {
-      if (P1hp == P2hp) {
-        gameState.player1.win = true;
-        gameState.player2.win = true;
-      } 
-      else if (P1hp <= 0)
-        gameState.player2.win = true;
-      else
-        gameState.player1.win = true;
-      finished = true;
-    }
-
-    // run out of bullet
-    if (player1.getTotalBullet() == 0 || player2.getTotalBullet() == 0) {
-      if (player1.getTotalBullet() == player2.getTotalBullet()) { // continue to hp check
-        if (P1hp > P2hp)
-          gameState.player1.win = true;
-        if (P1hp < P2hp)
-          gameState.player2.win = true;
-        if (P1hp == P2hp)
-          gameState.player1.win = true;
-        gameState.player2.win = true;
-      }
-
-      else if (player1.getTotalBullet() > player2.getTotalBullet())
-        gameState.player1.win = true;
-
-      else if (player1.getTotalBullet() < player2.getTotalBullet())
-        gameState.player2.win = true;
-
-      finished = true;
-    }
+    checkVictory();
 
     if (finishedAnimation || finished) {
       //System.out.println("[log : found winner / finished round, enter to continue]");
@@ -155,12 +169,11 @@ public class PreviewRoute {
 
     if (router.keyHand.enterPressed && (finished || finishedAnimation)) {
       router.keyHand.enterPressed = false;
-      if (finished) { // win condition met
+      if (finished || (GameState.currentRound + 1 > MAX_ROUND)) { // win condition met or reach MAX_ROUND
         finished = false; // reset
-        player1.setDefaultvalues();
-        player2.setDefaultvalues();
         Router.currentRoute = Router.VICTORY_STATE;
       } 
+
       else if (finishedAnimation) { // next round
         GameState.currentRound++;
         player1.setNewRoundvalues(); // set next round
