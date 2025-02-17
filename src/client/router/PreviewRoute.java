@@ -92,6 +92,7 @@ public class PreviewRoute {
     player1 = gameState.player1;
     player2 = gameState.player2;
 
+    System.out.println(); // for some reason need to print to work at start of new round
     if (!finishedAnimation){
       currentActionSlot = 0;
 
@@ -171,6 +172,7 @@ public class PreviewRoute {
       router.keyHand.enterPressed = false;
       if (finished || (GameState.currentRound + 1 > MAX_ROUND)) { // win condition met or reach MAX_ROUND
         finished = false; // reset
+        finishedAnimation = false; // reset
         Router.currentRoute = Router.VICTORY_STATE;
       } 
 
