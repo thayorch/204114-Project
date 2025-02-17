@@ -6,6 +6,7 @@ import entity.Player;
 public class VictoryRoute {
     private Router router;
     private GameState gameState;
+
     public VictoryRoute(Router router, GameState gameState) {
         this.router = router;
         this.gameState = gameState;
@@ -16,10 +17,10 @@ public class VictoryRoute {
       Player player2 = gameState.player2;
 
       if (router.keyHand.enterPressed) {
-        Router.currentRoute = Router.LOBBY_STATE;
         player1.setDefaultvalues();
         player2.setDefaultvalues();
         gameState.currentRound = 1;
+        Router.currentRoute = Router.LOBBY_STATE;
         router.keyHand.enterPressed = false;
       }
     }
