@@ -47,8 +47,44 @@ public class PreviewRoute {
     int P1hp = player1.health;
     int P2hp = player2.health;
 
-    // win condition
-    if (P1hp <= 0 || P2hp <= 0) {
+    if(gameState.currentRound + 1 > 5) {
+
+      // health
+      if(P1hp == P2hp){
+        gameState.player1.win = true;
+        gameState.player2.win = true;
+      }
+
+      else if(P1hp > P2hp)
+        gameState.player1.win = true;
+
+      else if(P1hp < P2hp)
+        gameState.player2.win = true;
+
+      // bullet
+      else if(player1.getTotalBullet() == player2.getTotalBullet()){
+
+        if (P1hp > P2hp)
+          gameState.player1.win = true;
+
+        else if (P1hp < P2hp)
+          gameState.player2.win = true;
+
+        else if (P1hp == P2hp)
+          gameState.player1.win = true;
+          gameState.player2.win = true;
+      }
+
+      else if(player1.getTotalBullet() > player2.getTotalBullet())
+        gameState.player1.win = true;
+
+      else if(player1.getTotalBullet() < player2.getTotalBullet())
+        gameState.player2.win = true;
+
+    }
+
+    // win condition if end before 5 round
+    else if (P1hp <= 0 || P2hp <= 0) {
       if (P1hp == P2hp) {
         gameState.player1.win = true;
         gameState.player2.win = true;
@@ -61,7 +97,7 @@ public class PreviewRoute {
     }
 
     // run out of bullet
-    if (player1.getTotalBullet() == 0 || player2.getTotalBullet() == 0) {
+    else if (player1.getTotalBullet() == 0 || player2.getTotalBullet() == 0) {
       
       if (player1.getTotalBullet() == player2.getTotalBullet()) { // continue to hp check
         if (P1hp > P2hp)
