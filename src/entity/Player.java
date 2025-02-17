@@ -358,7 +358,6 @@ public class Player {
   }
 
   public void actionCompare(int slot, Player enemey){
-
     int myAction = getActionType_slot(slot);
     int myActionDirection = player_actions[slot];
     int myBullet = gun_barrel[currentBarrel];
@@ -429,28 +428,26 @@ public class Player {
         missed = false;
       }
 
-      // left
-      else if (myActionDirection == ACTION_SHOOT_L && enActionDirection == ACTION_SHOOT_L){
+      // match
+      else if (myActionDirection == enActionDirection){
         duelStatus = true;
         missed = false;
       }
 
-      // right
-      else if (myActionDirection == ACTION_SHOOT_M && enActionDirection == ACTION_SHOOT_M){
-        duelStatus = true;
+      // enemey shoot middle and me shoot left & right
+      else if (myActionDirection != enActionDirection && enActionDirection == ACTION_SHOOT_M){
+        System.out.println((id+1) + " take damage"); 
         missed = false;
       }
 
-      // right
-      else if (myActionDirection == ACTION_SHOOT_R && enActionDirection == ACTION_SHOOT_R){
-        duelStatus = true;
-        missed = false;
-      }
+      // else if (myActionDirection == ACTION_SHOOT_R && enActionDirection == ACTION_SHOOT_M){
+      //   missed = false;
+      // }
 
-      // enemey shoot left, right
-      else if (enActionDirection == ACTION_SHOOT_R || enActionDirection == ACTION_SHOOT_L){
-        missed = true;
-      }
+      // else if (myActionDirection == ACTION_SHOOT_L && enActionDirection == ACTION_SHOOT_M){
+      //   missed = false;
+      // }
+
     }
     
     // hit or miss
@@ -476,6 +473,7 @@ public class Player {
 
     // reset
     evaded = false;
+    blocked = false;
   }
 
   // dueling

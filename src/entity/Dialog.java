@@ -14,7 +14,7 @@ public class Dialog {
 
     private final int x_position, y_position;
     public static int gauge;
-    private int gaugeSpeed = 5; // Speed of the gauge movement
+    private int gaugeSpeed = 1; // Speed of the gauge movement
     private Timer timer; // Timer for animation
     private GameState gameState;
     private int bulletPower = 0;
