@@ -26,7 +26,7 @@ public class Howtoplay {
     public void render(Graphics2D g2) {
         component.setBackground(g2, Lobby.background);
         component.setBackground(g2, howto[pages]);
-        // component.titleCenter(g2, "how to play", 150);
+        component.howCenter(g2, "Enter to continue, Backspace to return", 750);
     }
 
     private void loadAsset() {

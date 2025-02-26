@@ -8,26 +8,43 @@ import javax.swing.JOptionPane;
 import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.awt.image.BufferedImage;
+import java.awt.Font;
+import java.awt.FontFormatException;
 
 public class Component {
     public int screenWidth;
     public int screenHeight;
     public float scalingFactor;
 
-    public String fontName = "Jersey 10";
-    public Font font_title = new Font(fontName, Font.PLAIN, 40);
+    private Font jersey10;
+    public String fontName = "Jersey10-Regular";
     public Font font_how = new Font("Consolas", Font.BOLD, 20);
-    public Font font_40 = new Font(fontName, Font.PLAIN, 40);
-    public Font font_30 = new Font(fontName, Font.PLAIN, 30);
-    public Font font_25 = new Font(fontName, Font.PLAIN, 25);
-    public Font font_20 = new Font(fontName, Font.PLAIN, 20);
+    public Font font_title = new Font("Arial", Font.PLAIN, 40);
+    public Font font_40 = new Font("Arial", Font.PLAIN, 40);
+    public Font font_30 = new Font("Arial", Font.PLAIN, 30);
+    public Font font_25 = new Font("Arial", Font.PLAIN, 25);
+    public Font font_20 = new Font("Arial", Font.PLAIN, 20);
     public Font font_10 = new Font("Consolas", Font.BOLD, 14);
 
     public Component(GamePanel gamePanel, GameState gameState) {
         this.screenWidth = gamePanel.screenWidth;
         this.screenHeight = gamePanel.screenHeight;
         this.scalingFactor = gamePanel.scalingFactor;
+        try {
+          InputStream is = getClass().getResourceAsStream("/resources/Jersey10-Regular.ttf");
+          jersey10 = Font.createFont(Font.TRUETYPE_FONT,is);
+          font_title = jersey10.deriveFont(Font.PLAIN, 40);
+          font_40 = jersey10.deriveFont(Font.PLAIN, 40);
+          font_30 = jersey10.deriveFont(Font.PLAIN, 30);
+          font_25 = jersey10.deriveFont(Font.PLAIN, 25);
+          font_20 = jersey10.deriveFont(Font.PLAIN, 20);
+        }
+        catch (FontFormatException | IOException e) {
+          e.printStackTrace();
+          font_title = new Font("Arial", Font.PLAIN, 40); // Fallback in case of error
+        }
     }
 
     public BufferedImage img(String FilePath) throws IOException {
@@ -44,7 +61,9 @@ public class Component {
 
     public void titleCenter(Graphics2D g2, String txt, int y) {
         g2.setColor(Color.black);
-        this.setFontScale(g2, this.font_title);
+        setFontScale(g2, font_title);
+        //this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly with jersey10 font
+        //g2.setFont(font_title);
         g2.drawString(txt, getTextCenter(g2, txt), y);
     }
 
@@ -269,7 +288,7 @@ public class Component {
 
     public void setFontScale(Graphics2D g2, Font font) {
         int size = font.getSize();
-        g2.setFont(new Font(fontName, Font.PLAIN, (int) (size * scalingFactor)));
+        g2.setFont(font.deriveFont(font.getStyle(), (int) (size * scalingFactor))); // Use the original style and the scaled size
     }
 
 }

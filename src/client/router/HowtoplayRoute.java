@@ -23,7 +23,11 @@ public class HowtoplayRoute {
             router.keyHand.enterPressed = false;
         }
         if (router.keyHand.backspacePressed) {
-            Router.currentRoute = Router.LOBBY_STATE;
+            Howtoplay.pages--;
+            if (Howtoplay.pages < 0) {
+                Router.currentRoute = Router.LOBBY_STATE;
+                Howtoplay.pages = 0;
+            }
             router.keyHand.backspacePressed = false;
         }
     }
