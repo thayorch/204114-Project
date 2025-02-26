@@ -17,8 +17,9 @@ public class Victory {
     protected Component component;
     protected Player player1;
     protected Player player2;
-    private BufferedImage background,winkle;
+    private BufferedImage background, winkle;
     private BufferedImage[] vic = new BufferedImage[3];
+    private BufferedImage[] draw = new BufferedImage[3];
 
     public Victory(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);
@@ -35,29 +36,29 @@ public class Victory {
         // component.titleCenter(g2, "Victory", 100);
 
         if (player1.win && player2.win)
-            component.titleCenter(g2, "Draw", 450);
+            component.setBackground(g2, draw[Lobby.background_num]);
 
         else if (player1.win) {
-            // UI.animation.drawWin(g2, S_Item.char_P1[0]);
-            component.setBackground(g2, vic[player1.getCharacter()-1]);
+            component.setBackground(g2, vic[player1.getCharacter() - 1]);
             UI.animation.drawWin(g2, winkle);
-            component.titleCenter(g2, "P1 Win", 450);
         }
 
         else if (player2.win) {
-            // UI.animation.drawWin(g2, S_Item.char_P2[0]);
-            component.setBackground(g2, vic[player2.getCharacter()-1]);
+            component.setBackground(g2, vic[player2.getCharacter() - 1]);
             UI.animation.drawWin(g2, winkle);
-            component.titleCenter(g2, "P2 Win", 450);
         }
     }
 
     public void loadAsset() {
         try {
             // background = component.img("/resources/background/Victory.png");
-            vic[0] = component.img("/resources/victoryScene/1.png");
-            vic[1] = component.img("/resources/victoryScene/2.png");
-            vic[2] = component.img("/resources/victoryScene/3.png");
+            vic[0] = component.img("/resources/victoryScene/victory1.png");
+            vic[1] = component.img("/resources/victoryScene/victory2.png");
+            vic[2] = component.img("/resources/victoryScene/victory3.png");
+
+            draw[0] = component.img("/resources/victoryScene/Draw1.png");
+            draw[1] = component.img("/resources/victoryScene/Draw2.png");
+            draw[2] = component.img("/resources/victoryScene/Draw3.png");
             background = component.img("/resources/lobby/lobby_bg.png");
             winkle = component.img("/resources/victoryScene/winkle.png");
             System.out.println("[log: Victory Image loaded successfully]");
