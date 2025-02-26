@@ -22,6 +22,8 @@ public class VictoryRoute {
         player1.setDefaultvalues();
         player2.setDefaultvalues();
         GameState.currentRound = 1;
+        GameState.currentType = 0;
+        GameState.currentSlot = 0;
         Router.currentRoute = Router.LOBBY_STATE;
         router.keyHand.enterPressed = false;
       }
