@@ -68,6 +68,26 @@ public class Animation extends JPanel implements ActionListener {
                 spriteX, 0, spriteX + frameWidth, frameHeight, this);
     }
 
+    private void drawSparkle(Graphics2D g2, BufferedImage spriteSheet, int posX, int posY, boolean isFlipped,
+            double scale) {
+        int frameWidth = 640;
+        int frameHeight = 380;
+        int spriteX = characterCurrentFrame * frameWidth; // Current frame position in the sprite sheet
+
+        // Calculate new scaled dimensions
+        int scaledWidth = (int) (frameWidth * scale);
+        int scaledHeight = (int) (frameHeight * scale);
+
+        // Adjust drawing positions based on flipping
+        int destX1 = isFlipped ? posX + scaledWidth : posX;
+        int destX2 = isFlipped ? posX : posX + scaledWidth;
+
+        // Draw the upscaled/flipped character
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.drawImage(spriteSheet, destX1, posY, destX2, posY + scaledHeight,
+                spriteX, 0, spriteX + frameWidth, frameHeight, this);
+    }
+
     public void drawLeftCharacter(Graphics2D g2, BufferedImage img) {
         drawCharacter(g2, img, 120, 320, false, 1.5);
     }
@@ -87,9 +107,6 @@ public class Animation extends JPanel implements ActionListener {
         drawCharacter(g2, img, 750, 300, true, 1.75);
     }
     public void drawWin(Graphics2D g2, BufferedImage img) {
-        drawCharacter(g2, img, 750, 300, true, 1.75);
+        drawSparkle(g2, img, 760, 110, true, 1.85);
     }
-
-
-
 }

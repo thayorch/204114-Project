@@ -24,7 +24,7 @@ public class S_Item {
     protected static BufferedImage chamber, frame, frame2, construct;
     protected static BufferedImage shied, evaL, evaR;
     protected static BufferedImage normal_bullet_M, normal_bullet_R, normal_bullet_L, death_bullet, h_bullet, s_bullet;
-    public static BufferedImage bulletIncham[] = new BufferedImage[6];
+    public static BufferedImage bulletIncham[] = new BufferedImage[5];
 
     public static BufferedImage P1_ACT[] = new BufferedImage[5];
     public static BufferedImage P1_CHAM[] = new BufferedImage[6];
