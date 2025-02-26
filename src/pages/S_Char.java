@@ -99,17 +99,17 @@ public class S_Char {
 
                 switch (GameState.currentChar) {
                         case 0:
-                                component.scenceCardleft(g2, "", S_Item.frame);
+                                component.scenceCardleft(g2, "", S_Item.frame2);
                                 character = 1;
                                 break;
 
                         case 1:
-                                component.scenceCardcenter(g2, "", S_Item.frame);
+                                component.scenceCardcenter(g2, "", S_Item.frame2);
                                 character = 2;
                                 break;
 
                         case 2:
-                                component.scenceCardright(g2, "", S_Item.frame);
+                                component.scenceCardright(g2, "", S_Item.frame2);
                                 character = 3;
                                 break;
                 }

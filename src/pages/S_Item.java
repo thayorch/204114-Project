@@ -21,7 +21,7 @@ public class S_Item {
 
     public static BufferedImage char_P1[] = new BufferedImage[9];
     public static BufferedImage char_P2[] = new BufferedImage[9];
-    protected static BufferedImage chamber, frame, construct;
+    protected static BufferedImage chamber, frame, frame2, construct;
     protected static BufferedImage shied, evaL, evaR;
     protected static BufferedImage normal_bullet_M, normal_bullet_R, normal_bullet_L, death_bullet, h_bullet, s_bullet;
     public static BufferedImage bulletIncham[] = new BufferedImage[6];
@@ -300,6 +300,7 @@ public class S_Item {
             bulletIncham[4] = component.img("/resources/assets/bullet/DCircleBullet.png");
 
             frame = component.img("/resources/assets/frame.png");
+            frame2 = component.img("/resources/assets/frame2.png");
             shied = component.img("/resources/assets/shield/shield-slot.png");
             evaL = component.img("/resources/assets/evade/evadeL.png");
             evaR = component.img("/resources/assets/evade/evadeR.png");

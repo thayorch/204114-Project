@@ -42,17 +42,17 @@ public class S_Scence {
         switch (GameState.currentScence) {
             case 0:
                 background[0] = component.img("/resources/background/SpritesheetBG1.png");
-                component.scenceCardleft(g2, "", S_Item.frame);
+                component.scenceCardleft(g2, "", S_Item.frame2);
                 Map = "A";
                 break;
             case 1:
                 background[1] = component.img("/resources/background/SpritesheetBG2.png");
-                component.scenceCardcenter(g2, "", S_Item.frame);
+                component.scenceCardcenter(g2, "", S_Item.frame2);
                 Map = "B";
                 break;
             case 2:
                 background[2] = component.img("/resources/background/SpritesheetBG3.png");
-                component.scenceCardright(g2, "", S_Item.frame);
+                component.scenceCardright(g2, "", S_Item.frame2);
                 Map = "C";
                 break;
         }
@@ -62,10 +62,9 @@ public class S_Scence {
 
     public void loadAsset() {
         try {
-            card_1 = component.img("/resources/background/1.png");
-            card_2 = component.img("/resources/background/2.png");
-            card_3 = component.img("/resources/background/3.png");
-
+            card_1 = component.img("/resources/background/BG1_crop.png");
+            card_2 = component.img("/resources/background/BG2_crop.png");
+            card_3 = component.img("/resources/background/BG3_crop.png");
 
             System.out.println("[log: Select Scence Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
