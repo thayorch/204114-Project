@@ -62,6 +62,8 @@ public class S_Item {
         component.setBackground(g2, construct);
         component.titleCenter(g2, "Round " + GameState.currentRound, 100);
 
+        component.title_25(g2, "Enter to ready, Spacebar to switch", 175);
+
         component.text_10(g2, "" + gameState.player1.getNormalBullet(), 95, 245);
         component.text_10(g2, "" + gameState.player1.getMagicBullet(), 95, 285);
         component.text_10(g2, "" + gameState.player1.getSilverBullet(), 95, 325);
