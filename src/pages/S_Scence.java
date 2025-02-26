@@ -62,9 +62,9 @@ public class S_Scence {
 
     public void loadAsset() {
         try {
-            card_1 = component.img("/resources/scence/1.png");
-            card_2 = component.img("/resources/scence/2.png");
-            card_3 = component.img("/resources/scence/3.png");
+            card_1 = component.img("/resources/background/1.png");
+            card_2 = component.img("/resources/background/2.png");
+            card_3 = component.img("/resources/background/3.png");
 
 
             System.out.println("[log: Select Scence Image loaded successfully]");

@@ -127,7 +127,6 @@ public class S_Item {
 
         UI.animation.drawP1(g2, char_P1[0]);
         UI.animation.drawP2(g2, char_P2[0]);
-        // component.setBackground(g2, background);
     }
 
     protected void P1_ACTION(Graphics2D g2) {
@@ -339,7 +338,6 @@ public class S_Item {
 
     public void loadAsset() {
         try {
-            // background = component.img("/resources/background/Select_Item.png");
             // ACTION_NONE = 0;
             // ACTION_SHOOT = 1;
             // ACTION_BLOCK = 2;
@@ -388,26 +386,20 @@ public class S_Item {
             char_P2[8] = component
                     .img("/resources/character/shootL" + Integer.toString(gameState.player2.getCharacter()) + ".png");
 
-            // chamber = component.img("/resources/assets/chamber.png");
-            normal_bullet = component.img("/resources/previewScene/bullet/NbulletM.png");
-            death_bullet = component.img("/resources/previewScene/bullet/DbulletM.png");
-            h_bullet = component.img("/resources/previewScene/bullet/HbulletM.png");
-            s_bullet = component.img("/resources/previewScene/bullet/SbulletM.png");
+            normal_bullet = component.img("/resources/assets/bullet/NbulletM.png");
+            death_bullet = component.img("/resources/assets/bullet/DbulletM.png");
+            h_bullet = component.img("/resources/assets/bullet/HbulletM.png");
+            s_bullet = component.img("/resources/assets/bullet/SbulletM.png");
             construct = component.img("/resources/previewScene/PreviewPageNew.png");
 
-            bulletIncham[1] = component.img("/resources/previewScene/bullet/NCircleBullet.png");
-            bulletIncham[2] = component.img("/resources/previewScene/bullet/HCircleBullet.png");
-            bulletIncham[3] = component.img("/resources/previewScene/bullet/SCircleBullet.png");
-            bulletIncham[4] = component.img("/resources/previewScene/bullet/DCircleBullet.png");
+            bulletIncham[1] = component.img("/resources/assets/bullet/NCircleBullet.png");
+            bulletIncham[2] = component.img("/resources/assets/bullet/HCircleBullet.png");
+            bulletIncham[3] = component.img("/resources/assets/bullet/SCircleBullet.png");
+            bulletIncham[4] = component.img("/resources/assets/bullet/DCircleBullet.png");
 
             frame = component.img("/resources/assets/frame.png");
             shied = component.img("/resources/assets/shield/shield-slot.png");
             eva = component.img("/resources/assets/evade/evadeL.png");
-
-            // char_P1 = component.img("/resources/character/charL"+
-            // Integer.toString(gameState.player1.getCharacter()) + ".png");
-            // char_P2 = component.img("/resources/character/charR"+
-            // Integer.toString(gameState.player2.getCharacter()) + ".png");
 
             System.out.println("[log: Select Item Image loaded successfully]");
         } catch (IOException |

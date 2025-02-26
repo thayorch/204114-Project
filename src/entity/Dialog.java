@@ -22,7 +22,7 @@ public class Dialog {
   private int zone_3_width = 8;
   private int zone_2_width = 14;
   private int zone_1_width = 20;
-  private BufferedImage scope, bullet;
+  private BufferedImage scope;
   private Component component;
 
   public Dialog(GamePanel gamePanel, GameState gameState) {
@@ -119,7 +119,6 @@ public class Dialog {
   public void loadassets() {
     // Load the dialog assets
     try {
-      bullet = component.img("/resources/NBullet_ShootL.png");
       scope = component.img("/resources/previewScene/scope.png");
     } catch (IOException e) {
       e.printStackTrace();

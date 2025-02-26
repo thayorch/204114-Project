@@ -22,7 +22,6 @@ public class Preview {
     protected int screenHeight;
     protected float scalingFactor;
     private Dialog di;
-    private S_Item item;
     private boolean successDI;
 
     public Preview(GamePanel gamePanel, GameState gameState) {
@@ -30,7 +29,6 @@ public class Preview {
         this.di = new Dialog(gamePanel, gameState);
         this.gamePanel = gamePanel;
         this.gameState = gameState;
-        this.item = UI.scenceItem;
         loadAsset();
     }
 
