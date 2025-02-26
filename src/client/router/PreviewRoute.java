@@ -82,9 +82,6 @@ public class PreviewRoute {
         gameState.player1.win = true;
       }
 
-      // System.out.println(gameState.player1.win);
-      // System.out.println(gameState.player2.win);
-
       finished = true;
     }
 
@@ -126,6 +123,10 @@ public class PreviewRoute {
         gameState.player2.actionCompare(currentActionSlot, gameState.player1);
         currentActionSlot++;
 
+        // prevent deadman shooting
+        if(gameState.player1.health <= 0 || gameState.player2.health <= 0)
+          break;
+
         // dueling
         if (gameState.player1.duelStatus || gameState.player2.duelStatus) {
 
@@ -154,9 +155,6 @@ public class PreviewRoute {
 
           gameState.player1.duelingQTE(gameState.player2);
           gameState.player2.duelingQTE(gameState.player1);
-
-          // gameState.player1.bulletPower = 0;
-          // gameState.player2.bulletPower = 0;
 
           gameState.player1.rotateBarrel(gameState.player1.currentBarrel);
           gameState.player2.rotateBarrel(gameState.player2.currentBarrel);

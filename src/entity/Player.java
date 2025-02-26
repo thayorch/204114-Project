@@ -19,6 +19,11 @@ public class Player {
   private final int MAGIC_AMOUNT = 1; // default 1
   private final int SILVER_AMOUNT = 1; // default 1
   private final int DEATH_AMOUNT = 1; // default 1
+  
+  private final int BLOCK_AMOUNT = 1; // default 1
+  private final int EVADE_AMOUNT = 2; // default 2
+
+  private final int MAX_HEALTH = 100; // default 100
 
   // ACTION
   public static final int ACTION_NONE = 0;
@@ -46,8 +51,7 @@ public class Player {
 
   public boolean ready = false, blocked = false, evaded = false; // no static
 
-  public int normalBullet = NORMAL_AMOUNT, silverBullet = SILVER_AMOUNT, magicBullet = MAGIC_AMOUNT,
-      deathBullet = DEATH_AMOUNT;
+  public int normalBullet = NORMAL_AMOUNT, silverBullet = SILVER_AMOUNT, magicBullet = MAGIC_AMOUNT, deathBullet = DEATH_AMOUNT;
   public int currentBarrel = 0, bulletPower = 0;
   public boolean magicStatus = false, deathDoor = false, win = false, duelStatus = false;
 
@@ -205,15 +209,15 @@ public class Player {
   }
 
   public void setDefaultvalues() {
-    health = 100;
-    evade = 2;
-    block = 1;
-    normalBullet = NORMAL_AMOUNT;
-    silverBullet = SILVER_AMOUNT;
-    magicBullet = MAGIC_AMOUNT;
+    health = MAX_HEALTH;
+    evade = EVADE_AMOUNT;
+    block = BLOCK_AMOUNT;
+    normalBullet = NORMAL_AMOUNT; 
+    silverBullet = SILVER_AMOUNT; 
+    magicBullet = MAGIC_AMOUNT; 
     deathBullet = DEATH_AMOUNT;
-    bulletPower = 0;
     win = false;
+    bulletPower = 0;
 
     barrel = 6;
     actionNum = 5;
@@ -224,20 +228,20 @@ public class Player {
     System.out.println("[log: set player default values]");
   }
 
-  public void setNewRoundvalues() {
-    evade = 2;
-    block = 1;
+  public void setNewRoundvalues(){
+    evade = EVADE_AMOUNT;
+    block = BLOCK_AMOUNT;
     evaded = false;
     blocked = false;
     bulletPower = 0;
 
-    if (magicStatus) {
-      evade = 1;
-      block = 0;
+    if(magicStatus){
+      evade = EVADE_AMOUNT - 1;
+      block = BLOCK_AMOUNT - 1;
       magicStatus = false;
     }
 
-    if (checkForDeathDoor())
+    if(checkForDeathDoor())
       deathDoor = true;
 
     barrel = 6;
@@ -361,13 +365,13 @@ public class Player {
     }
   }
 
-  public boolean checkForDeathDoor() {
-    if (health >= 10)
+  public boolean checkForDeathDoor(){
+    if(health >= MAX_HEALTH * 0.1)
       return false;
     return true;
   }
 
-  public void actionCompare(int slot, Player enemey) {
+  public void actionCompare(int slot, Player enemey){
     int myAction = getActionType_slot(slot);
     int myActionDirection = player_actions[slot];
     int myBullet = gun_barrel[currentBarrel];
@@ -377,50 +381,50 @@ public class Player {
     int enBullet = enemey.gun_barrel[enemey.currentBarrel];
 
     boolean missed = true; // for enemey
-
-    if (myAction == ACTION_NONE)
+    
+    if(myAction == ACTION_NONE)
       animationType = ACTION_NONE;
-
-    if (getActionType(myAction) == ACTION_SHOOT)
+    
+    if(getActionType(myAction) == ACTION_SHOOT)
       animationType = ACTION_SHOOT;
 
-    if (myAction == ACTION_BLOCK) {
+    if(myAction == ACTION_BLOCK){
       animationType = ACTION_BLOCK;
       blocked = true;
     }
 
-    if (getActionType(myAction) == ACTION_EVADE)
+    if(getActionType(myAction) == ACTION_EVADE)
       animationType = ACTION_EVADE_L;
-    if (myAction == ACTION_EVADE_R)
-      animationType = ACTION_EVADE_R;
-    evaded = true;
+      if(myAction == ACTION_EVADE_R)
+        animationType = ACTION_EVADE_R;
+      evaded = true;
 
     if (enBullet == SILVER_BULLET) // always hit
       missed = false;
-
-    // me None | blocked, enemey Shoot
-    if ((myAction == ACTION_NONE || myAction == ACTION_BLOCK) && enAction == ACTION_SHOOT) {
-
+    
+    // me None | blocked, enemey Shoot 
+    if((myAction == ACTION_NONE || myAction == ACTION_BLOCK) && enAction == ACTION_SHOOT){
+      
       // blocked always got hit
-      if (enAction == ACTION_SHOOT && myAction == ACTION_BLOCK)
+      if(enAction == ACTION_SHOOT && myAction == ACTION_BLOCK)
         missed = false;
 
-      else if (enActionDirection == ACTION_SHOOT_M)
+      else if(enActionDirection == ACTION_SHOOT_M)
         missed = false;
     }
 
     // me Evade, enemey Shoot
-    if (myAction == ACTION_EVADE && enAction == ACTION_SHOOT) {
-
+    if(myAction == ACTION_EVADE && enAction == ACTION_SHOOT){ 
+      
       // left
-      if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L) {
+      if (myActionDirection == ACTION_EVADE_L && enActionDirection == ACTION_SHOOT_L){
         animationType = ACTION_EVADE_L;
         evaded = false;
         missed = false;
       }
-
+      
       // right
-      else if (myActionDirection == ACTION_EVADE_R && enActionDirection == ACTION_SHOOT_R) {
+      else if (myActionDirection == ACTION_EVADE_R && enActionDirection == ACTION_SHOOT_R){
         animationType = ACTION_EVADE_R;
         evaded = false;
         missed = false;
@@ -428,21 +432,24 @@ public class Player {
     }
 
     // me shoot, enemey Shoot
-    if (myAction == ACTION_SHOOT && enAction == ACTION_SHOOT) {
+    if(myAction == ACTION_SHOOT && enAction == ACTION_SHOOT){
 
       // EMPTY_BULLET
-      if (myBullet == EMPTY_BULLET || enBullet == EMPTY_BULLET) {
+      if (myBullet == EMPTY_BULLET || enBullet == EMPTY_BULLET){
         duelStatus = false;
+
+        if(enActionDirection == ACTION_SHOOT_M && enBullet != EMPTY_BULLET)
+          missed = false;
       }
 
       // SILVER_BULLET
-      else if (myBullet == SILVER_BULLET || enBullet == SILVER_BULLET) {
+      else if (myBullet == SILVER_BULLET || enBullet == SILVER_BULLET){
         duelStatus = true;
         missed = false;
       }
 
       // match
-      else if (myActionDirection == enActionDirection) {
+      else if (myActionDirection == enActionDirection){
         duelStatus = true;
         missed = false;
       }
@@ -452,23 +459,23 @@ public class Player {
         missed = false;
 
     }
-
+    
     // hit or miss
-    if (enAction == ACTION_SHOOT && !duelStatus) {
+    if(enAction == ACTION_SHOOT && !duelStatus){
 
-      if (!missed) {
+      if(!missed){
 
         animationType = 4; // hurt
 
-        if (enBullet == MAGIC_BULLET)
+        if(enBullet == MAGIC_BULLET)
           magicStatus = true;
 
         damageTake(enBullet);
         enemey.rotateBarrel(enemey.currentBarrel);
       }
 
-      else if (missed) {
-        if (enBullet == DEATH_BULLET)
+      else if(missed){
+        if(enBullet == DEATH_BULLET)
           enemey.damageTake(DEATH_BULLET);
         enemey.rotateBarrel(enemey.currentBarrel);
       }
@@ -480,20 +487,23 @@ public class Player {
   }
 
   // dueling
-  public void duelingQTE(Player enemey) {
+  public void duelingQTE(Player enemey){
     int myPower = bulletPower;
     int enPower = enemey.bulletPower;
 
     int myBullet = gun_barrel[currentBarrel];
     int enBullet = enemey.gun_barrel[enemey.currentBarrel];
 
-    if (myPower <= enPower && enPower != 0) {
+    if(myPower <= enPower && enPower != 0){
 
-      if (enBullet == MAGIC_BULLET)
+      if(myBullet == DEATH_BULLET && myPower < enPower)
+        damageTake(DEATH_BULLET);
+
+      if(enBullet == MAGIC_BULLET)
         magicStatus = true;
 
       damageTake(enBullet);
-      System.out.println(id + 1 + " take damage");
+      System.out.println(id+1 + " take damage");
     }
   }
 
