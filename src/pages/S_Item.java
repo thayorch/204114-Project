@@ -22,52 +22,27 @@ public class S_Item {
     public static BufferedImage char_P1[] = new BufferedImage[9];
     public static BufferedImage char_P2[] = new BufferedImage[9];
     protected static BufferedImage chamber, frame, construct;
-    protected static BufferedImage shied, eva;
-    protected static BufferedImage normal_bullet, death_bullet, h_bullet, s_bullet;
-    public static BufferedImage P1_ACT1, P1_ACT2, P1_ACT3, P1_ACT4, P1_ACT5;
-    public static BufferedImage P2_ACT1, P2_ACT2, P2_ACT3, P2_ACT4, P2_ACT5;
-    public static BufferedImage bulletIncham[] = new BufferedImage[5];
+    protected static BufferedImage shied, evaL, evaR;
+    protected static BufferedImage normal_bullet_M, normal_bullet_R, normal_bullet_L, death_bullet, h_bullet, s_bullet;
+    public static BufferedImage bulletIncham[] = new BufferedImage[6];
 
-    public static BufferedImage P1_CHAM1;
-    public static BufferedImage P1_CHAM2;
-    public static BufferedImage P1_CHAM3;
-    public static BufferedImage P1_CHAM4;
-    public static BufferedImage P1_CHAM5;
-    public static BufferedImage P1_CHAM6;
+    public static BufferedImage P1_ACT[] = new BufferedImage[5];
+    public static BufferedImage P1_CHAM[] = new BufferedImage[6];
 
-    public static BufferedImage P2_CHAM1;
-    public static BufferedImage P2_CHAM2;
-    public static BufferedImage P2_CHAM3;
-    public static BufferedImage P2_CHAM4;
-    public static BufferedImage P2_CHAM5;
-    public static BufferedImage P2_CHAM6;
+    public static BufferedImage P2_ACT[] = new BufferedImage[5];
+    public static BufferedImage P2_CHAM[] = new BufferedImage[6];
 
     public static void resetItem() {
-        P1_ACT1 = null;
-        P1_ACT2 = null;
-        P1_ACT3 = null;
-        P1_ACT4 = null;
-        P1_ACT5 = null;
 
-        P2_ACT1 = null;
-        P2_ACT2 = null;
-        P2_ACT3 = null;
-        P2_ACT4 = null;
-        P2_ACT5 = null;
+      for (int i = 0; i < 5; i++){
+        P1_ACT[i] = null;
+        P2_ACT[i] = null;
+      }
 
-        P1_CHAM1 = null;
-        P1_CHAM2 = null;
-        P1_CHAM3 = null;
-        P1_CHAM4 = null;
-        P1_CHAM5 = null;
-        P1_CHAM6 = null;
-
-        P2_CHAM1 = null;
-        P2_CHAM2 = null;
-        P2_CHAM3 = null;
-        P2_CHAM4 = null;
-        P2_CHAM5 = null;
-        P2_CHAM6 = null;
+      for (int i = 0; i < 6; i++) {
+        P1_CHAM[i] = null;
+        P2_CHAM[i] = null;
+      }
     }
 
     public S_Item(GamePanel gamePanel, GameState gameState) {
@@ -129,211 +104,136 @@ public class S_Item {
         UI.animation.drawP2(g2, char_P2[0]);
     }
 
+    private BufferedImage getActionImage(int action_id){
+      if (action_id == Player.ACTION_NONE)
+          return null;
+      if (action_id == Player.ACTION_SHOOT_L)
+          return normal_bullet_L;
+      if (action_id == Player.ACTION_SHOOT_M)
+          return normal_bullet_M;
+      if (action_id == Player.ACTION_SHOOT_R)
+          return normal_bullet_R;
+      if (action_id == Player.ACTION_BLOCK)
+          return shied;
+      if (action_id == Player.ACTION_EVADE_L)
+          return evaL;
+      if (action_id == Player.ACTION_EVADE_R)
+          return evaR;
+      return null;
+    }
+
     protected void P1_ACTION(Graphics2D g2) {
         int[] action = gameState.player1.getPlayer_actions();
         switch (GameState.currentSlot) {
             case 0:
-                if (action[0] == Player.ACTION_NONE)
-                    P1_ACT1 = null;
-                if (action[0] == Player.ACTION_SHOOT_L || action[0] == Player.ACTION_SHOOT_M
-                        || action[0] == Player.ACTION_SHOOT_R)
-                    P1_ACT1 = normal_bullet;
-                if (action[0] == Player.ACTION_BLOCK)
-                    P1_ACT1 = shied;
-                if (action[0] == Player.ACTION_EVADE || action[0] == Player.ACTION_EVADE_L
-                        || action[0] == Player.ACTION_EVADE_R)
-                    P1_ACT1 = eva;
+                P1_ACT[0] = getActionImage(action[0]);
                 break;
             case 1:
-                if (action[2] == Player.ACTION_NONE)
-                    P1_ACT2 = null;
-                if (action[1] == Player.ACTION_SHOOT_L || action[1] == Player.ACTION_SHOOT_M
-                        || action[1] == Player.ACTION_SHOOT_R)
-                    P1_ACT2 = normal_bullet;
-                if (action[1] == Player.ACTION_BLOCK)
-                    P1_ACT2 = shied;
-                if (action[1] == Player.ACTION_EVADE || action[1] == Player.ACTION_EVADE_L
-                        || action[1] == Player.ACTION_EVADE_R)
-                    P1_ACT2 = eva;
+                P1_ACT[1] = getActionImage(action[1]);
                 break;
             case 2:
-                if (action[2] == Player.ACTION_NONE)
-                    P1_ACT3 = null;
-                if (action[2] == Player.ACTION_SHOOT_L || action[2] == Player.ACTION_SHOOT_M
-                        || action[2] == Player.ACTION_SHOOT_R)
-                    P1_ACT3 = normal_bullet;
-                if (action[2] == Player.ACTION_BLOCK)
-                    P1_ACT3 = shied;
-                if (action[2] == Player.ACTION_EVADE || action[2] == Player.ACTION_EVADE_L
-                        || action[2] == Player.ACTION_EVADE_R)
-                    P1_ACT3 = eva;
+                P1_ACT[2] = getActionImage(action[2]);
                 break;
             case 3:
-                if (action[3] == Player.ACTION_NONE)
-                    P1_ACT4 = null;
-                if (action[3] == Player.ACTION_SHOOT_L || action[3] == Player.ACTION_SHOOT_M
-                        || action[3] == Player.ACTION_SHOOT_R)
-                    P1_ACT4 = normal_bullet;
-                if (action[3] == Player.ACTION_BLOCK)
-                    P1_ACT4 = shied;
-                if (action[3] == Player.ACTION_EVADE || action[3] == Player.ACTION_EVADE_L
-                        || action[3] == Player.ACTION_EVADE_R)
-                    P1_ACT4 = eva;
+                P1_ACT[3] = getActionImage(action[3]);
                 break;
             case 4:
-                if (action[4] == Player.ACTION_NONE)
-                    P1_ACT5 = null;
-                if (action[4] == Player.ACTION_SHOOT_L || action[4] == Player.ACTION_SHOOT_M
-                        || action[4] == Player.ACTION_SHOOT_R)
-                    P1_ACT5 = normal_bullet;
-                if (action[4] == Player.ACTION_BLOCK)
-                    P1_ACT5 = shied;
-                if (action[4] == Player.ACTION_EVADE || action[4] == Player.ACTION_EVADE_L
-                        || action[4] == Player.ACTION_EVADE_R)
-                    P1_ACT5 = eva;
+                P1_ACT[4] = getActionImage(action[4]);
                 break;
 
         }
-        component.actionSlot_P1(g2, P1_ACT1, 0);
-        component.actionSlot_P1(g2, P1_ACT2, 1);
-        component.actionSlot_P1(g2, P1_ACT3, 2);
-        component.actionSlot_P1(g2, P1_ACT4, 3);
-        component.actionSlot_P1(g2, P1_ACT5, 4);
+
+        for (int i = 0; i < 5; i++) {
+          component.actionSlot_P1(g2, P1_ACT[i], i);
+        }
     }
 
     protected void P2_ACTION(Graphics2D g2) {
         int[] action = gameState.player2.getPlayer_actions();
         switch (GameState.currentSlot) {
             case 0:
-                if (action[0] == Player.ACTION_NONE)
-                    P2_ACT1 = null;
-                if (action[0] == Player.ACTION_SHOOT_L || action[0] == Player.ACTION_SHOOT_M
-                        || action[0] == Player.ACTION_SHOOT_R)
-                    P2_ACT1 = normal_bullet;
-                if (action[0] == Player.ACTION_BLOCK)
-                    P2_ACT1 = shied;
-                if (action[0] == Player.ACTION_EVADE || action[0] == Player.ACTION_EVADE_L
-                        || action[0] == Player.ACTION_EVADE_R)
-                    P2_ACT1 = eva;
+                P2_ACT[0] = getActionImage(action[0]);
                 break;
             case 1:
-                if (action[2] == Player.ACTION_NONE)
-                    P2_ACT2 = null;
-                if (action[1] == Player.ACTION_SHOOT_L || action[1] == Player.ACTION_SHOOT_M
-                        || action[1] == Player.ACTION_SHOOT_R)
-                    P2_ACT2 = normal_bullet;
-                if (action[1] == Player.ACTION_BLOCK)
-                    P2_ACT2 = shied;
-                if (action[1] == Player.ACTION_EVADE || action[1] == Player.ACTION_EVADE_L
-                        || action[1] == Player.ACTION_EVADE_R)
-                    P2_ACT2 = eva;
+                P2_ACT[1] = getActionImage(action[1]);
                 break;
             case 2:
-                if (action[2] == Player.ACTION_NONE)
-                    P2_ACT3 = null;
-                if (action[2] == Player.ACTION_SHOOT_L || action[2] == Player.ACTION_SHOOT_M
-                        || action[2] == Player.ACTION_SHOOT_R)
-                    P2_ACT3 = normal_bullet;
-                if (action[2] == Player.ACTION_BLOCK)
-                    P2_ACT3 = shied;
-                if (action[2] == Player.ACTION_EVADE || action[2] == Player.ACTION_EVADE_L
-                        || action[2] == Player.ACTION_EVADE_R)
-                    P2_ACT3 = eva;
+                P2_ACT[2] = getActionImage(action[2]);
                 break;
             case 3:
-                if (action[3] == Player.ACTION_NONE)
-                    P2_ACT4 = null;
-                if (action[3] == Player.ACTION_SHOOT_L || action[3] == Player.ACTION_SHOOT_M
-                        || action[3] == Player.ACTION_SHOOT_R)
-                    P2_ACT4 = normal_bullet;
-                if (action[3] == Player.ACTION_BLOCK)
-                    P2_ACT4 = shied;
-                if (action[3] == Player.ACTION_EVADE || action[3] == Player.ACTION_EVADE_L
-                        || action[3] == Player.ACTION_EVADE_R)
-                    P2_ACT4 = eva;
+                P2_ACT[3] = getActionImage(action[3]);
                 break;
             case 4:
-                if (action[4] == Player.ACTION_NONE)
-                    P2_ACT5 = null;
-                if (action[4] == Player.ACTION_SHOOT_L || action[4] == Player.ACTION_SHOOT_M
-                        || action[4] == Player.ACTION_SHOOT_R)
-                    P2_ACT5 = normal_bullet;
-                if (action[4] == Player.ACTION_BLOCK)
-                    P2_ACT5 = shied;
-                if (action[4] == Player.ACTION_EVADE || action[4] == Player.ACTION_EVADE_L
-                        || action[4] == Player.ACTION_EVADE_R)
-                    P2_ACT5 = eva;
+                P2_ACT[4] = getActionImage(action[4]);
                 break;
 
         }
-        component.actionSlot_P2(g2, P2_ACT1, 0);
-        component.actionSlot_P2(g2, P2_ACT2, 1);
-        component.actionSlot_P2(g2, P2_ACT3, 2);
-        component.actionSlot_P2(g2, P2_ACT4, 3);
-        component.actionSlot_P2(g2, P2_ACT5, 4);
+
+        for (int i = 0; i < 5; i++) {
+          component.actionSlot_P2(g2, P2_ACT[i], i);
+        }
     }
 
     protected void P1_CHAMBER(Graphics2D g2) {
         int[] barrel = gameState.player1.getGun_barrel();
         switch (GameState.currentSlot) {
             case 0:
-                P1_CHAM1 = bulletIncham[barrel[GameState.currentSlot]];
+                P1_CHAM[0] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 1:
-                P1_CHAM2 = bulletIncham[barrel[GameState.currentSlot]];
+                P1_CHAM[1] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 2:
-                P1_CHAM3 = bulletIncham[barrel[GameState.currentSlot]];
+                P1_CHAM[2] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 3:
-                P1_CHAM4 = bulletIncham[barrel[GameState.currentSlot]];
+                P1_CHAM[3] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 4:
-                P1_CHAM5 = bulletIncham[barrel[GameState.currentSlot]];
+                P1_CHAM[4] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 5:
-                P1_CHAM6 = bulletIncham[barrel[GameState.currentSlot]];
+                P1_CHAM[5] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
         }
 
-        component.Bullet(g2, 148, 320, P1_CHAM1);
-        component.Bullet(g2, 161, 276, P1_CHAM2);
-        component.Bullet(g2, 127, 238, P1_CHAM3);
-        component.Bullet(g2, 80, 252, P1_CHAM4);
-        component.Bullet(g2, 70, 297, P1_CHAM5);
-        component.Bullet(g2, 99, 328, P1_CHAM6);
-
+        component.Bullet(g2, 148, 320, P1_CHAM[0]);
+        component.Bullet(g2, 161, 276, P1_CHAM[1]);
+        component.Bullet(g2, 127, 238, P1_CHAM[2]);
+        component.Bullet(g2, 80, 252, P1_CHAM[3]);
+        component.Bullet(g2, 70, 297, P1_CHAM[4]);
+        component.Bullet(g2, 99, 328, P1_CHAM[5]);
     }
 
     protected void P2_CHAMBER(Graphics2D g2) {
         int[] barrel = gameState.player2.getGun_barrel();
         switch (GameState.currentSlot) {
             case 0:
-                P2_CHAM1 = bulletIncham[barrel[GameState.currentSlot]];
+                P2_CHAM[0] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 1:
-                P2_CHAM2 = bulletIncham[barrel[GameState.currentSlot]];
+                P2_CHAM[1] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 2:
-                P2_CHAM3 = bulletIncham[barrel[GameState.currentSlot]];
+                P2_CHAM[2] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 3:
-                P2_CHAM4 = bulletIncham[barrel[GameState.currentSlot]];
+                P2_CHAM[3] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 4:
-                P2_CHAM5 = bulletIncham[barrel[GameState.currentSlot]];
+                P2_CHAM[4] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
             case 5:
-                P2_CHAM6 = bulletIncham[barrel[GameState.currentSlot]];
+                P2_CHAM[5] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
         }
 
-        component.Bullet(g2, 1141, 328, P2_CHAM1);
-        component.Bullet(g2, 1172, 296, P2_CHAM2);
-        component.Bullet(g2, 1162, 254, P2_CHAM3);
-        component.Bullet(g2, 1115, 239, P2_CHAM4);
-        component.Bullet(g2, 1080, 277, P2_CHAM5);
-        component.Bullet(g2, 1095, 320, P2_CHAM6);
+        component.Bullet(g2, 1141, 328, P2_CHAM[0]);
+        component.Bullet(g2, 1172, 296, P2_CHAM[1]);
+        component.Bullet(g2, 1162, 254, P2_CHAM[2]);
+        component.Bullet(g2, 1115, 239, P2_CHAM[3]);
+        component.Bullet(g2, 1080, 277, P2_CHAM[4]);
+        component.Bullet(g2, 1095, 320, P2_CHAM[5]);
     }
 
     public void loadAsset() {
@@ -386,7 +286,9 @@ public class S_Item {
             char_P2[8] = component
                     .img("/resources/character/shootL" + Integer.toString(gameState.player2.getCharacter()) + ".png");
 
-            normal_bullet = component.img("/resources/assets/bullet/NbulletM.png");
+            normal_bullet_M = component.img("/resources/assets/bullet/NbulletM.png");
+            normal_bullet_L = component.img("/resources/assets/bullet/NbulletL.png");
+            normal_bullet_R = component.img("/resources/assets/bullet/NbulletR.png");
             death_bullet = component.img("/resources/assets/bullet/DbulletM.png");
             h_bullet = component.img("/resources/assets/bullet/HbulletM.png");
             s_bullet = component.img("/resources/assets/bullet/SbulletM.png");
@@ -399,7 +301,8 @@ public class S_Item {
 
             frame = component.img("/resources/assets/frame.png");
             shied = component.img("/resources/assets/shield/shield-slot.png");
-            eva = component.img("/resources/assets/evade/evadeL.png");
+            evaL = component.img("/resources/assets/evade/evadeL.png");
+            evaR = component.img("/resources/assets/evade/evadeR.png");
 
             System.out.println("[log: Select Item Image loaded successfully]");
         } catch (IOException |
