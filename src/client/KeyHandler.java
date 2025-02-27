@@ -134,6 +134,8 @@ public class KeyHandler implements KeyListener {
   }
 
   private void ScenceKeyPress(int code) {
+    GamePanel.musicPlayer.sfx("click");
+
     switch (code) {
       case (KeyEvent.VK_LEFT):
         leftPressed = true;
@@ -151,6 +153,8 @@ public class KeyHandler implements KeyListener {
   }
 
   private void CharacterKeyPress(int code) {
+    GamePanel.musicPlayer.sfx("click");
+
     switch (code) {
       case (KeyEvent.VK_LEFT):
         leftPressed = true;
