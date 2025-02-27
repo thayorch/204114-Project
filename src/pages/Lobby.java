@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-
 import client.Component;
 import client.GamePanel;
 import client.GameState;
@@ -28,8 +27,8 @@ public class Lobby {
     public void render(Graphics2D g2) {
         component.setBackground(g2, background);
         component.setTitle(g2, title);
-        component.textBtn(g2, "Start", button, 290);
-        component.textBtn(g2, "Exit", button, 450);
+        component.textBtn(g2, "Start", button, 360);
+        component.textBtn(g2, "Exit", button, 520);
         component.howCenter(g2, "How to play", 750);
     }
 
