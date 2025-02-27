@@ -68,6 +68,17 @@ public class Component {
         g2.drawString(txt, getTextCenter(g2, txt), y);
     }
 
+    public void titleCenter_1(Graphics2D g2, String txt, int y, BufferedImage img) {
+        g2.setColor(Color.decode("#580f00"));
+        // g2.setColor(Color.black);
+        g2.drawImage(img, (screenWidth / 2) - 97, y, 200, 70, null);
+        setFontScale(g2, font_25);
+        // this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly
+        // with jersey10 font
+        // g2.setFont(font_title);
+        g2.drawString(txt, getTextCenter(g2, txt) + 5, y + 44);
+    }
+
     public void titleCenter_Round(Graphics2D g2, String txt, int y) {
         g2.setColor(Color.decode("#580f00"));
         // g2.setColor(Color.black);
@@ -78,14 +89,15 @@ public class Component {
         g2.drawString(txt, getTextCenter(g2, txt), y);
     }
 
-    public void PlayerCenter(Graphics2D g2, String txt, int y) {
+    public void PlayerCenter(Graphics2D g2, String txt, int y, BufferedImage img) {
         g2.setColor(Color.decode("#7a3a1d"));
         // g2.setColor(Color.black);
+        g2.drawImage(img, (screenWidth / 2) - 97, y, 200, 70, null);
         setFontScale(g2, font_25);
         // this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly
         // with jersey10 font
         // g2.setFont(font_title);
-        g2.drawString(txt, getTextCenter(g2, txt), y);
+        g2.drawString(txt, getTextCenter(g2, txt) + 5, y + 44);
     }
 
     public void howCenter(Graphics2D g2, String txt, int y) {

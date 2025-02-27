@@ -21,7 +21,7 @@ public class S_Item {
 
     public static BufferedImage char_P1[] = new BufferedImage[9];
     public static BufferedImage char_P2[] = new BufferedImage[9];
-    protected static BufferedImage chamber, frame, frame2, construct;
+    protected static BufferedImage chamber, frame, frame2, construct, button;
     protected static BufferedImage shied, evaL, evaR;
     protected static BufferedImage normal_bullet_M, normal_bullet_R, normal_bullet_L, death_bullet, h_bullet, s_bullet;
     public static BufferedImage bulletIncham[] = new BufferedImage[5];
@@ -62,7 +62,7 @@ public class S_Item {
         UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
         component.setBackground(g2, construct);
         component.titleCenter_Round(g2, "Round " + GameState.currentRound, 90);
-        component.PlayerCenter(g2, "Player " + (GameState.currentPlayer + 1), 150);
+        component.PlayerCenter(g2, "Player " + (GameState.currentPlayer + 1), 150, button);
         component.text_10_alginCenter(g2, "Enter to ready, Spacebar to switch", 0, screenHeight - 150);
 
         component.text_10(g2, "" + gameState.player1.getNormalBullet(), 95, 245);
@@ -253,6 +253,7 @@ public class S_Item {
             // ACTION_SHOOT_L = 6;
             // ACTION_SHOOT_M = 7;
             // ACTION_SHOOT_R = 8;
+            button = component.img("/resources/lobby/button.png");
 
             char_P1[0] = component
                     .img("/resources/character/charL" + Integer.toString(gameState.player1.getCharacter()) + ".png");
