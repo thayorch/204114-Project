@@ -27,8 +27,8 @@ public class Howtoplay {
         component.setBackground(g2, Lobby.background);
         g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
-        component.setBackground(g2, howto[pages]);
-        component.howCenter(g2, "Enter to continue, Backspace to return", 750);
+        component.setBackground_1(g2, howto[pages]);
+        component.howCenter(g2, "Enter to continue, Backspace to return", 700);
     }
 
     private void loadAsset() {

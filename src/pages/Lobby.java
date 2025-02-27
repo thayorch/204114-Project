@@ -28,7 +28,7 @@ public class Lobby {
         component.setTitle(g2, title);
         component.textBtn(g2, "Start", button, 360);
         component.textBtn(g2, "Exit", button, 520);
-        component.howCenter(g2, "How to play", 750);
+        component.howCenter(g2, "How to play", 700);
     }
 
     private void loadAsset() {

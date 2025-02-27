@@ -54,6 +54,10 @@ public class Component {
         g2.drawImage(background, 0, 0, screenWidth, screenHeight, null);
     }
 
+    public void setBackground_1(Graphics2D g2, BufferedImage background) {
+        g2.drawImage(background, 0, 0, 877, 620, null);
+    }
+
     public void setTitle(Graphics2D g2, BufferedImage img) {
         g2.drawImage(img, (screenWidth / 4) - 190, 10, 500 * 2, 85 * 6, null);
     }
@@ -103,7 +107,7 @@ public class Component {
     public void howCenter(Graphics2D g2, String txt, int y) {
         g2.setColor(Color.white);
         g2.setFont(font_how);
-        g2.drawString(txt, getTextCenter(g2, txt), y);
+        g2.drawString(txt, getTextCenter(g2, txt), y + 20);
     }
 
     public void title_25(Graphics2D g2, String txt, int y) {
