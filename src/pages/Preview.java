@@ -1,21 +1,20 @@
 package pages;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 import client.Component;
 import client.GamePanel;
 import client.GameState;
 import client.UI;
 import entity.Dialog;
 import entity.Player;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Preview {
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
-    private BufferedImage dmg, shoot, shield_L, shield_R;
+    private BufferedImage dmg, shoot, shield_L, shield_R, button;
     private BufferedImage char_P1[];
     private BufferedImage char_P2[];
     protected int screenWidth;
@@ -48,8 +47,10 @@ public class Preview {
         UI.animation.drawP2(g2, char_P2[gameState.player2.getPlayer_actions()[GameState.currentSlot]]);
 
         if (gameState.player1.duelStatus) {
+            component.PlayerCenter(g2, "Player 1", 150, button);
             di.showDialog(g2, GameState.random_x);
         } else if (gameState.player2.duelStatus) {
+            component.PlayerCenter(g2, "Player 2", 150, button);
             di.showDialog(g2, GameState.random_x);
             successDI = true;
         } else {
@@ -106,6 +107,7 @@ public class Preview {
             shoot = component.img("/resources/previewScene/spritesheetBulletL.png");
             shield_L = component.img("/resources/previewScene/shieldL.png");
             shield_R = component.img("/resources/previewScene/shieldR.png");
+            button = component.img("/resources/lobby/button.png");
             System.out.println("[log: Preview Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
