@@ -1,17 +1,10 @@
 package client;
 
 import java.awt.*;
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import org.w3c.dom.events.MouseEvent;
-
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.awt.image.BufferedImage;
-import java.awt.Font;
-import java.awt.FontFormatException;
+import javax.imageio.ImageIO;
 
 public class Component {
     public int screenWidth;
@@ -55,7 +48,7 @@ public class Component {
     }
 
     public void setBackground_1(Graphics2D g2, BufferedImage background) {
-        g2.drawImage(background, 0, 0, 877, 620, null);
+        g2.drawImage(background, -20, -100, 1300, 920, null);
     }
 
     public void setTitle(Graphics2D g2, BufferedImage img) {
