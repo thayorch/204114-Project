@@ -62,7 +62,7 @@ public class S_Scence {
 
     public void loadAsset() {
         try {
-            button = component.img("/resources/lobby/button.png");
+            button = component.img("/resources/lobby/Botton2.png");
             card_1 = component.img("/resources/background/BG1_crop.png");
             card_2 = component.img("/resources/background/BG2_crop.png");
             card_3 = component.img("/resources/background/BG3_crop.png");

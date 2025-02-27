@@ -15,7 +15,7 @@ public class Preview {
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
-    private BufferedImage dmg, shoot, shield;
+    private BufferedImage dmg, shoot, shield_L, shield_R;
     private BufferedImage char_P1[];
     private BufferedImage char_P2[];
     protected int screenWidth;
@@ -71,25 +71,25 @@ public class Preview {
                     gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_R) {
                 UI.animation.drawBullet(g2, shoot, false);
                 UI.animation.drawRightCharacter(g2, dmg);
-                Thread.sleep(100);
+                // Thread.sleep(100);
             }
             if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_M ||
                     gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_L ||
                     gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_R) {
                 UI.animation.drawBullet(g2, shoot, true);
                 UI.animation.drawLeftCharacter(g2, dmg);
-                Thread.sleep(100);
+                // Thread.sleep(100);
             }
             if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
-                UI.animation.drawLeftCharacter(g2, shield);
-                Thread.sleep(100);
+                UI.animation.drawLeftCharacter(g2, shield_L);
+                // Thread.sleep(100);
             }
             if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
-                UI.animation.drawRightCharacter(g2, shield);
-                Thread.sleep(100);
+                UI.animation.drawRightCharacter(g2, shield_R);
+                // Thread.sleep(100);
             }
 
-            Thread.sleep(600);
+            Thread.sleep(400);
         }
         if (GameState.currentSlot < 4) {
             GameState.currentSlot++;
@@ -104,7 +104,8 @@ public class Preview {
         try {
             dmg = component.img("/resources/previewScene/dmg.png");
             shoot = component.img("/resources/previewScene/spritesheetBulletL.png");
-            shield = component.img("/resources/previewScene/shieldL.png");
+            shield_L = component.img("/resources/previewScene/shieldL.png");
+            shield_R = component.img("/resources/previewScene/shieldR.png");
             System.out.println("[log: Preview Image loaded successfully]");
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();

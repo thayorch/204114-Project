@@ -71,7 +71,7 @@ public class Component {
     public void titleCenter_1(Graphics2D g2, String txt, int y, BufferedImage img) {
         g2.setColor(Color.decode("#580f00"));
         // g2.setColor(Color.black);
-        g2.drawImage(img, (screenWidth / 2) - 135, y - 44, 250, 90, null);
+        g2.drawImage(img, (screenWidth / 2) - 160, y - 44, 300, 90, null);
         setFontScale(g2, font_30);
         // this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly
         // with jersey10 font
