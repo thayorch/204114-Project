@@ -33,17 +33,16 @@ public class Component {
         this.screenHeight = gamePanel.screenHeight;
         this.scalingFactor = gamePanel.scalingFactor;
         try {
-          InputStream is = getClass().getResourceAsStream("/resources/Jersey10-Regular.ttf");
-          jersey10 = Font.createFont(Font.TRUETYPE_FONT,is);
-          font_title = jersey10.deriveFont(Font.PLAIN, 40);
-          font_40 = jersey10.deriveFont(Font.PLAIN, 40);
-          font_30 = jersey10.deriveFont(Font.PLAIN, 30);
-          font_25 = jersey10.deriveFont(Font.PLAIN, 25);
-          font_20 = jersey10.deriveFont(Font.PLAIN, 20);
-        }
-        catch (FontFormatException | IOException e) {
-          e.printStackTrace();
-          font_title = new Font("Arial", Font.PLAIN, 40); // Fallback in case of error
+            InputStream is = getClass().getResourceAsStream("/resources/Jersey10-Regular.ttf");
+            jersey10 = Font.createFont(Font.TRUETYPE_FONT, is);
+            font_title = jersey10.deriveFont(Font.PLAIN, 40);
+            font_40 = jersey10.deriveFont(Font.PLAIN, 40);
+            font_30 = jersey10.deriveFont(Font.PLAIN, 30);
+            font_25 = jersey10.deriveFont(Font.PLAIN, 25);
+            font_20 = jersey10.deriveFont(Font.PLAIN, 20);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+            font_title = new Font("Arial", Font.PLAIN, 40); // Fallback in case of error
         }
     }
 
@@ -60,10 +59,12 @@ public class Component {
     }
 
     public void titleCenter(Graphics2D g2, String txt, int y) {
-        g2.setColor(Color.black);
+        g2.setColor(Color.decode("#580f00"));
+        // g2.setColor(Color.black);
         setFontScale(g2, font_title);
-        //this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly with jersey10 font
-        //g2.setFont(font_title);
+        // this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly
+        // with jersey10 font
+        // g2.setFont(font_title);
         g2.drawString(txt, getTextCenter(g2, txt), y);
     }
 
@@ -97,14 +98,12 @@ public class Component {
         g2.drawString(txt, screenWidth - x, y);
     }
 
-
     public void textBtn(Graphics2D g2, String txt, BufferedImage button, int y) {
         g2.setColor(Color.decode("#580f00"));
         g2.drawImage(button, (screenWidth / 2) - 155, y - 70, 290, 100, null);
         this.setFontScale(g2, this.font_30);
         g2.drawString(txt, getTextCenter(g2, txt) - 15, y);
     }
-
 
     public void text_10(Graphics2D g2, String txt, int x, int y) {
         g2.setColor(Color.WHITE);
@@ -281,6 +280,7 @@ public class Component {
     // Style
 
     public int getTextCenter(Graphics2D g2, String text) {
+
         int text_length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = screenWidth / 2 - text_length / 2;
         return x;
@@ -288,7 +288,8 @@ public class Component {
 
     public void setFontScale(Graphics2D g2, Font font) {
         int size = font.getSize();
-        g2.setFont(font.deriveFont(font.getStyle(), (int) (size * scalingFactor))); // Use the original style and the scaled size
+        g2.setFont(font.deriveFont(font.getStyle(), (int) (size * scalingFactor))); // Use the original style and the
+                                                                                    // scaled size
     }
 
 }
