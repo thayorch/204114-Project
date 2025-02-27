@@ -28,7 +28,7 @@ public class Dialog {
   public Dialog(GamePanel gamePanel, GameState gameState) {
     this.gameState = gameState;
     this.x_position = gamePanel.screenWidth / 2 - 170;
-    this.y_position = gamePanel.screenHeight / 2 + 300;
+    this.y_position = gamePanel.screenHeight / 2 + 200;
     this.component = new Component(gamePanel, gameState);
     gauge = x_position; // Initialize gauge position
     loadassets();
