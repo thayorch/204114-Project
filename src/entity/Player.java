@@ -245,7 +245,7 @@ public class Player {
     if (checkForDeathDoor())
       deathDoor = true;
 
-    barrel = 6;
+    barrel = 5;
     actionNum = 5;
     currentBarrel = 0;
     player_actions = new int[actionNum];
