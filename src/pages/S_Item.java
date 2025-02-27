@@ -297,7 +297,7 @@ public class S_Item {
             normal_bullet_L = component.img("/resources/assets/bullet/NbulletL.png");
             normal_bullet_R = component.img("/resources/assets/bullet/NbulletR.png");
             death_bullet = component.img("/resources/assets/bullet/DbulletM.png");
-            h_bullet = component.img("/resources/assets/bullet/HbulletM.png");
+            h_bullet = component.img("/resources/assets/bullet/MbulletM.png");
             s_bullet = component.img("/resources/assets/bullet/SbulletM.png");
             construct = component.img("/resources/previewScene/PreviewPageNew.png");
 
@@ -305,7 +305,7 @@ public class S_Item {
             closeSlot[1] = component.img("/resources/previewScene/PreviewPageCloseR.png");
 
             bulletIncham[1] = component.img("/resources/assets/bullet/NCircleBullet.png");
-            bulletIncham[2] = component.img("/resources/assets/bullet/HCircleBullet.png");
+            bulletIncham[2] = component.img("/resources/assets/bullet/MCircleBullet.png");
             bulletIncham[3] = component.img("/resources/assets/bullet/SCircleBullet.png");
             bulletIncham[4] = component.img("/resources/assets/bullet/DCircleBullet.png");
 
