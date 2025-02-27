@@ -68,8 +68,18 @@ public class Component {
         g2.drawString(txt, getTextCenter(g2, txt), y);
     }
 
-    public void PlayerCenter(Graphics2D g2, String txt, int y) {
+    public void titleCenter_Round(Graphics2D g2, String txt, int y) {
         g2.setColor(Color.decode("#580f00"));
+        // g2.setColor(Color.black);
+        setFontScale(g2, font_30);
+        // this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly
+        // with jersey10 font
+        // g2.setFont(font_title);
+        g2.drawString(txt, getTextCenter(g2, txt), y);
+    }
+
+    public void PlayerCenter(Graphics2D g2, String txt, int y) {
+        g2.setColor(Color.decode("#7a3a1d"));
         // g2.setColor(Color.black);
         setFontScale(g2, font_25);
         // this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly
@@ -112,7 +122,7 @@ public class Component {
         g2.setColor(Color.decode("#580f00"));
         g2.drawImage(button, (screenWidth / 2) - 155, y - 60, 290, 100, null);
         this.setFontScale(g2, this.font_30);
-        g2.drawString(txt, getTextCenter(g2, txt) - 15, y);
+        g2.drawString(txt, getTextCenter(g2, txt) - 5, y);
     }
 
     public void textWin(Graphics2D g2, String txt, int y) {

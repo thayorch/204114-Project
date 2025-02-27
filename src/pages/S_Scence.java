@@ -34,11 +34,11 @@ public class S_Scence {
     public void render(Graphics2D g2) throws IOException {
 
         UI.animation.drawBackground(g2, background[GameState.currentScence]);
-        component.titleCenter(g2, "Select Map", 150);
+        component.titleCenter(g2, "Select Map", 100);
         component.scenceCardleft(g2, "", card_1);
         component.scenceCardcenter(g2, "", card_2);
         component.scenceCardright(g2, "", card_3);
-    
+
         switch (GameState.currentScence) {
             case 0:
                 background[0] = component.img("/resources/background/SpritesheetBG1.png");
