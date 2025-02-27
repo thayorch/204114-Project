@@ -14,7 +14,7 @@ public class S_Scence {
     protected GamePanel gamePanel;
     protected GameState gameState;
     protected Component component;
-    private BufferedImage card_1, card_2, card_3;
+    private BufferedImage card_1, card_2, card_3, button;
     public static BufferedImage background[] = new BufferedImage[3];
     protected int screenWidth;
     protected int screenHeight;
@@ -34,7 +34,7 @@ public class S_Scence {
     public void render(Graphics2D g2) throws IOException {
 
         UI.animation.drawBackground(g2, background[GameState.currentScence]);
-        component.titleCenter(g2, "Select Map", 100);
+        component.titleCenter_1(g2, "Select Map", 100, button);
         component.scenceCardleft(g2, "", card_1);
         component.scenceCardcenter(g2, "", card_2);
         component.scenceCardright(g2, "", card_3);
@@ -62,6 +62,7 @@ public class S_Scence {
 
     public void loadAsset() {
         try {
+            button = component.img("/resources/lobby/button.png");
             card_1 = component.img("/resources/background/BG1_crop.png");
             card_2 = component.img("/resources/background/BG2_crop.png");
             card_3 = component.img("/resources/background/BG3_crop.png");
