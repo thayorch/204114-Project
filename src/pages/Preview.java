@@ -39,7 +39,7 @@ public class Preview {
         System.out.println(gameState.player1.getPlayer_actions()[GameState.currentSlot]);
         UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
         component.setBackground(g2, S_Item.construct);
-        component.titleCenter(g2, "Round " + GameState.currentRound, 100);
+        component.titleCenter_Round(g2, "Round " + GameState.currentRound, 90);
 
         component.healthBar(g2, gameState.player1.getHealth(), 145, 65);
         component.healthBar(g2, gameState.player2.getHealth(), GamePanel.screenWidth / 2 + 276, 65);
