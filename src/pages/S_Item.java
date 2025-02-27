@@ -63,7 +63,7 @@ public class S_Item {
         component.setBackground(g2, construct);
         component.titleCenter(g2, "Round " + GameState.currentRound, 100);
 
-        component.title_25(g2, "Enter to ready, Spacebar to switch", 200);
+        component.text_10_alginCenter(g2, "Enter to ready, Spacebar to switch", 0, screenHeight - 150);
 
         component.text_10(g2, "" + gameState.player1.getNormalBullet(), 95, 245);
         component.text_10(g2, "" + gameState.player1.getMagicBullet(), 95, 285);

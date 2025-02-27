@@ -85,11 +85,11 @@ public class Preview {
                 Thread.sleep(100);
             }
             if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
-                UI.animation.drawLeftCharacter(g2, shield);
+                UI.animation.drawRightCharacter(g2, shield);
                 Thread.sleep(100);
             }
 
-            Thread.sleep(1000);
+            Thread.sleep(600);
         }
         if (GameState.currentSlot < 4) {
             GameState.currentSlot++;
