@@ -41,11 +41,14 @@ public class Victory {
         else if (player1.win) {
             component.setBackground(g2, vic[player1.getCharacter() - 1]);
             UI.animation.drawWin(g2, winkle);
+            component.textWin(g2, "player1", 480);
         }
 
         else if (player2.win) {
             component.setBackground(g2, vic[player2.getCharacter() - 1]);
             UI.animation.drawWin(g2, winkle);
+            component.textWin(g2, "player2", 480);
+            // g2.drawString("player2", 640, 360);
         }
     }
 

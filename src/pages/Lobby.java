@@ -16,7 +16,6 @@ public class Lobby {
     public static BufferedImage background;
     private BufferedImage button, title;
     public static int background_num = 0;
-    
 
     public Lobby(GamePanel gamePanel, GameState gameState) {
         this.component = new Component(gamePanel, gameState);

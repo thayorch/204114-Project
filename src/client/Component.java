@@ -100,7 +100,13 @@ public class Component {
 
     public void textBtn(Graphics2D g2, String txt, BufferedImage button, int y) {
         g2.setColor(Color.decode("#580f00"));
-        g2.drawImage(button, (screenWidth / 2) - 155, y - 70, 290, 100, null);
+        g2.drawImage(button, (screenWidth / 2) - 155, y - 60, 290, 100, null);
+        this.setFontScale(g2, this.font_30);
+        g2.drawString(txt, getTextCenter(g2, txt) - 15, y);
+    }
+
+    public void textWin(Graphics2D g2, String txt, int y) {
+        g2.setColor(Color.WHITE);
         this.setFontScale(g2, this.font_30);
         g2.drawString(txt, getTextCenter(g2, txt) - 15, y);
     }
