@@ -23,7 +23,7 @@ public class ItemRoute {
     int currentSlot = gameState.currentSlot;
     int currentType = gameState.currentType;
     int currentPlayer = gameState.currentPlayer;
-    int TOTAL_BARREL = 6;
+    int TOTAL_BARREL = 5;
     int TOTAL_ACTION = 5;
     int bulletType = 0;
     int actionType = 0;

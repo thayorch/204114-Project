@@ -113,7 +113,7 @@ public class Modal extends JPanel {
 
         component.text_10_alginLeft(g2, "Duelstatus : " + gameState.player1.duelStatus, 10, 155);
         component.text_10_alginRight(g2, "Duelstatus : " + gameState.player2.duelStatus, 160, 155);
-        
+
         component.text_10_alginLeft(g2, "bulletPower : " + P1_POWER, 10, 170);
         component.text_10_alginRight(g2, "bulletPower : " + P2_POWER, 142, 170);
 
@@ -124,15 +124,15 @@ public class Modal extends JPanel {
         component.text_10_alginLeft(g2, "" + P1_gun_barrel[1], 110, 125);
         component.text_10_alginLeft(g2, "" + P1_gun_barrel[2], 122, 125);
         component.text_10_alginLeft(g2, "" + P1_gun_barrel[3], 134, 125);
-        component.text_10_alginLeft(g2, "" + P1_gun_barrel[4], 146, 125);
-        component.text_10_alginLeft(g2, "" + P1_gun_barrel[5] + " ]", 158, 125);
+        component.text_10_alginLeft(g2, "" + P1_gun_barrel[4] + " ]", 146, 125);
+        // component.text_10_alginLeft(g2, "" + P1_gun_barrel[5] + " ]", 158, 125);
 
         component.text_10_alginRight(g2, "Bullet : [ " + P2_gun_barrel[0], 180, 125);
         component.text_10_alginRight(g2, "" + P2_gun_barrel[1], 80, 125);
         component.text_10_alginRight(g2, "" + P2_gun_barrel[2], 68, 125);
         component.text_10_alginRight(g2, "" + P2_gun_barrel[3], 56, 125);
-        component.text_10_alginRight(g2, "" + P2_gun_barrel[4], 43, 125);
-        component.text_10_alginRight(g2, "" + P2_gun_barrel[5] + " ]", 30, 125);
+        component.text_10_alginRight(g2, "" + P2_gun_barrel[4] + "]", 43, 125);
+        // component.text_10_alginRight(g2, "" + P2_gun_barrel[5] + " ]", 30, 125);
 
         component.text_10_alginLeft(g2, "Action : [ " + P1_ACTIONS[0], 10, 140);
         component.text_10_alginLeft(g2, "" + P1_ACTIONS[1], 110, 140);

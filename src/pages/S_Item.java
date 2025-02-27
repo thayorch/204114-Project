@@ -27,10 +27,10 @@ public class S_Item {
     public static BufferedImage bulletIncham[] = new BufferedImage[5];
 
     public static BufferedImage P1_ACT[] = new BufferedImage[5];
-    public static BufferedImage P1_CHAM[] = new BufferedImage[6];
+    public static BufferedImage P1_CHAM[] = new BufferedImage[5];
 
     public static BufferedImage P2_ACT[] = new BufferedImage[5];
-    public static BufferedImage P2_CHAM[] = new BufferedImage[6];
+    public static BufferedImage P2_CHAM[] = new BufferedImage[5];
 
     public static void resetItem() {
 
@@ -39,7 +39,7 @@ public class S_Item {
             P2_ACT[i] = null;
         }
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             P1_CHAM[i] = null;
             P2_CHAM[i] = null;
         }
@@ -192,9 +192,9 @@ public class S_Item {
             case 4:
                 P1_CHAM[4] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
-            case 5:
-                P1_CHAM[5] = bulletIncham[barrel[GameState.currentSlot]];
-                break;
+            // case 5:
+            // P1_CHAM[5] = bulletIncham[barrel[GameState.currentSlot]];
+            // break;
         }
 
         component.Bullet(g2, 148, 320, P1_CHAM[0]);
@@ -202,7 +202,7 @@ public class S_Item {
         component.Bullet(g2, 127, 238, P1_CHAM[2]);
         component.Bullet(g2, 80, 252, P1_CHAM[3]);
         component.Bullet(g2, 70, 297, P1_CHAM[4]);
-        component.Bullet(g2, 99, 328, P1_CHAM[5]);
+        // component.Bullet(g2, 99, 328, P1_CHAM[5]);
     }
 
     protected void P2_CHAMBER(Graphics2D g2) {
@@ -223,9 +223,9 @@ public class S_Item {
             case 4:
                 P2_CHAM[4] = bulletIncham[barrel[GameState.currentSlot]];
                 break;
-            case 5:
-                P2_CHAM[5] = bulletIncham[barrel[GameState.currentSlot]];
-                break;
+            // case 5:
+            // P2_CHAM[5] = bulletIncham[barrel[GameState.currentSlot]];
+            // break;
         }
 
         component.Bullet(g2, 1141, 328, P2_CHAM[0]);
@@ -233,7 +233,7 @@ public class S_Item {
         component.Bullet(g2, 1162, 254, P2_CHAM[2]);
         component.Bullet(g2, 1115, 239, P2_CHAM[3]);
         component.Bullet(g2, 1080, 277, P2_CHAM[4]);
-        component.Bullet(g2, 1095, 320, P2_CHAM[5]);
+        // component.Bullet(g2, 1095, 320, P2_CHAM[5]);
     }
 
     public void loadAsset() {
