@@ -70,45 +70,47 @@ public class Dialog {
     g2.fillRect(x_position, y_position, 360, 25);
 
     // Draw the zone   
-    // zone 3
-    g2.setColor(new Color(220, 20, 60));
-    g2.fillRect(x_position + random_x, y_position, zone_3_width, 25);
+
+    // zone 1
+    g2.setColor(new Color(0, 255, 0));
+
+    g2.fillRect(x_position + random_x - zone_2_width - zone_1_width, y_position, zone_1_width, 25); // left
+    g2.fillRect(x_position + random_x + zone_3_width + zone_2_width, y_position, zone_1_width, 25); // right
 
     // zone 2
     g2.setColor(new Color(255, 215, 0));
     g2.fillRect(x_position + random_x - zone_2_width, y_position, zone_2_width, 25); // left
     g2.fillRect(x_position + random_x + zone_3_width, y_position, zone_2_width, 25); // right
 
-    // zone 1
-    g2.setColor(new Color(0, 255, 0));
-
-    g2.fillRect(x_position + random_x - zone_1_width - zone_2_width, y_position, zone_1_width, 25);
-    g2.fillRect(x_position + random_x + zone_3_width + zone_2_width, y_position, zone_1_width, 25);
+    // zone 3
+    g2.setColor(new Color(220, 20, 60));
+    g2.fillRect(x_position + random_x, y_position, zone_3_width, 25);
 
     // Draw the red gauge (moving rectangle)
     g2.setColor(new Color(0, 150, 255));
-    g2.drawImage(scope, gauge, y_position - 10, null);
-    // g2.fillRect(gauge, y_position, 5, 25);
+    //g2.drawImage(scope, gauge, y_position - 10, null);
+    g2.fillRect(gauge, y_position, 1, 25);
 
     // zone 3
-    if (gauge >= x_position + random_x && gauge <= x_position + random_x + zone_3_width)
+    if (gauge >= x_position + random_x - zone_3_width && gauge <= x_position + random_x + zone_3_width)
       gameState.bulletPower = 3;
 
     // zone 2
-    else if (gauge >= x_position + random_x - zone_2_width && gauge <= x_position + random_x + zone_2_width) // left
+    else if (gauge >= x_position + random_x - (zone_3_width/2) - zone_2_width &&
+        gauge <= x_position + random_x - (zone_3_width/2) + zone_2_width) // left
       gameState.bulletPower = 2;
 
-    else if (gauge >= x_position + random_x + zone_3_width
-        && gauge <= x_position + random_x + zone_3_width + zone_2_width) // right
+    else if (gauge >= x_position + random_x + (zone_3_width/2)
+        && gauge <= x_position + random_x + (zone_3_width/2) + zone_2_width) // right
       gameState.bulletPower = 2;
 
-    // zone 1
-    else if (gauge >= x_position + random_x - zone_2_width - zone_1_width
-        && gauge <= x_position + random_x + zone_2_width + zone_1_width) // left
+    //// zone 1
+    else if (gauge >= x_position + random_x - (zone_3_width/2) - zone_2_width - zone_1_width
+        && gauge <= x_position + random_x - (zone_3_width/2) - zone_2_width + zone_1_width) // left
       gameState.bulletPower = 1;
 
-    else if (gauge >= x_position + random_x + zone_3_width + zone_2_width
-        && gauge <= x_position + random_x + zone_3_width + zone_2_width + zone_1_width) // right
+    else if (gauge >= x_position + random_x + (zone_3_width/2) + zone_2_width
+        && gauge <= x_position + random_x + (zone_3_width/2) + zone_2_width + zone_1_width) // right
       gameState.bulletPower = 1;
 
     // zone 0

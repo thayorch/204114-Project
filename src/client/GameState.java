@@ -27,7 +27,7 @@ public class GameState {
   public static int currentRound = 1; // init Start Round
   public static int bulletPower = 0; // 3 great, 2 good, 1 bad, 0 worst
   public static int gauge = 0;
-  public static int random_x = 0;
+  public static int random_x;
 
   private Random rand = new Random();
 
@@ -45,6 +45,7 @@ public class GameState {
   public GameState(GamePanel gamepanel, KeyHandler keyHand) {
     this.gamePanel = gamepanel;
     this.keyHand = keyHand;
+    random_x = rand.nextInt(250);
   }
 
   public void random_X() {
