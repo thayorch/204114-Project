@@ -25,6 +25,7 @@ public class S_Item {
     protected static BufferedImage shied, evaL, evaR;
     protected static BufferedImage normal_bullet_M, normal_bullet_R, normal_bullet_L, death_bullet, h_bullet, s_bullet;
     public static BufferedImage bulletIncham[] = new BufferedImage[5];
+    public static BufferedImage closeSlot[] = new BufferedImage[2];
 
     public static BufferedImage P1_ACT[] = new BufferedImage[5];
     public static BufferedImage P1_CHAM[] = new BufferedImage[5];
@@ -102,6 +103,11 @@ public class S_Item {
 
         UI.animation.drawP1(g2, char_P1[0]);
         UI.animation.drawP2(g2, char_P2[0]);
+        if (gameState.currentPlayer == 0) {
+            component.setBackground(g2, closeSlot[1]);
+        } else {
+            component.setBackground(g2, closeSlot[0]);
+        }
     }
 
     private BufferedImage getActionImage(int action_id) {
@@ -293,6 +299,9 @@ public class S_Item {
             h_bullet = component.img("/resources/assets/bullet/HbulletM.png");
             s_bullet = component.img("/resources/assets/bullet/SbulletM.png");
             construct = component.img("/resources/previewScene/PreviewPageNew.png");
+
+            closeSlot[0] = component.img("/resources/previewScene/PreviewPageCloseL.png");
+            closeSlot[1] = component.img("/resources/previewScene/PreviewPageCloseR.png");
 
             bulletIncham[1] = component.img("/resources/assets/bullet/NCircleBullet.png");
             bulletIncham[2] = component.img("/resources/assets/bullet/HCircleBullet.png");

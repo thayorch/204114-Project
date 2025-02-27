@@ -36,10 +36,11 @@ public class Preview {
         char_P1 = S_Item.char_P1;
         char_P2 = S_Item.char_P2;
 
+        System.out.println(gameState.player1.getPlayer_actions()[GameState.currentSlot]);
         UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
         component.setBackground(g2, S_Item.construct);
         component.titleCenter(g2, "Round " + GameState.currentRound, 100);
-        
+
         component.healthBar(g2, gameState.player1.getHealth(), 145, 65);
         component.healthBar(g2, gameState.player2.getHealth(), GamePanel.screenWidth / 2 + 276, 65);
 
@@ -79,14 +80,16 @@ public class Preview {
                 UI.animation.drawLeftCharacter(g2, dmg);
                 Thread.sleep(100);
             }
-            if(gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK){
+            if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
                 UI.animation.drawLeftCharacter(g2, shield);
+                Thread.sleep(100);
+            }
+            if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
+                UI.animation.drawLeftCharacter(g2, shield);
+                Thread.sleep(100);
             }
 
-
-
-
-            Thread.sleep(20);
+            Thread.sleep(1000);
         }
         if (GameState.currentSlot < 4) {
             GameState.currentSlot++;

@@ -124,7 +124,7 @@ public class PreviewRoute {
         currentActionSlot++;
 
         // prevent deadman shooting
-        if(gameState.player1.health <= 0 || gameState.player2.health <= 0)
+        if (gameState.player1.health <= 0 || gameState.player2.health <= 0)
           break;
 
         // dueling

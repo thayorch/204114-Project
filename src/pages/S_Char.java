@@ -92,7 +92,7 @@ public class S_Char {
                 }
 
                 UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
-                component.titleCenter(g2, "Select Character", 100);
+                component.titleCenter(g2, "Player " + (GameState.currentPlayer + 1), 100);
                 UI.animation.drawLeftCharacter(g2, character_1);
                 UI.animation.drawCenterCharacter(g2, character_2);
                 UI.animation.drawRightCharacter(g2, character_3);
@@ -177,7 +177,6 @@ public class S_Char {
                         char_P2[8] = component
                                         .img("/resources/character/shootL"
                                                         + Integer.toString(gameState.player2.getCharacter()) + ".png");
-
 
                         System.out.println("[log: Select Character Image loaded successfully]");
                 } catch (IOException | NullPointerException e) {
