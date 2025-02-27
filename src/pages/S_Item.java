@@ -62,7 +62,7 @@ public class S_Item {
         UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
         component.setBackground(g2, construct);
         component.titleCenter(g2, "Round " + GameState.currentRound, 100);
-
+        component.PlayerCenter(g2, "Player " + (GameState.currentPlayer + 1), 150);
         component.text_10_alginCenter(g2, "Enter to ready, Spacebar to switch", 0, screenHeight - 150);
 
         component.text_10(g2, "" + gameState.player1.getNormalBullet(), 95, 245);

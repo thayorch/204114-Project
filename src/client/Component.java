@@ -68,6 +68,16 @@ public class Component {
         g2.drawString(txt, getTextCenter(g2, txt), y);
     }
 
+    public void PlayerCenter(Graphics2D g2, String txt, int y) {
+        g2.setColor(Color.decode("#580f00"));
+        // g2.setColor(Color.black);
+        setFontScale(g2, font_25);
+        // this.setFontScale(g2, jersey10.deriveFont(Font.PLAIN, 40)); // Scale directly
+        // with jersey10 font
+        // g2.setFont(font_title);
+        g2.drawString(txt, getTextCenter(g2, txt), y);
+    }
+
     public void howCenter(Graphics2D g2, String txt, int y) {
         g2.setColor(Color.white);
         g2.setFont(font_how);
