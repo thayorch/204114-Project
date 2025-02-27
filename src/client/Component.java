@@ -55,7 +55,7 @@ public class Component {
     }
 
     public void setBackground_1(Graphics2D g2, BufferedImage background) {
-        g2.drawImage(background, 0, 0, 877, 620, null);
+        g2.drawImage(background, 0, 0, 1070, 760, null);
     }
 
     public void setTitle(Graphics2D g2, BufferedImage img) {
