@@ -218,6 +218,7 @@ public class Player {
     magicBullet = MAGIC_AMOUNT;
     deathBullet = DEATH_AMOUNT;
     win = false;
+    duelStatus = false;
     bulletPower = 0;
 
     barrel = 5;
@@ -234,6 +235,7 @@ public class Player {
     block = BLOCK_AMOUNT;
     evaded = false;
     blocked = false;
+    duelStatus = false;
     bulletPower = 0;
 
     if (magicStatus) {
