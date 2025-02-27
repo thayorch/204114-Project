@@ -25,6 +25,8 @@ public class Howtoplay {
 
     public void render(Graphics2D g2) {
         component.setBackground(g2, Lobby.background);
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
         component.setBackground(g2, howto[pages]);
         component.howCenter(g2, "Enter to continue, Backspace to return", 750);
     }

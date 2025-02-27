@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     gameThread = new Thread(this); // passing GamePanel Class
     gameThread.start();
 
-    musicPlayer.play(0);
+    musicPlayer.play(1);
 
     new Timer(16, e -> debugScreen.repaint()).start();
   }

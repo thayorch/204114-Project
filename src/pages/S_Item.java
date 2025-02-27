@@ -34,15 +34,15 @@ public class S_Item {
 
     public static void resetItem() {
 
-      for (int i = 0; i < 5; i++){
-        P1_ACT[i] = null;
-        P2_ACT[i] = null;
-      }
+        for (int i = 0; i < 5; i++) {
+            P1_ACT[i] = null;
+            P2_ACT[i] = null;
+        }
 
-      for (int i = 0; i < 6; i++) {
-        P1_CHAM[i] = null;
-        P2_CHAM[i] = null;
-      }
+        for (int i = 0; i < 6; i++) {
+            P1_CHAM[i] = null;
+            P2_CHAM[i] = null;
+        }
     }
 
     public S_Item(GamePanel gamePanel, GameState gameState) {
@@ -62,23 +62,21 @@ public class S_Item {
         component.setBackground(g2, construct);
         component.titleCenter(g2, "Round " + GameState.currentRound, 100);
 
-        component.title_25(g2, "Enter to ready, Spacebar to switch", 175);
+        component.title_25(g2, "Enter to ready, Spacebar to switch", 200);
 
         component.text_10(g2, "" + gameState.player1.getNormalBullet(), 95, 245);
         component.text_10(g2, "" + gameState.player1.getMagicBullet(), 95, 285);
         component.text_10(g2, "" + gameState.player1.getSilverBullet(), 95, 325);
         component.text_10(g2, "" + gameState.player1.getDeathBullet(), 95, 365);
-        component.text_10(g2, ""+ gameState.player1.getBlock(), 135, 610);
-        component.text_10(g2, ""+ gameState.player1.getEvade(), 230, 610);
-        
-        
-        component.text_10(g2, "" + gameState.player2.getNormalBullet(), screenWidth-115, 245);
-        component.text_10(g2, "" + gameState.player2.getMagicBullet(), screenWidth-115, 285);
-        component.text_10(g2, "" + gameState.player2.getSilverBullet(), screenWidth-115, 325);
-        component.text_10(g2, "" + gameState.player2.getDeathBullet(), screenWidth-115, 365);
-        component.text_10(g2, ""+ gameState.player2.getBlock(), screenWidth-135, 610);
-        component.text_10(g2, ""+ gameState.player2.getEvade(), screenWidth-40, 610);
+        component.text_10(g2, "" + gameState.player1.getBlock(), 135, 610);
+        component.text_10(g2, "" + gameState.player1.getEvade(), 230, 610);
 
+        component.text_10(g2, "" + gameState.player2.getNormalBullet(), screenWidth - 115, 245);
+        component.text_10(g2, "" + gameState.player2.getMagicBullet(), screenWidth - 115, 285);
+        component.text_10(g2, "" + gameState.player2.getSilverBullet(), screenWidth - 115, 325);
+        component.text_10(g2, "" + gameState.player2.getDeathBullet(), screenWidth - 115, 365);
+        component.text_10(g2, "" + gameState.player2.getBlock(), screenWidth - 135, 610);
+        component.text_10(g2, "" + gameState.player2.getEvade(), screenWidth - 40, 610);
 
         component.healthBar(g2, gameState.player1.getHealth(), 145, 65);
         component.healthBar(g2, gameState.player2.getHealth(), GamePanel.screenWidth / 2 + 276, 65);
@@ -106,22 +104,22 @@ public class S_Item {
         UI.animation.drawP2(g2, char_P2[0]);
     }
 
-    private BufferedImage getActionImage(int action_id){
-      if (action_id == Player.ACTION_NONE)
-          return null;
-      if (action_id == Player.ACTION_SHOOT_L)
-          return normal_bullet_L;
-      if (action_id == Player.ACTION_SHOOT_M)
-          return normal_bullet_M;
-      if (action_id == Player.ACTION_SHOOT_R)
-          return normal_bullet_R;
-      if (action_id == Player.ACTION_BLOCK)
-          return shied;
-      if (action_id == Player.ACTION_EVADE_L)
-          return evaL;
-      if (action_id == Player.ACTION_EVADE_R)
-          return evaR;
-      return null;
+    private BufferedImage getActionImage(int action_id) {
+        if (action_id == Player.ACTION_NONE)
+            return null;
+        if (action_id == Player.ACTION_SHOOT_L)
+            return normal_bullet_L;
+        if (action_id == Player.ACTION_SHOOT_M)
+            return normal_bullet_M;
+        if (action_id == Player.ACTION_SHOOT_R)
+            return normal_bullet_R;
+        if (action_id == Player.ACTION_BLOCK)
+            return shied;
+        if (action_id == Player.ACTION_EVADE_L)
+            return evaL;
+        if (action_id == Player.ACTION_EVADE_R)
+            return evaR;
+        return null;
     }
 
     protected void P1_ACTION(Graphics2D g2) {
@@ -146,7 +144,7 @@ public class S_Item {
         }
 
         for (int i = 0; i < 5; i++) {
-          component.actionSlot_P1(g2, P1_ACT[i], i);
+            component.actionSlot_P1(g2, P1_ACT[i], i);
         }
     }
 
@@ -172,7 +170,7 @@ public class S_Item {
         }
 
         for (int i = 0; i < 5; i++) {
-          component.actionSlot_P2(g2, P2_ACT[i], i);
+            component.actionSlot_P2(g2, P2_ACT[i], i);
         }
     }
 
