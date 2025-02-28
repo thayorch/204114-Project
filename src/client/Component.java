@@ -100,7 +100,7 @@ public class Component {
     public void howCenter(Graphics2D g2, String txt, int y) {
         g2.setColor(Color.white);
         g2.setFont(font_how);
-        g2.drawString(txt, getTextCenter(g2, txt), y + 20);
+        g2.drawString(txt, getTextCenter(g2, txt) - 5, y + 20);
     }
 
     public void title_25(Graphics2D g2, String txt, int y) {
@@ -310,6 +310,10 @@ public class Component {
         g2.setColor(Color.WHITE);
         g2.setFont(font_10);
         g2.drawString("Health: " + health + "/100", x + 40, y + 15);
+    }
+
+    public void drawShield(Graphics2D g2, BufferedImage img, int x, int y){
+        g2.drawImage(img, x, y, 200, 370, null);
     }
 
     // Style

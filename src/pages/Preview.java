@@ -34,6 +34,13 @@ public class Preview {
     public void render(Graphics2D g2) throws InterruptedException {
         char_P1 = S_Item.char_P1;
         char_P2 = S_Item.char_P2;
+        UI.animation.drawLeftCharacter(g2, shield_L);
+
+        try {
+            shield_L = component.img("/resources/previewScene/shieldL.png");
+            shield_R = component.img("/resources/previewScene/shieldR.png");
+        } catch (Exception e) {
+        }
 
         System.out.println(gameState.player1.getPlayer_actions()[GameState.currentSlot]);
         UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
@@ -57,12 +64,10 @@ public class Preview {
             if (successDI) {
                 if (gameState.player2.QTE(gameState.player1)) {
                     UI.animation.drawBullet(g2, shoot, false);
-                    Thread.sleep(100);
                     UI.animation.drawRightCharacter(g2, dmg);
                     successDI = false;
                 } else {
                     UI.animation.drawBullet(g2, shoot, true);
-                    Thread.sleep(100);
                     UI.animation.drawLeftCharacter(g2, dmg);
                     successDI = false;
                 }
@@ -72,25 +77,21 @@ public class Preview {
                     gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_R) {
                 UI.animation.drawBullet(g2, shoot, false);
                 UI.animation.drawRightCharacter(g2, dmg);
-                // Thread.sleep(100);
             }
             if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_M ||
                     gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_L ||
                     gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_R) {
                 UI.animation.drawBullet(g2, shoot, true);
                 UI.animation.drawLeftCharacter(g2, dmg);
-                // Thread.sleep(100);
             }
             if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
-                UI.animation.drawLeftCharacter(g2, shield_L);
-                // Thread.sleep(100);
+                component.drawShield(g2, shield_L, 280, 300);
             }
             if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
-                UI.animation.drawRightCharacter(g2, shield_R);
-                // Thread.sleep(100);
+                component.drawShield(g2, shield_R, 790, 300);
             }
 
-            Thread.sleep(400);
+            Thread.sleep(300);
         }
         if (GameState.currentSlot < 4) {
             GameState.currentSlot++;
