@@ -36,12 +36,6 @@ public class Preview {
         char_P2 = S_Item.char_P2;
         UI.animation.drawLeftCharacter(g2, shield_L);
 
-        try {
-            shield_L = component.img("/resources/previewScene/shieldL.png");
-            shield_R = component.img("/resources/previewScene/shieldR.png");
-        } catch (Exception e) {
-        }
-
         System.out.println(gameState.player1.getPlayer_actions()[GameState.currentSlot]);
         UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
         component.setBackground(g2, S_Item.construct);
