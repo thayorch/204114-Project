@@ -1,14 +1,13 @@
 package pages;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 import client.Component;
 import client.GamePanel;
 import client.GameState;
 import client.UI;
 import entity.Player;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class S_Item {
 
@@ -23,7 +22,7 @@ public class S_Item {
     public static BufferedImage char_P2[] = new BufferedImage[9];
     protected static BufferedImage chamber, frame, frame2, construct, button;
     protected static BufferedImage shied, evaL, evaR;
-    protected static BufferedImage normal_bullet_M, normal_bullet_R, normal_bullet_L, death_bullet, h_bullet, s_bullet;
+    protected static BufferedImage normal_bullet_M, normal_bullet_R, normal_bullet_L, death_bullet, h_bullet, s_bullet,bulletL_slot,bulletM_slot,bulletR_slot;
     public static BufferedImage bulletIncham[] = new BufferedImage[5];
     public static BufferedImage closeSlot[] = new BufferedImage[2];
 
@@ -114,11 +113,14 @@ public class S_Item {
         if (action_id == Player.ACTION_NONE)
             return null;
         if (action_id == Player.ACTION_SHOOT_L)
-            return normal_bullet_L;
+            // return normal_bullet_L;
+            return bulletL_slot;
         if (action_id == Player.ACTION_SHOOT_M)
-            return normal_bullet_M;
+            // return normal_bullet_M;
+            return bulletM_slot;
         if (action_id == Player.ACTION_SHOOT_R)
-            return normal_bullet_R;
+            // return normal_bullet_R;
+            return bulletR_slot;
         if (action_id == Player.ACTION_BLOCK)
             return shied;
         if (action_id == Player.ACTION_EVADE_L)
@@ -293,13 +295,18 @@ public class S_Item {
             char_P2[8] = component
                     .img("/resources/character/shootL" + Integer.toString(gameState.player2.getCharacter()) + ".png");
 
-            normal_bullet_M = component.img("/resources/assets/bullet/NbulletM.png");
-            normal_bullet_L = component.img("/resources/assets/bullet/NbulletL.png");
-            normal_bullet_R = component.img("/resources/assets/bullet/NbulletR.png");
-            death_bullet = component.img("/resources/assets/bullet/DbulletM.png");
-            h_bullet = component.img("/resources/assets/bullet/MbulletM.png");
-            s_bullet = component.img("/resources/assets/bullet/SbulletM.png");
+            // normal_bullet_M = component.img("/resources/assets/bullet/NbulletM.png");
+            // normal_bullet_L = component.img("/resources/assets/bullet/NbulletL.png");
+            // normal_bullet_R = component.img("/resources/assets/bullet/NbulletR.png");
+            // death_bullet = component.img("/resources/assets/bullet/DbulletM.png");
+            // h_bullet = component.img("/resources/assets/bullet/MbulletM.png");
+            // s_bullet = component.img("/resources/assets/bullet/SbulletM.png");
             construct = component.img("/resources/previewScene/PreviewPageNew.png");
+
+            bulletL_slot = component.img("/resources/assets/bullet/bulletL_slot.png");
+            bulletM_slot = component.img("/resources/assets/bullet/bulletM_slot.png");
+            bulletR_slot = component.img("/resources/assets/bullet/bulletR_slot.png");
+
 
             closeSlot[0] = component.img("/resources/previewScene/PreviewPageCloseL.png");
             closeSlot[1] = component.img("/resources/previewScene/PreviewPageCloseR.png");
