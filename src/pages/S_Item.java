@@ -4,6 +4,7 @@ import client.Component;
 import client.GamePanel;
 import client.GameState;
 import client.UI;
+import entity.Animation;
 import entity.Player;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -57,6 +58,8 @@ public class S_Item {
     public void render(Graphics2D g2) throws IOException {
         char_P1 = S_Char.char_P1;
         char_P2 = S_Char.char_P2;
+        Animation.p1_x = 180;
+        Animation.p2_x = 750;
 
         UI.animation.drawBackground(g2, S_Scence.background[Lobby.background_num]);
         component.setBackground(g2, construct);

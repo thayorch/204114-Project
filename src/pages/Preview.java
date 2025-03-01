@@ -4,6 +4,7 @@ import client.Component;
 import client.GamePanel;
 import client.GameState;
 import client.UI;
+import entity.Animation;
 import entity.Dialog;
 import entity.Player;
 import java.awt.*;
@@ -34,6 +35,7 @@ public class Preview {
     public void render(Graphics2D g2) throws InterruptedException {
         char_P1 = S_Item.char_P1;
         char_P2 = S_Item.char_P2;
+
         UI.animation.drawLeftCharacter(g2, shield_L);
 
         System.out.println(gameState.player1.getPlayer_actions()[GameState.currentSlot]);
@@ -42,14 +44,16 @@ public class Preview {
         component.titleCenter_Round(g2, "Round " + GameState.currentRound, 90);
 
 
-        component.setBackground(g2, S_Item.closeSlot[1]);
-        component.setBackground(g2, S_Item.closeSlot[0]);
-
+        
         component.healthBar(g2, gameState.player1.getHealth(), 145, 65);
         component.healthBar(g2, gameState.player2.getHealth(), GamePanel.screenWidth / 2 + 276, 65);
 
         UI.animation.drawP1(g2, char_P1[gameState.player1.getPlayer_actions()[GameState.currentSlot]]);
         UI.animation.drawP2(g2, char_P2[gameState.player2.getPlayer_actions()[GameState.currentSlot]]);
+        component.setBackground(g2, S_Item.closeSlot[1]);
+        component.setBackground(g2, S_Item.closeSlot[0]);
+
+
 
         if (gameState.player1.duelStatus) {
             component.PlayerCenter(g2, "Player 1", 150, button);
@@ -96,11 +100,26 @@ public class Preview {
                 component.drawShield(g2, shield_R, 790, 300);
             }
 
-            if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
-                
+            if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_L) {
+                for(int i=1; i<50; i++){
+                    Animation.p1_x--;
+                } 
             }
-            if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
-                
+            if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_R) {
+                for(int i=1; i<50; i++){
+                    Animation.p1_x++;
+                }
+            }
+
+            if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_L) {
+                for(int i=1; i<50; i++){
+                    Animation.p2_x--;
+                }
+            }
+            if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_R) {
+                for(int i=1; i<50; i++){
+                    Animation.p2_x++;
+                } 
             }
 
             Thread.sleep(200);

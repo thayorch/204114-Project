@@ -99,11 +99,14 @@ public class Animation extends JPanel implements ActionListener {
         drawCharacter(g2, img, 870, 320, true, 1.5);
     }
 
+    public static int p1_x=180;
+    public static int p2_x=750;
+
     public void drawP1(Graphics2D g2, BufferedImage img) {
-        drawCharacter(g2, img, 170, 300, false, 1.75);
+        drawCharacter(g2, img, p1_x, 300, false, 1.75);
     }
     public void drawP2(Graphics2D g2, BufferedImage img) {
-        drawCharacter(g2, img, 750, 300, true, 1.75);
+        drawCharacter(g2, img, p2_x, 300, true, 1.75);
     }
     public void drawWin(Graphics2D g2, BufferedImage img) {
         drawSparkle(g2, img, 760, 110, true, 1.85);
