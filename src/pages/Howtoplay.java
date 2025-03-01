@@ -33,10 +33,10 @@ public class Howtoplay {
 
     private void loadAsset() {
         try {
-            howto[0] = component.img("/resources/howtoplay/howto1_rule.png");
-            howto[1] = component.img("/resources/howtoplay/howto2_bullet.png");
-            howto[2] = component.img("/resources/howtoplay/howto3_item.png");
-            howto[3] = component.img("/resources/howtoplay/howto4_win.png");
+            howto[0] = component.img("/resources/howtoplay/how_rule.png");
+            howto[1] = component.img("/resources/howtoplay/how_bullet.png");
+            howto[2] = component.img("/resources/howtoplay/how_item.png");
+            howto[3] = component.img("/resources/howtoplay/how_win.png");
             System.out.println("[log: Lobby Image loaded successfully]");
         } catch (IOException e) {
             System.out.println("[error: Failed to load background]");
