@@ -145,6 +145,19 @@ public class Component {
         g2.setFont(font_10);
         g2.drawString(txt, x, y);
     }
+
+
+    public void dmgP1(Graphics2D g2, String dmg){
+        g2.setColor(Color.RED);
+        g2.setFont(font_10);
+        g2.drawString(dmg,130,380);
+    }
+
+    public void dmgP2(Graphics2D g2, String dmg){
+        g2.setColor(Color.RED);
+        g2.setFont(font_10);
+        g2.drawString(dmg,1000,380);
+    }
     // Scence (Map)
 
     public void scenceCardleft(Graphics2D g2, String txt, BufferedImage img) {

@@ -88,8 +88,8 @@ public class Dialog {
 
     // Draw the red gauge (moving rectangle)
     g2.setColor(new Color(0, 150, 255));
-    //g2.drawImage(scope, gauge, y_position - 10, null);
-    g2.fillRect(gauge, y_position, 1, 25);
+    g2.drawImage(scope, gauge, y_position - 10, null);
+    // g2.fillRect(gauge, y_position, 1, 25);
 
     // zone 3
     if (gauge >= x_position + random_x - zone_3_width && gauge <= x_position + random_x + zone_3_width)

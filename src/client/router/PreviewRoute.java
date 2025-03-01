@@ -133,8 +133,8 @@ public class PreviewRoute {
           while (gameState.player1.duelStatus) {
             System.out.println("1 " + gameState.player1.duelStatus); // for some reason need to print output to make it
                                                                      // work
-            if (router.keyHand.enterPressed) {
-              router.keyHand.enterPressed = false;
+            if (router.keyHand.spacePressed) {
+              router.keyHand.spacePressed = false;
               gameState.player1.bulletPower = gameState.bulletPower;
               gameState.bulletPower = 0; // reset
               gameState.player1.duelStatus = false;
@@ -144,8 +144,8 @@ public class PreviewRoute {
 
           while (gameState.player2.duelStatus) {
             System.out.println("2 " + gameState.player2.duelStatus);
-            if (router.keyHand.enterPressed) {
-              router.keyHand.enterPressed = false;
+            if (router.keyHand.spacePressed) {
+              router.keyHand.spacePressed = false;
               gameState.player2.bulletPower = gameState.bulletPower;
               gameState.bulletPower = 0; // reset
               gameState.player2.duelStatus = false;

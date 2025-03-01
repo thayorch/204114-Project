@@ -36,7 +36,6 @@ public class Animation extends JPanel implements ActionListener {
     }
 
     public void drawBullet(Graphics2D g2, BufferedImage img, boolean reverse) {
-
         int frameX = backgroundCurrentFrame * (GamePanel.screenWidth / 2);
         if (reverse) {
             g2.drawImage(img, 0, 0, GamePanel.screenWidth, GamePanel.screenHeight + 185,

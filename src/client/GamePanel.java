@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
   // private int totalPlayer = 2;
 
   // FPS
-  private int FPS = 60;
+  private int FPS = 144;
 
   private Thread gameThread; // call game loop || call run()
   private KeyHandler keyHand = new KeyHandler((GamePanel) this);
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     gameThread = new Thread(this); // passing GamePanel Class
     gameThread.start();
 
-    musicPlayer.play(2);
+    musicPlayer.play(1  );
 
     new Timer(16, e -> debugScreen.repaint()).start();
   }

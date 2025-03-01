@@ -215,8 +215,8 @@ public class KeyHandler implements KeyListener {
 
   private void PreviewKeyPress(int code) {
     switch (code) {
-      case (KeyEvent.VK_ENTER):
-        enterPressed = true;
+      case (KeyEvent.VK_SPACE):
+        spacePressed = true;
         break;
       case (KeyEvent.VK_BACK_SPACE):
         backspacePressed = true;

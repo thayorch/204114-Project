@@ -41,6 +41,10 @@ public class Preview {
         component.setBackground(g2, S_Item.construct);
         component.titleCenter_Round(g2, "Round " + GameState.currentRound, 90);
 
+
+        component.setBackground(g2, S_Item.closeSlot[1]);
+        component.setBackground(g2, S_Item.closeSlot[0]);
+
         component.healthBar(g2, gameState.player1.getHealth(), 145, 65);
         component.healthBar(g2, gameState.player2.getHealth(), GamePanel.screenWidth / 2 + 276, 65);
 
@@ -66,6 +70,13 @@ public class Preview {
                     successDI = false;
                 }
             }
+
+            if(gameState.player1.magicStatus){
+                component.dmgP1(g2, "-1 Sheild -1 Eva" );
+            }
+            if(gameState.player2.magicStatus){
+                component.dmgP2(g2, "-1 Sheild -1 Eva" );
+            }
             if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_M ||
                     gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_L ||
                     gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_R) {
@@ -85,7 +96,14 @@ public class Preview {
                 component.drawShield(g2, shield_R, 790, 300);
             }
 
-            Thread.sleep(300);
+            if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
+                
+            }
+            if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_BLOCK) {
+                
+            }
+
+            Thread.sleep(200);
         }
         if (GameState.currentSlot < 4) {
             GameState.currentSlot++;
