@@ -18,13 +18,13 @@ public class MusicPlayer {
     public void play(int music_number) {
         switch (music_number) {
             case 0:
-                this.playMusic("resources/victory_music.wav", true);
+                this.playMusic("resources/sfx/bg/victory_music.wav", true);
                 break;
             case 1:
-                this.playMusic("resources/test.wav", true);
+                this.playMusic("resources/sfx/bg/test.wav", true);
                 break;
             case 2:
-                this.playMusic("resources/lofi.wav", true);
+                this.playMusic("resources/sfx/bg/lofi.wav", true);
                 break;
             default:
                 System.out.println("Invalid music number.");
@@ -34,10 +34,10 @@ public class MusicPlayer {
     public void sfx(String sfx_number) {
         switch (sfx_number) {
             case "click":
-                this.playSFX("sfx/click.wav", false);
+                this.playSFX("resources/sfx/click.wav", false);
                 break;
             case "pew":
-                this.playSFX("sfx/pew.wav", false);
+                this.playSFX("resources/sfx/pew.wav", false);
                 break;
             default:
                 System.out.println("Invalid SFX number.");
