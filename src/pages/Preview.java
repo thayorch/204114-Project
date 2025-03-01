@@ -43,8 +43,6 @@ public class Preview {
         component.setBackground(g2, S_Item.construct);
         component.titleCenter_Round(g2, "Round " + GameState.currentRound, 90);
 
-
-        
         component.healthBar(g2, gameState.player1.getHealth(), 145, 65);
         component.healthBar(g2, gameState.player2.getHealth(), GamePanel.screenWidth / 2 + 276, 65);
 
@@ -53,8 +51,6 @@ public class Preview {
         component.setBackground(g2, S_Item.closeSlot[1]);
         component.setBackground(g2, S_Item.closeSlot[0]);
 
-
-
         if (gameState.player1.duelStatus) {
             component.PlayerCenter(g2, "Player 1", 150, button);
             di.showDialog(g2, GameState.random_x);
@@ -62,6 +58,7 @@ public class Preview {
             component.PlayerCenter(g2, "Player 2", 150, button);
             di.showDialog(g2, GameState.random_x);
             successDI = true;
+
         } else {
             if (successDI) {
                 if (gameState.player2.QTE(gameState.player1)) {
@@ -75,11 +72,11 @@ public class Preview {
                 }
             }
 
-            if(gameState.player1.magicStatus){
-                component.dmgP1(g2, "-1 Sheild -1 Eva" );
+            if (gameState.player1.magicStatus) {
+                component.dmgP1(g2, "-1 Sheild -1 Eva");
             }
-            if(gameState.player2.magicStatus){
-                component.dmgP2(g2, "-1 Sheild -1 Eva" );
+            if (gameState.player2.magicStatus) {
+                component.dmgP2(g2, "-1 Sheild -1 Eva");
             }
             if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_M ||
                     gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_SHOOT_L ||
@@ -101,25 +98,25 @@ public class Preview {
             }
 
             if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_L) {
-                for(int i=1; i<50; i++){
+                for (int i = 1; i < 50; i++) {
                     Animation.p1_x--;
-                } 
+                }
             }
             if (gameState.player1.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_R) {
-                for(int i=1; i<50; i++){
+                for (int i = 1; i < 50; i++) {
                     Animation.p1_x++;
                 }
             }
 
             if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_L) {
-                for(int i=1; i<50; i++){
+                for (int i = 1; i < 50; i++) {
                     Animation.p2_x--;
                 }
             }
             if (gameState.player2.getPlayer_actions()[GameState.currentSlot] == Player.ACTION_EVADE_R) {
-                for(int i=1; i<50; i++){
+                for (int i = 1; i < 50; i++) {
                     Animation.p2_x++;
-                } 
+                }
             }
 
             Thread.sleep(200);
