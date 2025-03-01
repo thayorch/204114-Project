@@ -12,7 +12,7 @@ public class Main {
     frame.pack(); // set size to fit perferred size
 
     frame.setResizable(false); // Prevent resizeable
-    frame.setTitle("Gunslinger V.0.1"); // Set Title
+    frame.setTitle("Pew Pew!"); // Set Title
     // frame.setLayout(new BorderLayout()); // Set the layout manager for the frame
 
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation

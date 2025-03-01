@@ -98,7 +98,7 @@ public class Animation extends JPanel implements ActionListener {
     public void drawRightCharacter(Graphics2D g2, BufferedImage img) {
         drawCharacter(g2, img, 870, 320, true, 1.5);
     }
-
+    
     public static int p1_x=180;
     public static int p2_x=750;
 
