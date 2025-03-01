@@ -11,7 +11,7 @@ public class MusicPlayer {
     private InputStream vic, test, lofi, click, pew;
 
     public MusicPlayer() {
-      loadAudio();
+
     }
 
     // music_number
@@ -22,12 +22,15 @@ public class MusicPlayer {
     public void play(int music_number) {
         switch (music_number) {
             case 0:
+                vic = getClass().getResourceAsStream("/resources/sfx/bg/victory_music.wav");
                 this.playMusic(vic, true);
                 break;
             case 1:
+                test = getClass().getResourceAsStream("/resources/sfx/bg/test.wav");
                 this.playMusic(test, true);
                 break;
             case 2:
+                lofi = getClass().getResourceAsStream("/resources/sfx/bg/lofi.wav");
                 this.playMusic(lofi, true);
                 break;
             default:
@@ -38,9 +41,11 @@ public class MusicPlayer {
     public void sfx(String sfx_number) {
         switch (sfx_number) {
             case "click":
+                click = getClass().getResourceAsStream("/resources/sfx/click.wav");
                 this.playSFX(click, false);
                 break;
             case "pew":
+                pew = getClass().getResourceAsStream("/resources/sfx/pew.wav");
                 this.playSFX(pew, false);
                 break;
             default:
@@ -91,20 +96,6 @@ public class MusicPlayer {
         if (sfx != null && sfx.isRunning()) {
             sfx.stop();
             sfx.close();
-        }
-    }
-
-    private void loadAudio() {
-        try {
-            vic = getClass().getResourceAsStream("/resources/sfx/bg/victory_music.wav");
-            test = getClass().getResourceAsStream("/resources/sfx/bg/test.wav");
-            lofi = getClass().getResourceAsStream("/resources/sfx/bg/lofi.wav");
-            click = getClass().getResourceAsStream("/resources/sfx/click.wav");
-            pew = getClass().getResourceAsStream("/resources/sfx/pew.wav");
-            System.out.println("[log: Audio loaded successfully]");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("[error: Failed to load Audio]");
         }
     }
 }

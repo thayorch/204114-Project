@@ -2,13 +2,23 @@ package client;
 
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 public class Main {
   public static void main(String[] args) {
 
     JFrame frame = new JFrame();
     GamePanel gamePanel = new GamePanel();
-    ImageIcon img = new ImageIcon("resources/assets/icon.png");
+    //ImageIcon img = new ImageIcon("resources/assets/icon.png");
+    ImageIcon img;
+
+    try {
+      img = new ImageIcon(ImageIO.read(Main.class.getResourceAsStream("/resources/assets/icon.png")));
+    } catch (IOException e) {
+      e.printStackTrace();
+      img = null;
+    }
 
     frame.add(gamePanel);
     frame.pack(); // set size to fit perferred size
