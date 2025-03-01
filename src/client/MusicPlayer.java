@@ -3,11 +3,15 @@ package client;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.BufferedInputStream;
 
 public class MusicPlayer {
     private Clip music, sfx;
+    private InputStream vic, test, lofi, click, pew;
 
     public MusicPlayer() {
+      loadAudio();
     }
 
     // music_number
@@ -18,13 +22,13 @@ public class MusicPlayer {
     public void play(int music_number) {
         switch (music_number) {
             case 0:
-                this.playMusic("resources/sfx/bg/victory_music.wav", true);
+                this.playMusic(vic, true);
                 break;
             case 1:
-                this.playMusic("resources/sfx/bg/test.wav", true);
+                this.playMusic(test, true);
                 break;
             case 2:
-                this.playMusic("resources/sfx/bg/lofi.wav", true);
+                this.playMusic(lofi, true);
                 break;
             default:
                 System.out.println("Invalid music number.");
@@ -34,20 +38,20 @@ public class MusicPlayer {
     public void sfx(String sfx_number) {
         switch (sfx_number) {
             case "click":
-                this.playSFX("resources/sfx/click.wav", false);
+                this.playSFX(click, false);
                 break;
             case "pew":
-                this.playSFX("resources/sfx/pew.wav", false);
+                this.playSFX(pew, false);
                 break;
             default:
                 System.out.println("Invalid SFX number.");
         }
     }
 
-    public void playMusic(String filePath, boolean loop) {
+    public void playMusic(InputStream musicStream, boolean loop) {
         try {
-            File file = new File(filePath);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            BufferedInputStream bufferedStream = new BufferedInputStream(musicStream);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
             music = AudioSystem.getClip();
             music.open(audioStream);
 
@@ -61,10 +65,10 @@ public class MusicPlayer {
         }
     }
 
-    public void playSFX(String filePath, boolean loop) {
+    public void playSFX(InputStream musicStream, boolean loop) {
         try {
-            File file = new File(filePath);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            BufferedInputStream bufferedStream = new BufferedInputStream(musicStream);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
             sfx = AudioSystem.getClip();
             sfx.open(audioStream);
             if (loop) {
@@ -87,6 +91,20 @@ public class MusicPlayer {
         if (sfx != null && sfx.isRunning()) {
             sfx.stop();
             sfx.close();
+        }
+    }
+
+    private void loadAudio() {
+        try {
+            vic = getClass().getResourceAsStream("/resources/sfx/bg/victory_music.wav");
+            test = getClass().getResourceAsStream("/resources/sfx/bg/test.wav");
+            lofi = getClass().getResourceAsStream("/resources/sfx/bg/lofi.wav");
+            click = getClass().getResourceAsStream("/resources/sfx/click.wav");
+            pew = getClass().getResourceAsStream("/resources/sfx/pew.wav");
+            System.out.println("[log: Audio loaded successfully]");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("[error: Failed to load Audio]");
         }
     }
 }

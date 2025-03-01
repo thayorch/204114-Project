@@ -15,8 +15,7 @@ public class Main {
 
     frame.setResizable(false); // Prevent resizeable
     frame.setTitle("Pew Pew!"); // Set Title
-    frame.setIconImage(img.getImage());
-    // frame.setLayout(new BorderLayout()); // Set the layout manager for the frame
+    frame.setIconImage(img.getImage()); // Set Icon
 
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation
     frame.setLocationRelativeTo(null); // Set Window position to center
