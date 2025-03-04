@@ -127,35 +127,30 @@ public class ItemRoute {
       router.keyHand.numPressedNUM = 0; // reset num
     }
 
-    if (router.keyHand.backspacePressed) { // return
-      router.keyHand.backspacePressed = false;
-      gameState.currentSlot = 0;
-
-      // if(!gameState.player1.ready && !gameState.player2.ready){
-      // Router.currentRoute = Router.S_CHAR_STATE;
-      // gameState.player2.ready = false;
-      // gameState.player1.ready = false;
-      // gameState.currentPlayer = PLAYER1;
-      // System.out.println("[log: Switch Back!]");
-      // }
-      // else
-      if (gameState.player2.ready && currentPlayer == PLAYER2) { // final accident check
-        gameState.player2.ready = false;
-        System.out.println("[log: player2 unready]");
-      }
-
-      else if (!gameState.player2.ready && currentPlayer == PLAYER2) { // accident enter p2
-        gameState.player2.ready = false;
-        gameState.player1.ready = false;
-        gameState.currentPlayer = PLAYER1;
-        System.out.println("[log: player2 unready return to player 1]");
-      }
-
-      else if (!gameState.player1.ready && currentPlayer == PLAYER1) { // accident enter p1
-        gameState.player1.ready = false;
-        System.out.println("[log: player 1 unready]");
-      }
-    }
+    // if (router.keyHand.backspacePressed) { // return
+    // router.keyHand.backspacePressed = false;
+    // gameState.currentSlot = 0;
+    //
+    // if (gameState.player2.ready && currentPlayer == PLAYER2) { // final accident
+    // check
+    // gameState.player2.ready = false;
+    // System.out.println("[log: player2 unready]");
+    // }
+    //
+    // else if (!gameState.player2.ready && currentPlayer == PLAYER2) { // accident
+    // enter p2
+    // gameState.player2.ready = false;
+    // gameState.player1.ready = false;
+    // gameState.currentPlayer = PLAYER1;
+    // System.out.println("[log: player2 unready return to player 1]");
+    // }
+    //
+    // else if (!gameState.player1.ready && currentPlayer == PLAYER1) { // accident
+    // enter p1
+    // gameState.player1.ready = false;
+    // System.out.println("[log: player 1 unready]");
+    // }
+    // }
 
     if (router.keyHand.enterPressed) { // proceed
       router.keyHand.enterPressed = false;
